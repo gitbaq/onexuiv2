@@ -139,7 +139,7 @@ const PrimarySearchAppBar = props => {
                     <div className={classes.sectionDesktop}>
 
 
-                        <Tooltip title="Home">
+                        <Tooltip title="Home V2">
 
                             <IconButton aria-label="Home" color="inherit" onClick={() => handleButtonClick("/landing")}>
                                 <HomeRoundedIcon />
