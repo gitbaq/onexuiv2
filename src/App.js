@@ -14,6 +14,8 @@ import interestTheme from './theme';
 import Faucet from './components/faucet';
 import Landing from './components/landing';
 import ResponsiveAppBar from './components/appbar';
+import Contract from './components/contract';
+import Calculator from './components/calculator';
 
 import {
   CONNECTION_CONNECTED,
@@ -25,7 +27,11 @@ import {
 } from './constants'
 
 import Store from "./stores";
-import SimplePaper from './components/calculator';
+
+import Home from './components/home';
+import Account from './components/account';
+import Whitepaper from './components/whitepaper';
+import Swap from './components/swap';
 const emitter = Store.emitter
 const dispatcher = Store.dispatcher
 // const store = Store.store
@@ -84,32 +90,48 @@ export default function App() {
             <Account />
           </div>
         } */}
-        <div>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
+          // minWidth: '100vw',
+          // justifyContent: 'center',
+          // alignItems: 'flex-start',
+          background: "#1f1f1f"
+
+        }}>
           <div style={{
-            minWidth: '100vw',
+            // minWidth: '100vw',
           }}>
             <ResponsiveAppBar />
           </div>
           <div style={{
-            // paddingLeft: '10px',
+            // padding: '5px',
             // backgroundColor: colors.compoundGreen
+            minHeight: '90vh',
           }}>
             <Switch>
-              <Route path="/landing">
+              <Route path="/home">
+                <Home />
+              </Route>
+              <Route path="/testcontract">
                 <Landing />
               </Route>
               <Route path="/contract">
-                <SimplePaper />
+                <Contract />
               </Route>
               <Route path="/account">
-                <SimplePaper />
+                <Account />
               </Route><Route path="/calculator">
-                <SimplePaper />
-              </Route><Route path="/howtobuy">
-                <SimplePaper />
+                <Calculator />
+              </Route><Route path="/whitepaper">
+                <Whitepaper />
               </Route>
               <Route path="/faucet">
                 <Faucet />
+              </Route>
+              <Route path="/swap">
+                <Swap />
               </Route>
             </Switch>
           </div>

@@ -20,6 +20,7 @@ const emitter = Store.emitter
 
 const useStyles = makeStyles(theme => ({
   headerContainer: {
+    color: '#FFFFFF',
     // position: 'absolute',
     // top: '12px',
     // right: '12px',
@@ -140,7 +141,7 @@ export default function Header() {
   }
 
   return (
-    <div className={classes.headerContainer}>
+    <div className={`${classes.headerContainer}`}>
       {address &&
         <Balances />
       }

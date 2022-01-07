@@ -33,16 +33,32 @@ const useStyles = makeStyles(theme => ({
     '& .icon': {
       color: '#00AEE9'
     },
+  },
+  walletAddress: {
+
+    '&:hover': {
+      border: "2px solid " + colors.borderBlue,
+      background: 'rgba(47, 128, 237, 0.1)'
+    },
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      position: 'absolute',
+      transform: 'translate(0, 200%)',
+      border: "1px solid " + colors.borderBlue,
+      background: colors.white
+    }
   }
 }));
 
 export default function Balances() {
   const classes = useStyles();
   const [tokenBalance, setTokenBalance] = useState(0)
+  const [token, setToken] = useState(0)
 
   useEffect(() => {
     const getBalancesReturned = () => {
       const tokens = store.getStore('tokens')
+      setToken(tokens[0])
       setTokenBalance((tokens && tokens.length >= 1) ? tokens[0].balance : 0)
     }
 
@@ -54,13 +70,8 @@ export default function Balances() {
   }, [])
 
   return (
-    <Button
-      className={classes.gradient}
-      variant="outlined"
-      color="primary"
-      disabled={true}
-    >
-      <Typography>{tokenBalance} OneX</Typography>
-    </Button>
+
+    <Typography color="textSecondary" noWrap>{tokenBalance} {token.name}</Typography>
+
   )
 }

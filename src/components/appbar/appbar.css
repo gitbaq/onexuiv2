@@ -1,3 +1,4 @@
-AppBar, Toolbar{
-    color:'secondary'
+.appBarLabel{
+    /* color:red; */
+    font-size: small;
 }
