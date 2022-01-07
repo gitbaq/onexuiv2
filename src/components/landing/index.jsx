@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import './landing.css';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Store from "../../stores";
+import {
+    Card,
+    Typography,
+} from '@material-ui/core';
 
-
+import ColoredLoader from '../loader/coloredLoader'
+import Snackbar from '../snackbar'
+import { colors } from '../../theme'
 
 const Web3 = require('web3');
 const BN = require('bn.js');
@@ -17,21 +23,106 @@ const store = Store.store
 
 
 
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
     root: {
-        flexGrow: 1,
+        flex: 1,
+        display: 'flex',
+        width: '100%',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flexDirection: 'column',
+        [theme.breakpoints.up('sm')]: {
+            flexDirection: 'row',
+        }
     },
-    paper: {
-        padding: theme.spacing(0),
-        textAlign: 'center',
-        // color: theme.palette.text.secondary,
+    card: {
+        flex: '1',
+        height: '25vh',
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'left',
+        flexDirection: 'column',
+        cursor: 'pointer',
+        borderRadius: '0px',
+        transition: 'background-color 0.2s linear',
+        [theme.breakpoints.up('sm')]: {
+            height: '100vh',
+            minWidth: '20%',
+            minHeight: '50vh',
+        }
     },
-
+    gradient: {
+        backgroundColor: '#00AEE9',
+        // '&:hover': {
+        //     backgroundColor: '#00AEE9',
+        //     '& .title': {
+        //         color: colors.white,
+        //     },
+        //     '& .icon': {
+        //         color: colors.white
+        //     }
+        // },
+        '& .title': {
+            color: colors.white,
+        },
+        '& .icon': {
+            color: colors.white,
+        },
+    },
+    green: {
+        backgroundColor: colors.white,
+        '&:hover': {
+            // backgroundColor: colors.compoundGreen,
+            '& .title': {
+                color: colors.white,
+            },
+            '& .icon': {
+                color: colors.white
+            }
+        },
+        '& .title': {
+            color: colors.compoundGreen,
+        },
+        '& .icon': {
+            color: colors.compoundGreen
+        },
+    },
+    title: {
+        padding: '24px 0 12px 0',
+        [theme.breakpoints.up('sm')]: {
+            paddingBottom: '12px'
+        }
+    },
+    subTitle: {
+        padding: '0 0 12px 0',
+        fontSize: '12px',
+        [theme.breakpoints.up('sm')]: {
+            paddingBottom: '12px'
+        }
+    },
+    icon: {
+        fontSize: '60px',
+        [theme.breakpoints.up('sm')]: {
+            fontSize: '100px',
+        }
+    },
+    link: {
+        textDecoration: 'none'
+    }
 }));
 
 export default function Landing() {
     const classes = useStyles();
+
+    const [snackbarMessage, setSnackbarMessage] = useState(null)
+    const [snackbarType, setSnackbarType] = useState(null)
+    const [loading, setLoading] = useState(false)
+
+    const renderSnackbar = () => {
+        return <Snackbar type={snackbarType} message={snackbarMessage} open={true} />
+    }
+
     const [lastBlockNumber, setLastBlockNumber] = React.useState({});
     const [block, setBlock] = React.useState({});
     const [balance, setBalance] = React.useState({});
@@ -115,90 +206,33 @@ export default function Landing() {
 
 
     return (
-        // <div style={{ padding: '5px' }}>
-        //     <Paper elevation={2}>
-        //         <h1>OneX Contract</h1>
-        //         <div style={{ padding: '10px' }}>
-        //             <p>Last Block Number = {JSON.stringify(lastBlockNumber, null, "  ")}</p>
-        //             <pre>Last Block Details = {JSON.stringify(block.hash, null, "  ")}</pre>
-        //             <pre>Default Account Address = {JSON.stringify(myAddress, null, "  ")}</pre>
-        //             <pre>Default Account Balance = {JSON.stringify(balance, null, "  ")}</pre>
-        //             <pre>Expense Account Balance = {JSON.stringify(expenseBalance, null, "  ")}</pre>
-        //             <pre>Liquidity Account Balance = {JSON.stringify(liquidityBalance, null, "  ")}</pre>
-        //             <pre>Staking Account Balance = {JSON.stringify(stakingBalance, null, "  ")}</pre>
-        //             <pre>OneX Contract Address = {JSON.stringify(oneXContractAddress, null, "  ")}</pre>
 
-
-        //             {/* <button onClick={fetchOnline}>Fetch Data Online (async/await)</button> */}
-        //             <button onClick={fetchBlock}>Fetch Block</button>
-        //             {/* <button id="showtoken" onClick={showValue}>Show token</button> */}
-
-        //         </div></Paper>
-        // </div>
         <div className={classes.root}>
-            <Grid container spacing={2}>
-                <Grid container item xs={12} spacing={1}>
-                    <Grid item xs={12}>
-                        <Paper className={classes.paper}><h1>OneX Contract</h1><h4>Contract Address = {JSON.stringify(oneXContractAddress, null, "  ")}</h4></Paper>
-                    </Grid>
-                    {/* <Grid item xs={12}>
-                        <Paper className={classes.paper}><h4>Last Block Details</h4><h6>Block Number: {JSON.stringify(lastBlockNumber, null, "  ")}</h6>
-                            <h6>Block Address = {JSON.stringify(block.hash, null, "  ")}
-                                &nbsp;<Button variant="contained" color="primary" onClick={fetchBlock}>Fetch Block</Button></h6>
-                        </Paper>
-                    </Grid> */}
-                </Grid>
-                <Grid container item xs={12} spacing={1}>
-                    <Grid item xs={12}>
-                        <Paper className={classes.paper}>
-                            Last Block Details
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Paper className={classes.paper}>
-                            Block Number: {JSON.stringify(lastBlockNumber, null, "  ")}
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Paper className={classes.paper}>Block Address = {JSON.stringify(block.hash, null, "  ")}
-                            &nbsp;<Button variant="contained" color="primary" onClick={fetchBlock}>Fetch Block</Button></Paper>
-                    </Grid>
-                </Grid>
-                <Grid container item xs={12} spacing={1}>
-                    <Grid item xs={12}>
-                        <Paper className={classes.paper}>
-                            Default Account Details
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Paper className={classes.paper}>
-                            Address = {JSON.stringify(myAddress, null, "  ")}
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Paper className={classes.paper}>Balance = {JSON.stringify(balance, null, "  ")}</Paper>
-                    </Grid>
-                </Grid>
-                <Grid container item xs={12} spacing={1}>
-                    <Grid item xs={12}>
-                        <Paper className={classes.paper}>
-                            Wallet Balances
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Paper className={classes.paper}>
-                            Expense = {JSON.stringify(expenseBalance, null, "  ")}
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Paper className={classes.paper}>Liquidity = {JSON.stringify(liquidityBalance, null, "  ")}</Paper>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Paper className={classes.paper}>Staking = {JSON.stringify(stakingBalance, null, "  ")}</Paper>
-                    </Grid>
-                </Grid>
-            </Grid>
-
+            <Card className={`${classes.card} ${classes.gradient}`} >
+                <Typography variant={'h3'} className={`${classes.title} title`}>OneX Contract</Typography>
+                <Typography variant={'h5'} className={`${classes.title} subTitle`}>Contract Address = {JSON.stringify(oneXContractAddress, null, "  ")}</Typography>
+                <Typography variant={'h4'} className={`${classes.title} title`}>Last Block Details</Typography>
+                <Typography variant={'h6'} className={`${classes.title} subTitle`}>
+                    Block Number: {JSON.stringify(lastBlockNumber, null, "  ")}
+                    <br />
+                    Block Address = {JSON.stringify(block.hash, null, "  ")}
+                    <br />
+                    <Button variant="contained" color="primary" onClick={fetchBlock}>Fetch Block</Button></Typography>
+                <Typography variant={'h4'} className={`${classes.title} title`}>Default Account Details</Typography>
+                <Typography variant={'h6'} className={`${classes.title} subTitle`}>
+                    Address = {JSON.stringify(myAddress, null, "  ")}
+                    <br />
+                    Balance = {JSON.stringify(balance, null, "  ")}</Typography>
+                <Typography variant={'h4'} className={`${classes.title} title`}>Wallet Balances</Typography>
+                <Typography variant={'h6'} className={`${classes.title} subTitle`}>
+                    Expense = {JSON.stringify(expenseBalance, null, "  ")}
+                    <br />
+                    Liquidity = {JSON.stringify(liquidityBalance, null, "  ")}
+                    <br />
+                    Staking = {JSON.stringify(stakingBalance, null, "  ")}</Typography>
+            </Card>
+            {loading && <ColoredLoader />}
+            {snackbarMessage && renderSnackbar()}
         </div>
     );
 
