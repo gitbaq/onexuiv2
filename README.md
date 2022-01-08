@@ -1,4 +1,4 @@
-# Sample faucet dApp on Harmony
+# OneX UI V2
 
 ## Available Scripts
 
