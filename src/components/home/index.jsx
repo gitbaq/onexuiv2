@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import { Card, Button, Typography } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
 import Store from "../../stores";
-import { colors } from '../../theme'
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
+// import { colors } from '../../theme'
 
-import ColoredLoader from '../loader/coloredLoader'
-import Snackbar from '../snackbar'
+// import ColoredLoader from '../loader/coloredLoader'
+// import Snackbar from '../snackbar'
 
 
 
 import {
     GET_BALANCES_PERPETUAL_RETURNED
 } from '../../constants'
+import Carousel from '../carousel';
 
 const store = Store.store
 const emitter = Store.emitter
@@ -35,10 +33,10 @@ const useStyles = makeStyles(theme => ({
     },
     card: {
         flex: '1',
-        height: '25vh',
+        // height: '25vh',
         width: '100%',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'none',
         alignItems: 'center',
         flexDirection: 'column',
         cursor: 'pointer',
@@ -47,82 +45,23 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]: {
             height: '100vh',
             minWidth: '20%',
-            minHeight: '50vh',
+            // minHeight: '50vh',
         }
     },
 
-    gradient: {
-        backgroundColor: '#00AEE9',
 
-        // backgroundColor: colors.white,
-        // '&:hover': {
-        //     backgroundColor: '#00AEE9',
-        //     '& .title': {
-        //         color: colors.white,
-        //     },
-        //     '& .icon': {
-        //         color: colors.white
-        //     }
-        // },
-        '& .title': {
-            color: colors.white,
-        },
-        '& .icon': {
-            color: colors.white
-        },
-    },
-    green: {
-        backgroundColor: colors.white,
-        '&:hover': {
-            // backgroundColor: colors.compoundGreen,
-            '& .title': {
-                color: colors.white,
-            },
-            '& .icon': {
-                color: colors.white
-            }
-        },
-        '& .title': {
-            color: colors.compoundGreen,
-        },
-        '& .icon': {
-            color: colors.compoundGreen
-        },
-    },
-    title: {
-        padding: '24px 0 12px 0',
-        [theme.breakpoints.up('sm')]: {
-            paddingBottom: '12px'
-        }
-    },
-    subTitle: {
-        padding: '0 0 12px 0',
-        fontSize: '12px',
-        [theme.breakpoints.up('sm')]: {
-            paddingBottom: '12px'
-        }
-    },
-    icon: {
-        fontSize: '60px',
-        [theme.breakpoints.up('sm')]: {
-            fontSize: '100px',
-        }
-    },
-    link: {
-        textDecoration: 'none'
-    }
 }));
 
 
 export default function Home() {
     const classes = useStyles();
-    const [snackbarMessage, setSnackbarMessage] = useState(null)
-    const [snackbarType, setSnackbarType] = useState(null)
-    const [loading, setLoading] = useState(false)
+    // const [snackbarMessage, setSnackbarMessage] = useState(null)
+    // const [snackbarType, setSnackbarType] = useState(null)
+    // const [loading, setLoading] = useState(false)
 
-    const renderSnackbar = () => {
-        return <Snackbar type={snackbarType} message={snackbarMessage} open={true} />
-    }
+    // const renderSnackbar = () => {
+    //     return <Snackbar type={snackbarType} message={snackbarMessage} open={true} />
+    // }
 
     const [token, setToken] = useState(0)
     const [tokenBalance, setTokenBalance] = useState(0)
@@ -145,23 +84,26 @@ export default function Home() {
     return (
 
         <div className={classes.root}>
-            <Card className={`${classes.card} ${classes.gradient}`} >
+
+            <Card className={`${classes.card}`} >
+                <Carousel></Carousel>
                 <Typography variant={'h1'} className={`${classes.title} title`}>OneX TOKEN</Typography>
-                {/* <Typography variant={'h6'} className={`${classes.subTitle} title`}>(Whitepaper    )</Typography> */}
                 <Typography variant="h4">REVOLUTIONARY AUTO-STAKING REWARDS</Typography>
                 <Typography variant="h6">HOLD $OneX AND EARN PASSIVE INCOME PAID IN $ONE</Typography>
+                <Typography variant="h4" align="center" className={`${classes.title} title`}>Current Holdings : {tokenBalance}</Typography>
+
                 <Typography variant="h4" align="center" className={`${classes.title} title`}>Contract : {token.address}</Typography>
                 <div>
-                    <Button variant="contained" color="primary" href="https://viperswap.one/#/swap" target="_viperswap">
+                    <Button variant="outlined" color="secondary" href="https://viperswap.one/#/swap" target="_viperswap">
                         Buy on Viperswap
                     </Button>
-                    <Button variant="contained" color="primary" href="https://www.dextools.io/app/bsc/pair-explorer/" target="_dextools">
+                    <Button variant="outlined" color="secondary" href="https://www.dextools.io/app/bsc/pair-explorer/" target="_dextools">
                         Chart on Dextools
                     </Button>
                 </div>
             </Card>
-            {loading && <ColoredLoader />}
-            {snackbarMessage && renderSnackbar()}
+            {/* {loading && <ColoredLoader />}
+            {snackbarMessage && renderSnackbar()} */}
         </div>
 
     );

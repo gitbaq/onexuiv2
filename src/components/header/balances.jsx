@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import {
-  Typography,
-  Button
+  Typography/*,
+  Button*/
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -15,43 +15,43 @@ import Store from "../../stores";
 const store = Store.store
 const emitter = Store.emitter
 
-const useStyles = makeStyles(theme => ({
-  gradient: {
-    // backgroundColor: colors.white,
-    '&:hover': {
-      backgroundColor: '#00AEE9',
-      '& .title': {
-        color: `${colors.white} !important`
-      },
-      '& .icon': {
-        color: `${colors.white} !important`
-      }
-    },
-    '& .title': {
-      color: '#00AEE9#',
-    },
-    '& .icon': {
-      color: '#00AEE9'
-    },
-  },
-  walletAddress: {
+// const useStyles = makeStyles(theme => ({
+//   gradient: {
+//     // backgroundColor: colors.white,
+//     '&:hover': {
+//       backgroundColor: '#00AEE9',
+//       '& .title': {
+//         color: `${colors.white} !important`
+//       },
+//       '& .icon': {
+//         color: `${colors.white} !important`
+//       }
+//     },
+//     '& .title': {
+//       color: '#00AEE9#',
+//     },
+//     '& .icon': {
+//       color: '#00AEE9'
+//     },
+//   },
+//   walletAddress: {
 
-    '&:hover': {
-      border: "2px solid " + colors.borderBlue,
-      background: 'rgba(47, 128, 237, 0.1)'
-    },
-    [theme.breakpoints.down('sm')]: {
-      display: 'flex',
-      position: 'absolute',
-      transform: 'translate(0, 200%)',
-      border: "1px solid " + colors.borderBlue,
-      background: colors.white
-    }
-  }
-}));
+//     '&:hover': {
+//       border: "2px solid " + colors.borderBlue,
+//       background: 'rgba(47, 128, 237, 0.1)'
+//     },
+//     [theme.breakpoints.down('sm')]: {
+//       display: 'flex',
+//       position: 'absolute',
+//       transform: 'translate(0, 200%)',
+//       border: "1px solid " + colors.borderBlue,
+//       background: colors.white
+//     }
+//   }
+// }));
 
 export default function Balances() {
-  const classes = useStyles();
+  // const classes = useStyles();
   const [tokenBalance, setTokenBalance] = useState(0)
   const [token, setToken] = useState(0)
 

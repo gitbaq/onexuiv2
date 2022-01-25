@@ -37,7 +37,11 @@ export const colors = {
   lightBlue: "#2F80ED",
   topaz: "#0b8f92",
   darkGray: "rgba(43,57,84,.5)",
-  borderBlue: 'rgba(25, 101, 233, 0.5)'
+  borderBlue: 'rgba(25, 101, 233, 0.5)',
+
+
+  harmonyGradient: 'rgba(25, 174, 219, 0.5)'
+
 };
 
 const breakpoints = createBreakpoints({
@@ -51,7 +55,7 @@ const breakpoints = createBreakpoints({
   }
 })
 
-const iswapTheme =  {
+const iswapTheme = {
   typography: {
     fontFamily: [
       '"Work Sans Thin"',
@@ -175,7 +179,7 @@ const iswapTheme =  {
         // border: "none !important"
       }
     },
-    MuiSnackbar : {
+    MuiSnackbar: {
       root: {
         maxWidth: 'calc(100vw - 24px)'
       },
@@ -206,7 +210,7 @@ const iswapTheme =  {
     },
     MuiAccordion: {
       root: {
-        border: '1px solid '+colors.borderBlue,
+        border: '1px solid ' + colors.borderBlue,
         borderRadius: '50px',
         margin: '8px 0px',
         '&:before': { //underline color when textfield is inactive
@@ -245,7 +249,7 @@ const iswapTheme =  {
       root: {
         borderRadius: '50px',
         textTransform: 'none',
-        minWidth:  '100px',
+        minWidth: '100px',
         border: 'none',
         '& > span > h4': {
           color: '#555',
@@ -274,7 +278,7 @@ const iswapTheme =  {
     },
     MuiToggleButtonGroup: {
       root: {
-        border: '1px solid '+colors.borderBlue,
+        border: '1px solid ' + colors.borderBlue,
         borderRadius: '50px',
       }
     },
@@ -286,7 +290,7 @@ const iswapTheme =  {
   },
   palette: {
     primary: {
-      main: colors.blue
+      main: colors.harmonyGradient
     },
     secondary: {
       main: colors.topaz

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { createTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import {
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 import IpfsRouter from 'ipfs-react-router'
 // import { colors } from './theme'
@@ -32,6 +33,9 @@ import Home from './components/home';
 import Account from './components/account';
 import Whitepaper from './components/whitepaper';
 import Swap from './components/swap';
+// import { colors } from '@material-ui/core';
+import Faq from './components/faq';
+import { UrlJsonRpcProvider } from '@ethersproject/providers';
 const emitter = Store.emitter
 const dispatcher = Store.dispatcher
 // const store = Store.store
@@ -74,7 +78,7 @@ export default function App() {
   }, [])
 
   return (
-    <MuiThemeProvider theme={createMuiTheme(interestTheme)}>
+    <MuiThemeProvider theme={createTheme(interestTheme)}>
       <CssBaseline />
       <IpfsRouter>
         {/* {!account &&
@@ -97,41 +101,53 @@ export default function App() {
           // minWidth: '100vw',
           // justifyContent: 'center',
           // alignItems: 'flex-start',
-          background: "#1f1f1f"
+          // background: "#FFFFFF"
 
         }}>
           <div style={{
-            // minWidth: '100vw',
+            minWidth: '100vw',
+            // background: "#000000"
           }}>
             <ResponsiveAppBar />
           </div>
           <div style={{
+            background: 'linear-gradient(180deg, rgba(40,185,216, 0.1), rgba(69, 214, 202,0.1), rgba(86,234,190, 0.1))',
             // padding: '5px',
-            // backgroundColor: colors.compoundGreen
+            // backgroundColor: '#FF0000',
+            marginTop: '1px',
             minHeight: '90vh',
+            // backgroundImage: "url('./OneX.jpeg')"
           }}>
             <Switch>
-              <Route path="/home">
+              <Route exact path="/">
+                <Redirect to="/home" />
+              </Route>
+              <Route exact path="/home">
                 <Home />
               </Route>
-              <Route path="/testcontract">
+              <Route exact path="/testcontract">
                 <Landing />
               </Route>
-              <Route path="/contract">
-                <Contract />
-              </Route>
-              <Route path="/account">
-                <Account />
-              </Route><Route path="/calculator">
+              <Route exact path="/calculator">
                 <Calculator />
-              </Route><Route path="/whitepaper">
+              </Route>
+              <Route exact path="/whitepaper">
                 <Whitepaper />
               </Route>
-              <Route path="/faucet">
+              <Route exact path="/faucet">
                 <Faucet />
               </Route>
-              <Route path="/swap">
+              <Route exact path="/swap">
                 <Swap />
+              </Route>
+              <Route exact path="/contract">
+                <Contract />
+              </Route>
+              <Route exact path="/account">
+                <Account />
+              </Route>
+              <Route exact path="/faq">
+                <Faq />
               </Route>
             </Switch>
           </div>

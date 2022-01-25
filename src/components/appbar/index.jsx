@@ -5,7 +5,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import DescriptionIcon from '@material-ui/icons/Description';
+import Divider from '@material-ui/core/Divider';
+
+import Typography from '@material-ui/core/Typography';
+import MenuIcon from '@material-ui/icons/Menu';
+
+
+// import DescriptionIcon from '@material-ui/icons/Description';
 import PermDataSettingRoundedIcon from '@material-ui/icons/PermDataSettingRounded';
 import MoneyIcon from '@material-ui/icons/Money';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
@@ -14,9 +20,10 @@ import Tooltip from '@material-ui/core/Tooltip';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import SwapHorizontalCircleRoundedIcon from '@material-ui/icons/SwapHorizontalCircleRounded';
 import AssignmentRoundedIcon from '@material-ui/icons/AssignmentRounded';
+import ContactSupportRoundedIcon from '@material-ui/icons/ContactSupportRounded';
 
 import './appbar.css'
-import oneXLogo from '../../assets/OneX.jpeg'
+import oneXLogo from '../../assets/ONEX.svg'
 import Header from "../header";
 import { withRouter } from "react-router-dom";
 
@@ -94,11 +101,6 @@ const PrimarySearchAppBar = props => {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
-
-
-
-
-
     const handleMenuClose = pageURL => {
         history.push(pageURL);
         setAnchorEl(null);
@@ -133,55 +135,71 @@ const PrimarySearchAppBar = props => {
 
     return (
         <div className={classes.grow}>
-            <AppBar position="sticky">
+            <AppBar position="sticky" style={{ background: 'linear-gradient(90deg, rgba(255,255,255,0.7),rgba(40,185,216,0.7), rgba(69, 214, 202,0.7), rgba(86,234,190,0.7))', color: "black" }}>
                 <Toolbar>
                     <div><img alt='OneX logo' src={oneXLogo} className="logo" /></div>
+
+                    <IconButton
+                        edge="start"
+                        className={classes.menuButton}
+                        color="inherit"
+                        aria-label="open drawer"
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    {/* <Typography className={classes.title} variant="h6" noWrap>
+                        OneX
+                    </Typography> */}
+
+
+
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <Tooltip title="Home">
                             <IconButton aria-label="Home" color="inherit" onClick={() => handleButtonClick("/home")}>
                                 <HomeRoundedIcon />
-                                <div className="appBarLabel">Home</div>
+                                {/* <div className="appBarLabel">Home</div> */}
                             </IconButton>
                         </Tooltip>
-
-                        {/* <Tooltip title="Contract">
-                            <IconButton aria-label="View Contract" color="inherit" onClick={() => handleButtonClick("/contract")}>
-                                <DescriptionIcon />
-                                <div className="appBarLabel">Contract</div>
-                            </IconButton>
-                        </Tooltip> */}
-
-                        <Tooltip title="Test Contract">
-                            <IconButton aria-label="Account" color="inherit" onClick={() => handleButtonClick("/testcontract")}>
-                                <PermDataSettingRoundedIcon />
-                                <div className="appBarLabel">Test Contract</div>
-                            </IconButton>
-                        </Tooltip>
-
                         <Tooltip title="Calculator">
                             <IconButton aria-label="Calculator" color="inherit" onClick={() => handleButtonClick("/calculator")}>
                                 <MoneyIcon />
-                                <div className="appBarLabel">Calculator</div>
+                                {/* <div className="appBarLabel">Calculator</div> */}
                             </IconButton>
                         </Tooltip>
                         <Tooltip title="Whitepaper">
                             <IconButton aria-label="Whitepaper" color="inherit" onClick={() => handleButtonClick("/whitepaper")}>
                                 <AssignmentRoundedIcon />
-                                <div className="appBarLabel">Whitepaper</div>
+                                {/* <div className="appBarLabel">Whitepaper</div> */}
                             </IconButton></Tooltip>
-                        <Tooltip title="Faucet">
-                            <IconButton aria-label="Faucet" color="inherit" onClick={() => handleButtonClick("/faucet")}>
-                                <GetAppIcon />
-                                <div className="appBarLabel">Faucet</div>
-                            </IconButton>
-                        </Tooltip>
+
                         <Tooltip title="BBH Swap">
                             <IconButton aria-label="BBH Swap" color="inherit" onClick={() => handleButtonClick("/swap")}>
                                 <SwapHorizontalCircleRoundedIcon />
-                                <div className="appBarLabel">BBH Swap</div>
                             </IconButton>
                         </Tooltip>
+                        <Tooltip title="Frequently Asked Questions">
+                            <IconButton aria-label="FAQ" color="inherit" onClick={() => handleButtonClick("/faq")}>
+                                <ContactSupportRoundedIcon />
+                            </IconButton>
+                        </Tooltip>
+
+                        <Divider orientation="vertical" flexItem />
+
+                        <Tooltip title="Test Contract">
+                            <IconButton aria-label="Account" color="inherit" onClick={() => handleButtonClick("/testcontract")}>
+                                <PermDataSettingRoundedIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Faucet">
+                            <IconButton aria-label="Faucet" color="inherit" onClick={() => handleButtonClick("/faucet")}>
+                                <GetAppIcon />
+                                {/* <div className="appBarLabel">Faucet</div> */}
+                            </IconButton>
+                        </Tooltip>
+
+
+
 
                         <Header />
                     </div>

@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 import {
     Card,
     Typography,
 } from '@material-ui/core';
-
+import Button from '@material-ui/core/Button';
 import {
     GET_BALANCES_PERPETUAL_RETURNED
 } from '../../constants'
 
 import Store from "../../stores";
 import { colors } from '../../theme'
-import ColoredLoader from '../loader/coloredLoader'
-import Snackbar from '../snackbar'
 const store = Store.store
 const emitter = Store.emitter
 
@@ -23,19 +22,23 @@ const useStyles = makeStyles(theme => ({
         flex: 1,
         display: 'flex',
         width: '100%',
-        justifyContent: 'space-around',
+        justifyContent: 'none',
         alignItems: 'center',
         flexDirection: 'column',
         [theme.breakpoints.up('sm')]: {
-            flexDirection: 'row',
-        }
+            flexDirection: 'column',
+        },
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '25ch',
+        },
     },
     card: {
         flex: '1',
         height: '25vh',
         width: '100%',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'column',
         cursor: 'pointer',
@@ -44,24 +47,13 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]: {
             height: '100vh',
             minWidth: '20%',
-            minHeight: '50vh',
+            minHeight: '90vh',
         }
     },
     gradient: {
-        backgroundColor: '#00AEE9',
-
-        // backgroundColor: colors.white,
-        // '&:hover': {
-        //     backgroundColor: '#00AEE9',
-        //     '& .title': {
-        //         color: colors.white,
-        //     },
-        //     '& .icon': {
-        //         color: colors.white
-        //     }
-        // },
+        backgroundColor: colors.white,
         '& .title': {
-            color: colors.white,
+            color: colors.black,
         },
         '& .icon': {
             color: colors.white
@@ -70,7 +62,6 @@ const useStyles = makeStyles(theme => ({
     green: {
         backgroundColor: colors.white,
         '&:hover': {
-            // backgroundColor: colors.compoundGreen,
             '& .title': {
                 color: colors.white,
             },
@@ -113,15 +104,23 @@ const useStyles = makeStyles(theme => ({
 
 export default function Calculator() {
     const classes = useStyles();
+    const [value, setValue] = useState(0);
     const [tokenBalance, setTokenBalance] = useState(0)
     const [token, setToken] = useState(0)
-    const [snackbarMessage, setSnackbarMessage] = useState(null)
-    const [snackbarType, setSnackbarType] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const [assetValue, setAssetsValue] = useState(0);
 
-    const renderSnackbar = () => {
-        return <Snackbar type={snackbarType} message={snackbarMessage} open={true} />
-    }
+
+
+
+    const handleChange = (event) => {
+        setValue(event.target.value);
+
+    };
+
+    const calc = (event) => {
+        // tokenBalance = tokenBalance == 0 || tokenBalance == null ? 0 : tokenBalance;
+        setAssetsValue(tokenBalance * 12);
+    };
 
 
     useEffect(() => {
@@ -143,9 +142,47 @@ export default function Calculator() {
             <Card className={`${classes.card} ${classes.gradient}`} >
                 <Typography variant={'h3'} className={`${classes.title} title`}>You Have {tokenBalance} {token.name}s</Typography>
                 {/* <Typography variant={'h6'} className={`${classes.subTitle} title`}>(Whitepaper    )</Typography> */}
+                <form className={classes.root} noValidate autoComplete="off">
+
+
+                    {/* <div> */}
+
+                    <TextField
+                        id="currPrice"
+                        label="Current Price"
+                        placeholder="Enter Current Price"
+                        variant="outlined"
+                        onChange={handleChange}
+                    />
+                    <TextField
+
+                        id="currHoldings"
+                        label="Current OneX Holdings"
+                        placeholder="Enter Current Holdings"
+                        variant="outlined"
+                        defaultValue={tokenBalance}
+                    />
+
+
+                    {/* </div>
+                    <div> */}
+
+
+                    <TextField
+
+                        id="result"
+                        label="Current Value"
+                        placeholder="Total Value will appear here"
+                        variant="outlined"
+                        value={assetValue}
+                    />
+                    <Button variant="outlined" color="secondary" onClick={calc}>Calculate</Button>
+
+                    {/* </div> */}
+                </form>
+
             </Card>
-            {loading && <ColoredLoader />}
-            {snackbarMessage && renderSnackbar()}
+
         </div>
     );
 }

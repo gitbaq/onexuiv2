@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import './landing.css';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Store from "../../stores";
 import {
@@ -10,8 +8,6 @@ import {
     Typography,
 } from '@material-ui/core';
 
-import ColoredLoader from '../loader/coloredLoader'
-import Snackbar from '../snackbar'
 import { colors } from '../../theme'
 
 const Web3 = require('web3');
@@ -54,15 +50,7 @@ const useStyles = makeStyles(theme => ({
     },
     gradient: {
         backgroundColor: '#00AEE9',
-        // '&:hover': {
-        //     backgroundColor: '#00AEE9',
-        //     '& .title': {
-        //         color: colors.white,
-        //     },
-        //     '& .icon': {
-        //         color: colors.white
-        //     }
-        // },
+
         '& .title': {
             color: colors.white,
         },
@@ -73,7 +61,6 @@ const useStyles = makeStyles(theme => ({
     green: {
         backgroundColor: colors.white,
         '&:hover': {
-            // backgroundColor: colors.compoundGreen,
             '& .title': {
                 color: colors.white,
             },
@@ -114,14 +101,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function Landing() {
     const classes = useStyles();
+    console.log('>> ' + store);
 
-    const [snackbarMessage, setSnackbarMessage] = useState(null)
-    const [snackbarType, setSnackbarType] = useState(null)
-    const [loading, setLoading] = useState(false)
 
-    const renderSnackbar = () => {
-        return <Snackbar type={snackbarType} message={snackbarMessage} open={true} />
-    }
 
     const [lastBlockNumber, setLastBlockNumber] = React.useState({});
     const [block, setBlock] = React.useState({});
@@ -181,6 +163,12 @@ export default function Landing() {
         console.log('To account balance: ', toBalance / 1e18);
     };
 
+    const getBalancesReturned = () => {
+        // const tokens = store.getStore('tokens')
+        // setToken(tokens[0])
+        // setTokenBalance((tokens && tokens.length >= 1) ? tokens[1].balance : 0)
+    }
+
     fetchOnline();
     let hmyMasterAccount = web3.eth.accounts.privateKeyToAccount(HMY_PRIVATE_KEY);
     let expenseWallet = '0xBF0CA9449b9698e5593b585d591370F81a4a726f'; //gitbaq ONE Wallet
@@ -231,8 +219,7 @@ export default function Landing() {
                     <br />
                     Staking = {JSON.stringify(stakingBalance, null, "  ")}</Typography>
             </Card>
-            {loading && <ColoredLoader />}
-            {snackbarMessage && renderSnackbar()}
+
         </div>
     );
 
