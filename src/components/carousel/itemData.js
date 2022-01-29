@@ -24,7 +24,7 @@ const itemData = [
     {
         id: 4,
         img: '/images/slide4.png',
-        title: 'News 4',
+        title: 'OneX Webite Launch',
         cols: 1,
         author: 'OneX Team',
         featured: true,
