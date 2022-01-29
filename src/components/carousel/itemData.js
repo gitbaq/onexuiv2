@@ -31,5 +31,6 @@ const itemData = [
     },
 
 ];
+//updated image names
 
 export default itemData;
