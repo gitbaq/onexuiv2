@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import BeenhereRoundedIcon from '@material-ui/icons/BeenhereRounded';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 import { colors } from "../../theme";
 
@@ -20,7 +23,7 @@ const emitter = Store.emitter
 
 const useStyles = makeStyles(theme => ({
   headerContainer: {
-    color: '#FFFFFF',
+    // color: '#FFFFFF',
     // position: 'absolute',
     // top: '12px',
     // right: '12px',
@@ -36,42 +39,7 @@ const useStyles = makeStyles(theme => ({
       color: `${colors.white} !important`
     }
   },
-  gradient: {
-    // backgroundColor: colors.white,
-    '&:hover': {
-      backgroundColor: '#00AEE9',
-      '& .title': {
-        color: `${colors.white} !important`
-      },
-      '& .icon': {
-        color: `${colors.white} !important`
-      }
-    },
-    '& .title': {
-      color: '#00AEE9',
-    },
-    '& .icon': {
-      color: '#00AEE9'
-    },
-  },
-  green: {
-    backgroundColor: colors.white,
-    '&:hover': {
-      backgroundColor: colors.compoundGreen,
-      '& .title': {
-        color: colors.white,
-      },
-      '& .icon': {
-        color: colors.white
-      }
-    },
-    '& .title': {
-      color: colors.compoundGreen,
-    },
-    '& .icon': {
-      color: colors.compoundGreen
-    },
-  },
+
   account: {
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -81,14 +49,15 @@ const useStyles = makeStyles(theme => ({
     }
   },
   walletAddress: {
+    // color: colors.black,
     padding: '12px',
-    border: '2px solid rgb(174, 174, 174)',
-    borderRadius: '50px',
+    // border: '1px solid ' + colors.harmonyGradient,
+    // borderRadius: '50px',
     display: 'flex',
     alignItems: 'center',
     cursor: 'pointer',
     '&:hover': {
-      border: "2px solid " + colors.borderBlue,
+      // border: "1px solid ",
       background: 'rgba(47, 128, 237, 0.1)'
     },
     [theme.breakpoints.down('sm')]: {
@@ -96,8 +65,13 @@ const useStyles = makeStyles(theme => ({
       position: 'absolute',
       transform: 'translate(0, 200%)',
       border: "1px solid " + colors.borderBlue,
-      background: colors.white
+      background: colors.red,
+      color: colors.black,
     }
+  },
+
+  connectedDot: {
+    color: colors.orange,
   }
 }));
 
@@ -140,6 +114,12 @@ export default function Header() {
     )
   }
 
+  const toolTipText = (text) => (
+    <div style={{ lineHeight: '15px' }}>Connected To {text} <br />
+      <div style={{ color: 'orange' }}>Click to Change Wallet or Disconnect</div>
+    </div>
+  );
+
   return (
     <div className={`${classes.headerContainer}`}>
       {address &&
@@ -147,13 +127,16 @@ export default function Header() {
       }
       <div className={classes.account}>
         {address &&
-          <Typography variant={'h4'} className={`${classes.walletAddress} ${classes.gradient}`} noWrap onClick={addressClicked} >
-            {address}
-            <div className={classes.connectedDot}></div>
-          </Typography>
+          <Tooltip title={toolTipText(address)}>
+
+            <Typography variant={'h4'} className={`${classes.walletAddress} ${classes.gradientx}`} noWrap onClick={addressClicked} >
+              {/* {address} */}
+              <div className={classes.connectedDot}><BeenhereRoundedIcon /></div>
+            </Typography>
+          </Tooltip>
         }
         {!address &&
-          <Typography variant={'h4'} className={`${classes.walletAddress} ${classes.gradient}`} noWrap onClick={addressClicked} >
+          <Typography color='secondary' variant={'h4'} className={`${classes.walletAddress} ${classes.gradient}`} noWrap onClick={addressClicked} >
             Connect your wallet
           </Typography>
         }

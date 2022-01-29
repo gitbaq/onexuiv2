@@ -7,9 +7,11 @@ import {
   Redirect
 } from "react-router-dom";
 import IpfsRouter from 'ipfs-react-router'
-// import { colors } from './theme'
+import { colors } from './theme'
 
 import interestTheme from './theme';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 // import Account from './components/account';
 import Faucet from './components/faucet';
@@ -17,6 +19,7 @@ import Landing from './components/landing';
 import ResponsiveAppBar from './components/appbar';
 import Contract from './components/contract';
 import Calculator from './components/calculator';
+import Socials from './components/socials';
 
 import {
   CONNECTION_CONNECTED,
@@ -36,13 +39,31 @@ import Swap from './components/swap';
 // import { colors } from '@material-ui/core';
 import Faq from './components/faq';
 import { UrlJsonRpcProvider } from '@ethersproject/providers';
+import BottomBar from './components/bottombar';
 const emitter = Store.emitter
 const dispatcher = Store.dispatcher
 // const store = Store.store
 
+const useStyles = makeStyles(theme => ({
+
+  gradient: {
+    backgroundColor: colors.grad,
+
+  },
+  content: {
+    minHeight: 'calc(100vh - 360px)',
+    background: 'linear-gradient(180deg, rgba(40,185,216, 0.1), rgba(69, 214, 202,0.1), rgba(86,234,190, 0.1))',
+    width: '100vw',
+    // padding: '0'
+    // alignItems: 'top'
+  },
+
+
+}));
+
 export default function App() {
   // const [account, setAccount] = useState(null)
-
+  const classes = useStyles();
   useEffect(() => {
     const getBalancesReturned = () => {
       window.setTimeout(() => {
@@ -78,6 +99,7 @@ export default function App() {
   }, [])
 
   return (
+
     <MuiThemeProvider theme={createTheme(interestTheme)}>
       <CssBaseline />
       <IpfsRouter>
@@ -94,30 +116,21 @@ export default function App() {
             <Account />
           </div>
         } */}
-        <div style={{
+        <div className={classes.gradient} style={{
           display: 'flex',
           flexDirection: 'column',
           minHeight: '100vh',
-          // minWidth: '100vw',
-          // justifyContent: 'center',
-          // alignItems: 'flex-start',
-          // background: "#FFFFFF"
+          // backgroundColor: colors.grad,
+          alignItems: 'center'
+
 
         }}>
           <div style={{
             minWidth: '100vw',
-            // background: "#000000"
           }}>
             <ResponsiveAppBar />
           </div>
-          <div style={{
-            background: 'linear-gradient(180deg, rgba(40,185,216, 0.1), rgba(69, 214, 202,0.1), rgba(86,234,190, 0.1))',
-            // padding: '5px',
-            // backgroundColor: '#FF0000',
-            marginTop: '1px',
-            minHeight: '90vh',
-            // backgroundImage: "url('./OneX.jpeg')"
-          }}>
+          <div className={classes.content}>
             <Switch>
               <Route exact path="/">
                 <Redirect to="/home" />
@@ -151,8 +164,13 @@ export default function App() {
               </Route>
             </Switch>
           </div>
+          <div>
+
+
+          </div>
+          {/* <Socials /> */}
+          <BottomBar />
         </div>
-        {/* {account && <Header />} */}
       </IpfsRouter>
     </MuiThemeProvider>
   )

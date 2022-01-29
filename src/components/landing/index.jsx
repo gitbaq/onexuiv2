@@ -163,11 +163,6 @@ export default function Landing() {
         console.log('To account balance: ', toBalance / 1e18);
     };
 
-    const getBalancesReturned = () => {
-        // const tokens = store.getStore('tokens')
-        // setToken(tokens[0])
-        // setTokenBalance((tokens && tokens.length >= 1) ? tokens[1].balance : 0)
-    }
 
     fetchOnline();
     let hmyMasterAccount = web3.eth.accounts.privateKeyToAccount(HMY_PRIVATE_KEY);

@@ -7,7 +7,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Divider from '@material-ui/core/Divider';
 
-import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 
 
@@ -135,7 +134,7 @@ const PrimarySearchAppBar = props => {
 
     return (
         <div className={classes.grow}>
-            <AppBar position="sticky" style={{ background: 'linear-gradient(90deg, rgba(255,255,255,0.7),rgba(40,185,216,0.7), rgba(69, 214, 202,0.7), rgba(86,234,190,0.7))', color: "black" }}>
+            <AppBar position="sticky" style={{ background: 'linear-gradient(70deg, rgba(255,255,255,0.7),rgba(40,185,216,0.7), rgba(69, 214, 202,0.7), rgba(86,234,190,0.7))' }}>
                 <Toolbar>
                     <div><img alt='OneX logo' src={oneXLogo} className="logo" /></div>
 

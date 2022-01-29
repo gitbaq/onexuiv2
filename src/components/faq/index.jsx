@@ -3,6 +3,11 @@ import React from "react";
 import { makeStyles } from '@material-ui/core/styles'
 import { colors } from '../../theme'
 import FaqCard from "./faqCard";
+import faqData from './faqData';
+import Card from '@material-ui/core/Card';
+import PageHeader from "../pageHeader";
+
+
 
 
 
@@ -15,8 +20,10 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'space-around',
         alignItems: 'center',
         flexDirection: 'column',
+        // marginBottom: '5px',
+
         [theme.breakpoints.up('sm')]: {
-            flexDirection: 'row',
+            flexDirection: 'column',
         }
     },
     card: {
@@ -24,7 +31,7 @@ const useStyles = makeStyles(theme => ({
         height: '25vh',
         width: '100%',
         display: 'flex',
-        justifyContent: 'none',
+        justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
         cursor: 'pointer',
@@ -35,7 +42,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     gradient: {
-        backgroundColor: colors.white,
+        // background: colors.harmonyGradient,
 
     },
     title: {
@@ -46,17 +53,15 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Faq() {
-
     const classes = useStyles();
-
     return (
         <div className={classes.root}>
-            {/* <Card className={`${classes.card} ${classes.gradient}`} >
-                <Typography variant={'h2'} className={`${classes.title}`} >Frequently Asked Questions</Typography>
-            </Card> */}
-            <FaqCard></FaqCard>
-            {/* <FaqCard></FaqCard> */}
-
+            <PageHeader title='Frequently Asked Questions' subtitle='Answers to your most common queries' />
+            <Card className={`${classes.card} ${classes.gradient}`} >
+                {faqData.map((item) => (
+                    <FaqCard key={item.id} item={item} />
+                ))}
+            </Card>
         </div>
     );
 }

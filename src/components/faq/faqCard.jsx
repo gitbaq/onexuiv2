@@ -19,7 +19,9 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: "80%",
-        minWidth: "300px"
+        minWidth: "300px",
+        marginTop: '5px',
+        // marginBottom: '5px',
     },
     media: {
         height: 0,
@@ -40,7 +42,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function FaqCard() {
+export default function FaqCard(props) {
+
+    const data = props.item;
+
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
 
@@ -48,12 +53,15 @@ export default function FaqCard() {
         setExpanded(!expanded);
     };
 
+
+
     return (
+
         <Card className={classes.root}>
             <CardHeader
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
-                        Q
+                        Q. {data.id}
                     </Avatar>
                 }
                 action={
@@ -61,13 +69,13 @@ export default function FaqCard() {
                         <MoreVertIcon />
                     </IconButton>
                 }
-                title="When Will OneX be launched?"
-                subheader="January 14, 2022"
+                title={data.question}
+                subheader={data.date}
             />
 
             <CardContent style={{ background: './Onex.jpeg' }}>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    This is a question frequently asked by many
+                    {data.reply}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -92,17 +100,9 @@ export default function FaqCard() {
                 <CardContent>
                     <Typography paragraph>Answer:</Typography>
                     <Typography paragraph>
-                        Detail 1
+                        Details
                     </Typography>
-                    <Typography paragraph>
-                        Detail 2
-                    </Typography>
-                    <Typography paragraph>
-                        Detail 3
-                    </Typography>
-                    <Typography>
-                        Detail 4
-                    </Typography>
+
                 </CardContent>
             </Collapse>
         </Card>

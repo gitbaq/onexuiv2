@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import {
-    Card,
-    Typography,
-} from '@material-ui/core';
+import { colors } from '../../theme';
+
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import {
     GET_BALANCES_PERPETUAL_RETURNED
 } from '../../constants'
+import PageHeader from '../pageHeader'
 
 import Store from "../../stores";
-import { colors } from '../../theme'
 const store = Store.store
 const emitter = Store.emitter
 
@@ -43,68 +43,31 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         cursor: 'pointer',
         borderRadius: '0px',
-        transition: 'background-color 0.2s linear',
+        // transition: 'background-color 0.2s linear',
         [theme.breakpoints.up('sm')]: {
-            height: '100vh',
-            minWidth: '20%',
-            minHeight: '90vh',
+            // height: '100vh',
+            // minWidth: '20%',
+            flexDirection: 'column',
+
+            // minHeight: '90vh',
         }
     },
-    gradient: {
-        backgroundColor: colors.white,
-        '& .title': {
-            color: colors.black,
-        },
-        '& .icon': {
-            color: colors.white
-        },
+    paper: {
+        height: 300,
+        width: 300,
+        background: colors.white,
+        borderRadius: 25,
+        padding: 10,
     },
-    green: {
-        backgroundColor: colors.white,
-        '&:hover': {
-            '& .title': {
-                color: colors.white,
-            },
-            '& .icon': {
-                color: colors.white
-            }
-        },
-        '& .title': {
-            color: colors.compoundGreen,
-        },
-        '& .icon': {
-            color: colors.compoundGreen
-        },
-    },
-    title: {
-        padding: '24px 0 12px 0',
-        [theme.breakpoints.up('sm')]: {
-            paddingBottom: '12px'
-        }
-    },
-    subTitle: {
-        padding: '0 0 12px 0',
-        fontSize: '12px',
-        [theme.breakpoints.up('sm')]: {
-            paddingBottom: '12px'
-        }
-    },
-    icon: {
-        fontSize: '60px',
-        [theme.breakpoints.up('sm')]: {
-            fontSize: '100px',
-        }
-    },
-    link: {
-        textDecoration: 'none'
-    }
+
+
 }));
 
 
 
 export default function Calculator() {
     const classes = useStyles();
-    const [value, setValue] = useState(0);
+    const [value, setValue] = React.useState('Controlled');
     const [tokenBalance, setTokenBalance] = useState(0)
     const [token, setToken] = useState(0)
     const [assetValue, setAssetsValue] = useState(0);
@@ -118,8 +81,8 @@ export default function Calculator() {
     };
 
     const calc = (event) => {
-        // tokenBalance = tokenBalance == 0 || tokenBalance == null ? 0 : tokenBalance;
-        setAssetsValue(tokenBalance * 12);
+        let myTokenBalance = tokenBalance == 0 || tokenBalance == null ? 1 : tokenBalance;
+        setAssetsValue(myTokenBalance * 12);
     };
 
 
@@ -139,49 +102,54 @@ export default function Calculator() {
 
     return (
         <div className={classes.root}>
-            <Card className={`${classes.card} ${classes.gradient}`} >
-                <Typography variant={'h3'} className={`${classes.title} title`}>You Have {tokenBalance} {token.name}s</Typography>
-                {/* <Typography variant={'h6'} className={`${classes.subTitle} title`}>(Whitepaper    )</Typography> */}
-                <form className={classes.root} noValidate autoComplete="off">
+            <PageHeader title='Calculator' subtitle={"You Have " + tokenBalance + " " + token.name + " " + value} />
+            <Grid container className={classes.root} spacing={2}>
+                <Grid item xs={12}>
+                    <Grid container justifyContent="center" spacing={5}>
+                        <Grid item>
+                            <Paper className={classes.paper} >
+
+                                <TextField
+                                    id="currPrice"
+                                    label="Current Price"
+                                    placeholder="Enter Current Price"
+                                    variant="outlined"
+                                    onChange={handleChange}
+                                />
+                            </Paper>
+                        </Grid>
+                        <Grid item>
+                            <Paper className={classes.paper} >
+                                <TextField
+
+                                    id="currHoldings"
+                                    label="Current OneX Holdings"
+                                    placeholder="Enter Current Holdings"
+                                    variant="outlined"
+                                    defaultValue={tokenBalance}
+                                />
+                            </Paper>
+                        </Grid>
+                        <Grid item>
+                            <Paper className={classes.paper} >
+                                <TextField
+
+                                    id="result"
+                                    label="Current Value"
+                                    placeholder="Total Value will appear here"
+                                    variant="outlined"
+                                    value={assetValue}
+                                />
+                                <Button variant="outlined" color="secondary" onClick={calc}>Calculate</Button>
+
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+            </Grid>
 
 
-                    {/* <div> */}
-
-                    <TextField
-                        id="currPrice"
-                        label="Current Price"
-                        placeholder="Enter Current Price"
-                        variant="outlined"
-                        onChange={handleChange}
-                    />
-                    <TextField
-
-                        id="currHoldings"
-                        label="Current OneX Holdings"
-                        placeholder="Enter Current Holdings"
-                        variant="outlined"
-                        defaultValue={tokenBalance}
-                    />
-
-
-                    {/* </div>
-                    <div> */}
-
-
-                    <TextField
-
-                        id="result"
-                        label="Current Value"
-                        placeholder="Total Value will appear here"
-                        variant="outlined"
-                        value={assetValue}
-                    />
-                    <Button variant="outlined" color="secondary" onClick={calc}>Calculate</Button>
-
-                    {/* </div> */}
-                </form>
-
-            </Card>
 
         </div>
     );

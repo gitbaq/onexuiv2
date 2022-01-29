@@ -1,0 +1,189 @@
+.navbar-dark .navbar-nav .nav-link {
+    color: #343a40;
+  }
+  .navbar {
+    padding: 1.5rem 0;
+  }
+  .navbar-expand {
+    justify-content: space-between;
+  }
+  .logo {
+    width: 100px;
+  }
+  .btn-primary {
+    font-family: "Roboto", Sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #343a40;
+    background-color: #f7d6df !important;
+    border-color: #f7d6df !important;
+    padding: 10px 20px;
+    border-radius: 11px;
+  }
+  
+  .btn-primary:hover {
+    color: black;
+  }
+  
+  body {
+    font-family: sans-serif !important;
+    background-image: url(./blobs.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #1e2436;
+  }
+  
+  h2.main-header {
+    font-weight: bold;
+    text-align: center;
+    font-size: 32px;
+    line-height: 36px;
+    color: #1e2436;
+    margin-top: 32px;
+    margin-bottom: 80px;
+  }
+  
+  .col-12 .flex-center {
+    width: 100%;
+    text-align: center;
+  }
+  
+  /*
+  .calculator-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+  }
+  */
+  
+  .calculator-content {
+    width: 100%;
+    position: relative;
+  }
+  
+  .input-content {
+    background-color: white;
+    padding: 24px;
+    border-radius: 24px;
+    border: 1px solid #e8e8e8;
+    width: 100%;
+  }
+  
+  .input-content.second {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+  
+  .input-title {
+    font-weight: Regular;
+    color: #1e2436;
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .input-box {
+    font-size: 32px !important;
+    line-height: 32px !important;
+    padding: 0px !important;
+    width: 100% !important;
+  }
+  
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #274292;
+    opacity: 0.4; /* Firefox */
+  }
+  
+  .click-here-btn {
+    display: flex;
+    color: #ff5399;
+    flex-direction: row;
+    border: 0;
+    background: none;
+    margin-top: 16px;
+    position: absolute;
+    right: 0;
+  }
+  
+  .click-here-btn:hover {
+    color: #1e2436;
+  }
+  
+  .usd-converter {
+    color: #3e485b;
+    font-size: 20px;
+    margin-left: 24px;
+  }
+  
+  h3 {
+    font-size: 20px !important;
+    line-height: 24px;
+    color: #1e2436;
+  }
+  
+  .chart-container {
+    width: 100%;
+    margin: 80px 0px;
+  }
+  
+  .time-container {
+    background-color: white;
+    border-radius: 16px;
+    color: #1e2436;
+    border: 1px solid #e8e8e8;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 24px;
+    margin-bottom: 50px;
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (max-width: 960px) {
+    .time-container {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+  }
+  
+  .estimated {
+    font-size: 20px;
+    color: #1e2436;
+  }
+  
+  .earnings {
+    color: #000;
+    font-size: 32px;
+    margin: 4px 0px 8px 0px;
+  }
+  
+  .cake {
+    color: #868993;
+    font-size: 18px;
+    line-height: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .modal-content {
+    border-radius: 24px;
+  }
+  
+  .width-100 {
+    width: 100%;
+  }
+  
+  .faq-heading {
+    margin-bottom: 24px;
+  }
+  
+  .input-content.second {
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+  

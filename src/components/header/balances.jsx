@@ -3,9 +3,9 @@ import {
   Typography/*,
   Button*/
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 
-import { colors } from "../../theme";
+// import { colors } from "../../theme";
 
 import {
   GET_BALANCES_PERPETUAL_RETURNED
@@ -71,7 +71,7 @@ export default function Balances() {
 
   return (
 
-    <Typography color="textSecondary" noWrap>{tokenBalance} {token.name}</Typography>
+    <Typography color="textPrimary" noWrap>{tokenBalance}<br />{token.name}</Typography>
 
   )
 }

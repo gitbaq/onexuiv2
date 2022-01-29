@@ -39,8 +39,12 @@ export const colors = {
   darkGray: "rgba(43,57,84,.5)",
   borderBlue: 'rgba(25, 101, 233, 0.5)',
 
+  twitter: "#1DA1F2",
 
-  harmonyGradient: 'rgba(25, 174, 219, 0.5)'
+
+  harmonyGradient: 'rgba(25, 174, 219, 0.5)',
+
+  grad: 'linear-gradient(45deg, rgba(255,255,255,0.7),rgba(40,185,216,0.7), rgba(69, 214, 202,0.7), rgba(86,234,190,0.7))',
 
 };
 
@@ -194,7 +198,7 @@ const iswapTheme = {
     },
     MuiSnackbarContent: {
       root: {
-        backgroundColor: colors.white,
+        // backgroundColor: colors.white,
         padding: '0px',
         minWidth: 'auto',
         '@media (min-width: 960px)': {
@@ -272,6 +276,9 @@ const iswapTheme = {
       }
     },
     MuiPaper: {
+      root: {
+        backgroundColor: '',
+      },
       elevation1: {
         boxShadow: 'none'
       }

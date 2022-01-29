@@ -6,7 +6,8 @@ import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import itemData from './itemData';
-import logo from '../../assets/OneX.jpeg'
+import { colors } from '../../theme'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden',
         backgroundColor: theme.palette.background.paper,
         width: '100%',
+        marginBottom: '15px',
         // height: '400px'
 
     },
@@ -27,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
         // minHeight: '100vh'
     },
     imageListItem: {
-        minHeight: '300px'
+        heightx: '600px',
+        minHeight: '50vh'
     },
     title: {
         // color: theme.palette.primary.dark,
@@ -35,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
     titleBar: {
         background:
-            'linear-gradient(to top, rgba(13,193,215,0.8) 30%, rgba(13,193,215,0.6) 70%, rgba(13,193,215,1) 100%)',
+            'linear-gradient(to top, rgba(13,193,215,0.6) 30%, rgba(13,193,215,0.6) 70%, rgba(13,193,215,0.6) 100%)',
         fontWeight: 'bold'
     },
 
