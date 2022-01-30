@@ -6,7 +6,9 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { colors } from '../../theme';
 import onexcoin from '../../assets/OneXCoin.svg';
-import Socials from '../socials'
+import Socials from '../socials';
+import background from "./blobs.svg";
+
 
 
 
@@ -59,6 +61,9 @@ const useStyles = makeStyles(theme => ({
             textDecoration: 'underline',
             color: colors.twitter
         },
+    },
+    background: {
+        backgroundImage: `url(${background})`,
     }
 }));
 
@@ -67,7 +72,7 @@ export default function BottomBar() {
 
     return (
 
-        <Grid container className={`${classes.root}`} spacing={0} style={{
+        <Grid container className={`${classes.root} ${classes.background}`} spacing={0} style={{
             background: 'linear-gradientx(30deg, rgba(69, 214, 202,0.1)20%, rgba(40,185,216, 0.1) 60%,  rgba(86,234,190, 0.1)100%)',
             marginTop: '1px',
             minHeight: '200px',

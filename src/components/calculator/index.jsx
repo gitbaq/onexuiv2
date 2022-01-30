@@ -10,10 +10,12 @@ import {
     GET_BALANCES_PERPETUAL_RETURNED
 } from '../../constants'
 import PageHeader from '../pageHeader'
+import background from "./blobs.svg";
 
 import Store from "../../stores";
 const store = Store.store
 const emitter = Store.emitter
+
 
 
 
@@ -43,13 +45,8 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         cursor: 'pointer',
         borderRadius: '0px',
-        // transition: 'background-color 0.2s linear',
         [theme.breakpoints.up('sm')]: {
-            // height: '100vh',
-            // minWidth: '20%',
             flexDirection: 'column',
-
-            // minHeight: '90vh',
         }
     },
     paper: {
@@ -59,6 +56,9 @@ const useStyles = makeStyles(theme => ({
         borderRadius: 25,
         padding: 10,
     },
+    background: {
+        backgroundImage: `url(${background})`,
+    }
 
 
 }));
@@ -103,12 +103,11 @@ export default function Calculator() {
     return (
         <div className={classes.root}>
             <PageHeader title='Calculator' subtitle={"You Have " + tokenBalance + " " + token.name + " " + value} />
-            <Grid container className={classes.root} spacing={2}>
+            <Grid container className={`${classes.root}`} spacing={2}>
                 <Grid item xs={12}>
                     <Grid container justifyContent="center" spacing={5}>
                         <Grid item>
                             <Paper className={classes.paper} >
-
                                 <TextField
                                     id="currPrice"
                                     label="Current Price"
@@ -141,16 +140,11 @@ export default function Calculator() {
                                     value={assetValue}
                                 />
                                 <Button variant="outlined" color="secondary" onClick={calc}>Calculate</Button>
-
                             </Paper>
                         </Grid>
                     </Grid>
                 </Grid>
-
             </Grid>
-
-
-
         </div>
     );
 }

@@ -15,6 +15,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import background from "./blobs.svg";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
         backgroundColor: red[500],
     },
+    background: {
+        backgroundImage: `url(${background})`,
+    }
 }));
 
 export default function FaqCard(props) {
@@ -57,7 +61,7 @@ export default function FaqCard(props) {
 
     return (
 
-        <Card className={classes.root}>
+        <Card className={`${classes.root} ${classes.background}`}>
             <CardHeader
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
@@ -73,7 +77,7 @@ export default function FaqCard(props) {
                 subheader={data.date}
             />
 
-            <CardContent style={{ background: './Onex.jpeg' }}>
+            <CardContent >
                 <Typography variant="body2" color="textSecondary" component="p">
                     {data.reply}
                 </Typography>
