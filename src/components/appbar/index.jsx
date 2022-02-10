@@ -90,6 +90,11 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
             display: 'none',
         },
+    }, toolbar: {
+        minHeight: 128,
+        alignItems: 'flex-start',
+        paddingTop: theme.spacing(1),
+        paddingBottom: theme.spacing(2),
     },
 }));
 
@@ -135,7 +140,7 @@ const PrimarySearchAppBar = props => {
     return (
         <div className={classes.grow}>
             <AppBar position="sticky" style={{ background: 'linear-gradient(30deg,rgba(17, 131, 161, 1.0)20%, rgba(69, 214, 202,0.1)50%, rgba(40,185,216, 0.1) 60%,  rgba(86,234,190, 0.1)100%)' }}>
-                <Toolbar>
+                <Toolbar className={classes.toolbar}>
                     <div><img alt='OneX logo' src={oneXLogo} className="logo" /></div>
 
                     <IconButton
