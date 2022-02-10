@@ -30,16 +30,16 @@ const useStyles = makeStyles((theme) => ({
     },
     imageListItem: {
         heightx: '600px',
-        minHeight: '50vh'
+        minHeight: '300px'
     },
     title: {
         // color: theme.palette.primary.dark,
-        color: "#333333",
+        color: colors.white,
     },
     titleBar: {
         background:
-            'linear-gradient(to top, rgba(13,193,215,0.6) 30%, rgba(13,193,215,0.6) 70%, rgba(13,193,215,0.6) 100%)',
-        fontWeight: 'bold'
+            'linear-gradient(to top, rgba(13,193,215,1.0) 30%, rgba(13,193,215,0.6) 70%, rgba(13,193,215,0.6) 100%)',
+        fontWeight: 'bold',
     },
 
 }));
@@ -56,7 +56,7 @@ export default function SingleLineImageList() {
                         root: classes.imageListItem,
                     }}>
                         {/* <img alt={item.title} src={require(item.img)} alt="Test" /> */}
-                        <img src={item.img} alt={item.title} height="100%" width="100%" />
+                        <img src={item.img} alt={item.title} height="300" width="100%" />
                         <ImageListItemBar
                             title={item.title}
                             classes={{

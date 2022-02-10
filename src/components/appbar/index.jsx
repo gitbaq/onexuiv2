@@ -22,7 +22,7 @@ import AssignmentRoundedIcon from '@material-ui/icons/AssignmentRounded';
 import ContactSupportRoundedIcon from '@material-ui/icons/ContactSupportRounded';
 
 import './appbar.css'
-import oneXLogo from '../../assets/ONEX.svg'
+import oneXLogo from '../../assets/v3_white_nocircle.svg'
 import Header from "../header";
 import { withRouter } from "react-router-dom";
 
@@ -134,7 +134,7 @@ const PrimarySearchAppBar = props => {
 
     return (
         <div className={classes.grow}>
-            <AppBar position="sticky" style={{ background: 'linear-gradient(70deg, rgba(255,255,255,0.7),rgba(40,185,216,0.7), rgba(69, 214, 202,0.7), rgba(86,234,190,0.7))' }}>
+            <AppBar position="sticky" style={{ background: 'linear-gradient(30deg,rgba(17, 131, 161, 1.0)20%, rgba(69, 214, 202,0.1)50%, rgba(40,185,216, 0.1) 60%,  rgba(86,234,190, 0.1)100%)' }}>
                 <Toolbar>
                     <div><img alt='OneX logo' src={oneXLogo} className="logo" /></div>
 
