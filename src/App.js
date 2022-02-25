@@ -19,7 +19,8 @@ import Landing from './components/landing';
 import ResponsiveAppBar from './components/appbar';
 import Contract from './components/contract';
 import Calculator from './components/calculator';
-import Socials from './components/socials';
+import Rewards from './components/rewards';
+// import Socials from './components/socials';
 
 import {
   CONNECTION_CONNECTED,
@@ -38,8 +39,12 @@ import Whitepaper from './components/whitepaper';
 import Swap from './components/swap';
 // import { colors } from '@material-ui/core';
 import Faq from './components/faq';
-import { UrlJsonRpcProvider } from '@ethersproject/providers';
+// import { UrlJsonRpcProvider } from '@ethersproject/providers';
 import BottomBar from './components/bottombar';
+import Team from './components/team';
+import Roadmap from './components/roadmap';
+import VerifyContract from './components/verifycontract';
+import TokenSwap from './components/tokenswap';
 const emitter = Store.emitter
 const dispatcher = Store.dispatcher
 // const store = Store.store
@@ -161,6 +166,21 @@ export default function App() {
               </Route>
               <Route exact path="/faq">
                 <Faq />
+              </Route>
+              <Route exact path="/rewards">
+                <Rewards />
+              </Route>
+              <Route exact path="/team">
+                <Team />
+              </Route>
+              <Route exact path="/roadmap">
+                <Roadmap />
+              </Route>
+              <Route exact path="/verifycontract">
+                <VerifyContract />
+              </Route>
+              <Route exact path="/tokenswap">
+                <TokenSwap />
               </Route>
             </Switch>
           </div>

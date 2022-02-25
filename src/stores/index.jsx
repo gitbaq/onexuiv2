@@ -44,8 +44,8 @@ class Store {
       tokens: [
         {
           address: config.addresses.token,
-          name: 'OneX Token',
-          symbol: 'OneX',
+          name: 'OneX',
+          symbol: 'ONEXT',
           decimals: 18,
           balance: 0
         }
@@ -186,10 +186,11 @@ class Store {
     if (!connector) {
       throw new WalletConnectionError('No wallet connected')
     }
-
     let faucetContract = hmy.client.contracts.createContract(require('../abi/Faucet.json'), config.addresses.faucet)
     faucetContract = await connector.attachToContract(faucetContract)
-    return faucetContract.methods.fund(account.address).send({ ...hmy.gasOptions(), from: account.address })
+    console.log("Gas Options: " + JSON.stringify(hmy.gasOptions()))
+    // return faucetContract.methods.fund(account.address).send({ ...hmy.gasOptions(), from: account.address })
+    return faucetContract.methods.fund(account.address).send({ "gasPrice": 80000000000, "gasLimit": 6721900, from: account.address })
   }
 }
 

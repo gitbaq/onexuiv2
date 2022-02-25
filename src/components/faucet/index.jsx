@@ -121,12 +121,12 @@ export default function Faucet() {
       setLoading(true)
 
       const hmy = store.getStore('hmy')
-
+      let url = ''
       try {
         const res = await store.useFaucet()
 
         if (res.status === 'called' || res.status === 'call') {
-          const url = `${hmy.explorerUrl}/tx/${res.transaction.receipt.transactionHash}`
+          url = `${hmy.explorerUrl}/tx/${res.transaction.receipt.transactionHash}`
           setSnackbarMessage(url)
           setSnackbarType("Hash")
           setLoading(false)
@@ -139,7 +139,7 @@ export default function Faucet() {
         if (error instanceof WalletConnectionError) {
           setSnackbarMessage("Please connect a wallet and then try again!")
         } else {
-          setSnackbarMessage("An error occurred :(. Please try again!")
+          setSnackbarMessage(url + "2. An error occurred :(. Please try again!" + error)
         }
 
         setSnackbarType("Error")

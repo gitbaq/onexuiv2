@@ -12,7 +12,7 @@ import { colors } from '../../theme'
 
 const Web3 = require('web3');
 const BN = require('bn.js');
-const HMY_PRIVATE_KEY = '0x538d8410151d9d37b739107657d7af1c7206364b590dda0dca8f80a2a4631890';
+
 const HMY_RPC_URL = 'https://api.s0.b.hmny.io';
 const web3 = new Web3(HMY_RPC_URL);
 const store = Store.store
@@ -165,17 +165,14 @@ export default function Landing() {
 
 
     fetchOnline();
-    let hmyMasterAccount = web3.eth.accounts.privateKeyToAccount(HMY_PRIVATE_KEY);
     let expenseWallet = '0xBF0CA9449b9698e5593b585d591370F81a4a726f'; //gitbaq ONE Wallet
     let liquidityWallet = '0xAD62fCcCc74283186f4572B8f8EE271B189565fA'; //gitbaq ONE Wallet
     let stakingWallet = '0x1BfC2d760e6B75AA626f00177C96CfC84f353D7E'; //harmony2 ONE Wallet
-    let oneXContractAddress = '0x87eE560e9035d13b6290e197cBc853FD4FBeF37D';
-    web3.eth.accounts.wallet.add(hmyMasterAccount);
+    let oneXContractAddress = '0x53b8955956DE9Df02C10477d3231F78c7b7Db423';
     // web3.eth.defaultAccount = hmyMasterAccount.address
     web3.eth.defaultAccount = oneXContractAddress;
 
-    // const myAddress = web3.eth.defaultAccount;
-    const myAddress = hmyMasterAccount.address;
+    const myAddress = web3.eth.defaultAccount;
 
     fetchBalance(myAddress);
     fetchBalance(expenseWallet, 'expense');

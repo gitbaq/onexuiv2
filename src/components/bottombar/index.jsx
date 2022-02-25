@@ -5,7 +5,7 @@ import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { colors } from '../../theme';
-import onexcoin from '../../assets/OneXCoin.svg';
+import onexcoin from '../../assets/OneXCoin.png';
 import Socials from '../socials';
 import background from "./blobs.svg";
 
@@ -98,7 +98,7 @@ export default function BottomBar() {
                     <Divider orientation="vertical" />
                     <Box className={`${classes.columns}`}>
                         <a href='/home' target='_twitter' className={classes.link}>Home</a>
-                        <a href='/calculator' target='_twitter' className={classes.link}>Calculator</a>
+                        {/* <a href='/calculator' target='_twitter' className={classes.link}>Calculator</a> */}
                         <a href='/whitepaper' target='_twitter' className={classes.link}>Whitepaper</a>
                         <a href='swap' target='_twitter' className={classes.link}>Swap BabyHarmony to OneX</a>
                         <a href='/faq' target='_twitter' className={classes.link}>Frequently Asked Questions</a>

@@ -81,7 +81,7 @@ export default function Calculator() {
     };
 
     const calc = (event) => {
-        let myTokenBalance = tokenBalance == 0 || tokenBalance == null ? 1 : tokenBalance;
+        let myTokenBalance = tokenBalance === 0 || tokenBalance === null ? 1 : tokenBalance;
         setAssetsValue(myTokenBalance * 12);
     };
 

@@ -39,6 +39,9 @@ export const colors = {
   darkGray: "rgba(43,57,84,.5)",
   borderBlue: 'rgba(25, 101, 233, 0.5)',
 
+  remixOrange: 'rgb(193,105,56)',
+  remixBlue: 'rgb(47,85,112)',
+
   twitter: "#1DA1F2",
 
 

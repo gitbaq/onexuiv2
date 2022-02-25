@@ -6,20 +6,19 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Divider from '@material-ui/core/Divider';
-
-import MenuIcon from '@material-ui/icons/Menu';
-
-
-// import DescriptionIcon from '@material-ui/icons/Description';
 import PermDataSettingRoundedIcon from '@material-ui/icons/PermDataSettingRounded';
 import MoneyIcon from '@material-ui/icons/Money';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-// import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 import Tooltip from '@material-ui/core/Tooltip';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import SwapHorizontalCircleRoundedIcon from '@material-ui/icons/SwapHorizontalCircleRounded';
 import AssignmentRoundedIcon from '@material-ui/icons/AssignmentRounded';
 import ContactSupportRoundedIcon from '@material-ui/icons/ContactSupportRounded';
+import GroupIcon from '@material-ui/icons/Group';
+import MapRoundedIcon from '@material-ui/icons/MapRounded';
+import DoneAllRoundedIcon from '@material-ui/icons/DoneAllRounded';
+import SwapHorizRoundedIcon from '@material-ui/icons/SwapHorizRounded';
+import AttachMoneyRoundedIcon from '@material-ui/icons/AttachMoneyRounded';
 
 import './appbar.css'
 import oneXLogo from '../../assets/v3_white_nocircle.svg'
@@ -27,6 +26,26 @@ import Header from "../header";
 import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
+    columns: {
+        flex: 1,
+        display: 'flex',
+        width: '100%',
+        flexDirection: 'column',
+        justifyContent: "right",
+        [theme.breakpoints.up('sm')]: {
+            flexDirection: 'column',
+        }
+    },
+    rows: {
+        flex: 1,
+        display: 'flex',
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: "space-around",
+        [theme.breakpoints.up('sm')]: {
+            flexDirection: 'row',
+        }
+    },
     grow: {
         flexGrow: 1,
     },
@@ -40,37 +59,12 @@ const useStyles = makeStyles((theme) => ({
             display: 'block',
         },
     },
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        opacity: 0.9,
-        // backgroundColor: alpha(theme.palette.common.white, 0.15),
-        // '&:hover': {
-        //     backgroundColor: alpha(theme.palette.common.white, 0.25),
-        // },
-        marginRight: theme.spacing(2),
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(3),
-            width: 'auto',
-        },
-    },
-    searchIcon: {
-        padding: theme.spacing(0, 2),
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
+
     inputRoot: {
         color: 'inherit',
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create('width'),
         width: '100%',
@@ -101,39 +95,39 @@ const useStyles = makeStyles((theme) => ({
 const PrimarySearchAppBar = props => {
     const { history } = props;
     const classes = useStyles();
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    // const [anchorEl, setAnchorEl] = React.useState(null);
+    // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-    const isMenuOpen = Boolean(anchorEl);
-    const handleMenuClose = pageURL => {
-        history.push(pageURL);
-        setAnchorEl(null);
-        handleMobileMenuClose();
-    };
+    // const isMenuOpen = Boolean(anchorEl);
+    // const handleMenuClose = pageURL => {
+    //     history.push(pageURL);
+    //     setAnchorEl(null);
+    //     handleMobileMenuClose();
+    // };
     const handleButtonClick = pageURL => {
         history.push(pageURL);
     };
 
 
-    const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null);
-    };
+    // const handleMobileMenuClose = () => {
+    //     setMobileMoreAnchorEl(null);
+    // };
 
-    const menuId = 'primary-search-account-menu';
-    const renderMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-        >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        </Menu>
-    );
+    // const menuId = 'primary-search-account-menu';
+    // const renderMenu = (
+    //     <Menu
+    //         anchorEl={anchorEl}
+    //         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+    //         id={menuId}
+    //         keepMounted
+    //         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+    //         open={isMenuOpen}
+    //         onClose={handleMenuClose}
+    //     >
+    //         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+    //         <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    //     </Menu>
+    // );
 
 
 
@@ -143,75 +137,112 @@ const PrimarySearchAppBar = props => {
                 <Toolbar className={classes.toolbar}>
                     <div><img alt='OneX logo' src={oneXLogo} className="logo" /></div>
 
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="open drawer"
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    {/* <Typography className={classes.title} variant="h6" noWrap>
-                        OneX
-                    </Typography> */}
+                    {/* <Tooltip title="Calculator">
+                        <IconButton aria-label="Calculator" variant="contained" color="inherit" onClick={() => handleButtonClick("/calculator")}>
+                            <MoneyIcon />
+                            <div className="appBarLabel">Calculator</div>
+                        </IconButton>
+                    </Tooltip> */}
+                    <Tooltip title="BBH Swap">
+                        <IconButton aria-label="BBH Swap" color="inherit" onClick={() => handleButtonClick("/swap")}>
+                            <SwapHorizontalCircleRoundedIcon />
+                            <div className="appBarLabel">BBH Swap</div>
 
-
+                        </IconButton>
+                    </Tooltip>
 
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
+
+                        {/* <Grid container className={`${classes.columns}`} spacing={1} >
+
+                            <Grid item xs={12} sm={2} >
+                                <Box className={`${classes.columns}`}>
+                                    
+                                </Box>
+                            </Grid>
+                        </Grid> */}
+
                         <Tooltip title="Home">
                             <IconButton aria-label="Home" color="inherit" onClick={() => handleButtonClick("/home")}>
                                 <HomeRoundedIcon />
-                                {/* <div className="appBarLabel">Home</div> */}
+                                {/* <div className="appBarLabel">About</div> */}
                             </IconButton>
                         </Tooltip>
-                        <Tooltip title="Calculator">
-                            <IconButton aria-label="Calculator" color="inherit" onClick={() => handleButtonClick("/calculator")}>
-                                <MoneyIcon />
-                                {/* <div className="appBarLabel">Calculator</div> */}
-                            </IconButton>
-                        </Tooltip>
+
                         <Tooltip title="Whitepaper">
                             <IconButton aria-label="Whitepaper" color="inherit" onClick={() => handleButtonClick("/whitepaper")}>
                                 <AssignmentRoundedIcon />
                                 {/* <div className="appBarLabel">Whitepaper</div> */}
                             </IconButton></Tooltip>
 
-                        <Tooltip title="BBH Swap">
-                            <IconButton aria-label="BBH Swap" color="inherit" onClick={() => handleButtonClick("/swap")}>
-                                <SwapHorizontalCircleRoundedIcon />
-                            </IconButton>
-                        </Tooltip>
+
                         <Tooltip title="Frequently Asked Questions">
                             <IconButton aria-label="FAQ" color="inherit" onClick={() => handleButtonClick("/faq")}>
                                 <ContactSupportRoundedIcon />
+                                {/* <div className="appBarLabel">FAQ</div> */}
+
                             </IconButton>
                         </Tooltip>
+                        <Tooltip title="Team">
+                            <IconButton aria-label="Team" color="inherit" onClick={() => handleButtonClick("/team")}>
+                                <GroupIcon />
+                                {/* <div className="appBarLabel">Team</div> */}
+
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Roadmap">
+                            <IconButton aria-label="Roadmap" color="inherit" onClick={() => handleButtonClick("/roadmap")}>
+                                <MapRoundedIcon />
+                                {/* <div className="appBarLabel">Roadmap</div> */}
+
+                            </IconButton>
+                        </Tooltip>
+
 
                         <Divider orientation="vertical" flexItem />
 
                         <Tooltip title="Test Contract">
                             <IconButton aria-label="Account" color="inherit" onClick={() => handleButtonClick("/testcontract")}>
                                 <PermDataSettingRoundedIcon />
+                                <div className="appBarLabel">Contract</div>
+
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Verify Contract">
+                            <IconButton aria-label="Account" color="inherit" onClick={() => handleButtonClick("/verifycontract")}>
+                                <DoneAllRoundedIcon />
+                                <div className="appBarLabel">Verify Contract</div>
+
                             </IconButton>
                         </Tooltip>
                         <Tooltip title="Faucet">
                             <IconButton aria-label="Faucet" color="inherit" onClick={() => handleButtonClick("/faucet")}>
                                 <GetAppIcon />
-                                {/* <div className="appBarLabel">Faucet</div> */}
+                                <div className="appBarLabel">Faucet</div>
                             </IconButton>
                         </Tooltip>
+                        <Tooltip title="Token Swap">
+                            <IconButton aria-label="Token Swap" color="inherit" onClick={() => handleButtonClick("/tokenswap")}>
+                                <SwapHorizRoundedIcon />
+                                <div className="appBarLabel">Token Swap</div>
 
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="Rewards">
+                            <IconButton aria-label="Rewards" color="inherit" onClick={() => handleButtonClick("/rewards")}>
+                                <AttachMoneyRoundedIcon />
+                                <div className="appBarLabel">Rewards</div>
 
-
-
-                        <Header />
-                    </div>
+                            </IconButton>
+                        </Tooltip>
+                        <Divider orientation="vertical" flexItem />
+                    </div>&nbsp;&nbsp;
+                    <Header />
 
                 </Toolbar>
             </AppBar>
-
-            {renderMenu}
+            {/* {renderMenu} */}
         </div>
     );
 }

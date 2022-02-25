@@ -23,13 +23,9 @@ const emitter = Store.emitter
 
 const useStyles = makeStyles(theme => ({
   headerContainer: {
-    // color: '#FFFFFF',
-    // position: 'absolute',
-    // top: '12px',
-    // right: '12px',
-
-    // zIndex: 999,
     display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   actionButton: {
     background: '#bcecfd',
@@ -49,15 +45,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   walletAddress: {
-    // color: colors.black,
     padding: '12px',
-    // border: '1px solid ' + colors.harmonyGradient,
-    // borderRadius: '50px',
     display: 'flex',
     alignItems: 'center',
     cursor: 'pointer',
     '&:hover': {
-      // border: "1px solid ",
       background: 'rgba(47, 128, 237, 0.1)'
     },
     [theme.breakpoints.down('sm')]: {
