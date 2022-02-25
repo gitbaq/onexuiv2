@@ -138,7 +138,7 @@ export default function Whitepaper() {
                             <br /><div className={classes.heading}>Method of Rewards Generation</div>
 
                             A portion of collected taxes is invested by OneX Investment Team for optimal yield.
-                            Earnings will be harvested periodically. This gives the pool more time to generate higher APY by compounding throughout the month, thus amplifying rewards.
+                            Earnings will be harvested periodically. This gives the pool more time to generate higher APY by compounding, thus amplifying rewards.
 
                             <br />
                             <br /><div className={classes.heading}>Core Beliefs</div>
