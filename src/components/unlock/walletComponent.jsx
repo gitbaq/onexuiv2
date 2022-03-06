@@ -14,6 +14,8 @@ import {
 
 import HarmonyLogo from '../../assets/harmony.png'
 import MathWalletLogo from '../../assets/mathwallet.png'
+import MetamaskLogo from '../../assets/mathwallet.png'
+
 
 import Store from "../../stores";
 const emitter = Store.emitter
@@ -26,7 +28,7 @@ export default function WalletComponent({ closeModal }) {
   if (localContext) {
     localConnector = localContext.connector
   }
-  
+
   const {
     connector,
     library,
@@ -54,8 +56,8 @@ export default function WalletComponent({ closeModal }) {
   }, [account, active, closeModal, context, library])
 
   const [hoveredConnectorButtons, setHoveredConnectorButtons] = React.useState(new Map());
-  const updateHoveredConnectorButtons = (k,v) => {
-    setHoveredConnectorButtons(new Map(hoveredConnectorButtons.set(k,v)))
+  const updateHoveredConnectorButtons = (k, v) => {
+    setHoveredConnectorButtons(new Map(hoveredConnectorButtons.set(k, v)))
   }
 
   const onConnectionClicked = (currentConnector, name, setActivatingConnector, activate) => {
@@ -63,7 +65,7 @@ export default function WalletComponent({ closeModal }) {
     setActivatingConnector(currentConnector);
     activate(connectorsByName[name])
   }
-  
+
   const onDeactivateClicked = (deactivate, connector) => {
     if (deactivate) {
       deactivate()
@@ -71,7 +73,7 @@ export default function WalletComponent({ closeModal }) {
     if (connector && connector.close) {
       connector.close()
     }
-    store.setStore({ account: { }, web3context: null })
+    store.setStore({ account: {}, web3context: null })
     emitter.emit(CONNECTION_DISCONNECTED)
   }
 
@@ -94,9 +96,9 @@ export default function WalletComponent({ closeModal }) {
       {Object.keys(connectorsByName).map(name => {
         const currentConnector = connectorsByName[name];
         const activating = currentConnector === activatingConnector;
-        const connected = (currentConnector === connector||currentConnector === localConnector);
+        const connected = (currentConnector === connector || currentConnector === localConnector);
         const disabled =
-           !!activatingConnector || !!error;
+          !!activatingConnector || !!error;
 
         const hovered = hoveredConnectorButtons.get(name);
         const dotColor = (connected && !hovered) ? '#4caf50' : '#FF0000';
@@ -107,39 +109,41 @@ export default function WalletComponent({ closeModal }) {
           url = HarmonyLogo
         } else if (name === 'MathWallet') {
           url = MathWalletLogo
+        } else if (name === 'Metamask') {
+          url = MetamaskLogo
         }
 
         return (
-          <div key={name} style={{ padding: '12px 0px', display: 'flex', justifyContent: 'space-between'  }}>
-            <Button style={ {
-                padding: '16px',
-                backgroundColor: 'white',
-                borderRadius: '1rem',
-                border: '1px solid #E1E1E1',
-                fontWeight: 500,
-                display: 'flex',
-                justifyContent: 'space-between',
-                minWidth: '250px'
-              } }
+          <div key={name} style={{ padding: '12px 0px', display: 'flex', justifyContent: 'space-between' }}>
+            <Button style={{
+              padding: '16px',
+              backgroundColor: 'white',
+              borderRadius: '1rem',
+              border: '1px solid #E1E1E1',
+              fontWeight: 500,
+              display: 'flex',
+              justifyContent: 'space-between',
+              minWidth: '250px'
+            }}
               variant='outlined'
               color='primary'
-              onMouseEnter={() => updateHoveredConnectorButtons(name, true) }
-              onMouseLeave={() => updateHoveredConnectorButtons(name, false) }
+              onMouseEnter={() => updateHoveredConnectorButtons(name, true)}
+              onMouseLeave={() => updateHoveredConnectorButtons(name, false)}
               onClick={() => {
                 connected ? onDeactivateClicked(deactivate, currentConnector) : onConnectionClicked(currentConnector, name, setActivatingConnector, activate)
               }}
-              disabled={ disabled }>
-              <Typography style={ {
-                  margin: '0px 12px',
-                  color: 'rgb(1, 1, 1)',
-                  fontWeight: 500,
-                  fontSize: '1rem',
-                } }
-                variant={ 'h3'}>
-                { display }
+              disabled={disabled}>
+              <Typography style={{
+                margin: '0px 12px',
+                color: 'rgb(1, 1, 1)',
+                fontWeight: 500,
+                fontSize: '1rem',
+              }}
+                variant={'h3'}>
+                {display}
               </Typography>
 
-              { (!activating && !connected) && <img style={
+              {(!activating && !connected) && <img style={
                 {
                   position: 'absolute',
                   right: '20px',
@@ -147,32 +151,32 @@ export default function WalletComponent({ closeModal }) {
                   width: '30px',
                   height: '30px'
                 }
-              } src={url} alt=""/> }
-              { activating && <CircularProgress size={ 15 } style={{marginRight: '10px'}} /> }
-              { (!activating && connected) && <div style={{ background: dotColor, borderRadius: '10px', width: '10px', height: '10px', marginRight: '10px' }}></div> }
+              } src={url} alt="" />}
+              {activating && <CircularProgress size={15} style={{ marginRight: '10px' }} />}
+              {(!activating && connected) && <div style={{ background: dotColor, borderRadius: '10px', width: '10px', height: '10px', marginRight: '10px' }}></div>}
             </Button>
           </div>
         )
-      }) }
+      })}
 
-      <div style={{ width: '252px', margin: '12px 0px'  }}>
-        <Button style={ {
-            padding: '12px',
-            backgroundColor: 'white',
-            borderRadius: '20px',
-            border: '1px solid #E1E1E1',
-            fontWeight: 500,
-            minWidth: '250px'
-          } }
+      <div style={{ width: '252px', margin: '12px 0px' }}>
+        <Button style={{
+          padding: '12px',
+          backgroundColor: 'white',
+          borderRadius: '20px',
+          border: '1px solid #E1E1E1',
+          fontWeight: 500,
+          minWidth: '250px'
+        }}
           variant='outlined'
           color='primary'
           onClick={() => { onDeactivateClicked(deactivate, connector || localConnector); }}>
-          <Typography style={ {
-              marginLeft: '12px',
-              fontWeight: '700',
-              color: '#DC6BE5'
-            } }
-            variant={ 'h5'}
+          <Typography style={{
+            marginLeft: '12px',
+            fontWeight: '700',
+            color: '#DC6BE5'
+          }}
+            variant={'h5'}
             color='primary'>
             Deactivate
           </Typography>

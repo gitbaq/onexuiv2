@@ -143,19 +143,26 @@ const iswapTheme = {
     },
     MuiButton: {
       root: {
-        borderRadius: '50px',
-        padding: '10px 24px'
+        borderRadius: '5px',
+        padding: '10px 24px',
       },
       outlined: {
         padding: '10px 24px',
-        borderWidth: '2px !important'
+        borderWidth: '2px !important',
+      },
+      contained: {
+        padding: '5px 24px',
+        borderWidth: '2px !important',
+        backgroundColor: colors.harmonyGradient,
+        marginRight: "5px",
+        // color: colors.white,
       },
       text: {
-        padding: '10px 24px'
+        padding: '10px 24px',
       },
       label: {
         textTransform: 'none',
-        fontSize: '1rem'
+        fontSize: '1rem',
       }
     },
     MuiInputBase: {
@@ -180,7 +187,7 @@ const iswapTheme = {
       },
       root: {
         // border: "none !important",
-        borderRadius: '25px'
+        borderRadius: '15px'
       },
       notchedOutline: {
         // border: "none !important"

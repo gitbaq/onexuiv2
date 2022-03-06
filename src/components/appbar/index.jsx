@@ -236,7 +236,7 @@ const PrimarySearchAppBar = props => {
 
                             </IconButton>
                         </Tooltip>
-                        <Divider orientation="vertical" flexItem />
+                        {/* <Divider orientation="vertical" flexItem /> */}
                     </div>&nbsp;&nbsp;
                     <Header />
 

@@ -13,8 +13,8 @@ const config = {
   // }
 
   addresses: {
-    "token": "0x5117C5022b9277770589e6c931C2Bfe56E39Abc3",
-    "faucet": "0x145669D3eC83C47D830bC4DF36aC9D54091F5995"
+    "token": "0x2030E54657Dd3f2B10ED41445F094baDfF100282",
+    "faucet": "0xd5e4306B7Cd0Ba4Fc2543B6E25FfBE19671069A3"
   }
 
 };

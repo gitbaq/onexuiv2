@@ -99,7 +99,7 @@ export default function Whitepaper() {
         <div className={classes.root}>
             <PageHeader title="OneX Whitepaper (Full Version of Whitepaper will be released at launch)" subtitle="OneX: Amplified rewards in $ONE! " />
             <Grid container spacing={1} >
-                <Grid item xs={12} sm={12} justifyContent="center" className={classes.content}>
+                <Grid item xs={12} sm={12} className={classes.content}>
                     <Box sm="8">
                         <Typography className={`${classes.title} title`}>
                             Token: OneX<br />
@@ -110,7 +110,7 @@ export default function Whitepaper() {
                             Premise: Rewards in Harmony $ONE<br />
                         </Typography>
 
-                        <Typography className={`${classes.subTitle} subTitle`}>
+                        <div className={`${classes.subTitle} subTitle`}>
 
                             <div className={classes.heading}>Concept</div>
 
@@ -154,7 +154,7 @@ export default function Whitepaper() {
 
                             The OneX team is internally doxxed and may consider other options in the future.  A multisig Gnosis safe wallet with a majority consensus is used for interaction with the Harmony team for distribution of the grant funds. Investment pools will be intensively analyzed by the team before a decision is made to stake in it.  The highest level of care possible will be taken by the team to ensure the safety of the pooled assets.
 
-                        </Typography>
+                        </div>
 
                     </Box>
                 </Grid>

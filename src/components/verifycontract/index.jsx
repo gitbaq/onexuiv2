@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import PropTypes from 'prop-types';
 // import { colors } from '../../theme';
+import constants from '../../constants/'
 
 
 
@@ -17,6 +18,11 @@ import abi from "abi/onexv2.json";
 import AbiCard from "./abiCard";
 import { rgba } from "polished";
 
+import {
+    TOKEN_ADDRESS
+} from '../../constants'
+import MetamaskConnect from "../metamask";
+
 const Web3 = require('web3');
 // const BN = require('bn.js');
 
@@ -26,12 +32,12 @@ const HMY_RPC_URL = 'https://api.s0.b.hmny.io';
 const web3 = new Web3(HMY_RPC_URL);
 
 
-const address = "0xFc1637C7217B698385f20e8DD6a19Be9Fd8d62E2";
+// const address = "0xFc1637C7217B698385f20e8DD6a19Be9Fd8d62E2";
 
 // const token = "0x5117C5022b9277770589e6c931C2Bfe56E39Abc3";
-const token = "0xaD6aEDb6d8DfA2BB8BB158a21a4d0fdaB535F5e8";
+// const token = "0xaD6aEDb6d8DfA2BB8BB158a21a4d0fdaB535F5e8";
 
-
+const token = TOKEN_ADDRESS;
 
 // const contract = new web3.eth.Contract(abi, token);
 
@@ -115,6 +121,12 @@ TabPanel.propTypes = {
 export default function VerifyContract() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
+    const [ethAddress, setEthAddress] = useState();
+    let ethAddress1;
+
+    function setEthAddress1(addr) {
+        ethAddress1 = addr;
+    }
     var index = 0;
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -127,37 +139,53 @@ export default function VerifyContract() {
         })
     };
 
+    async function onMMConnect(walletAddress) {
+        console.log("Data Received is: " + walletAddress)
+        ethAddress1 = walletAddress;
+        setEthAddress(ethAddress1);
+        wethBalance(ethAddress1);
+
+
+    }
+
+    async function dataReceived(data) {
+        console.log('Here: ' + data);
+        await onMMConnect(data);
+    }
 
 
 
-
-    wethBalance(address);
 
 
     return (
         <div className={classes.root}>
-            <PageHeader title='Verify Contract' subtitle={"Account: " + address + " Balance:" + balance + " ONE"} />
-            <AppBar position="static" className={classes.root}>
-                <Tabs className={classes.red} value={value} onChange={handleChange} aria-label="Contract Testbed">
-                    <Tab label="Read" {...a11yProps(0)} />
-                    <Tab label="Write" {...a11yProps(1)} />
-                </Tabs>
-            </AppBar>
-            <TabPanel className={classes.blue} value={value} index={0}>
-                Read Contract Values
-                {abi.filter(item => (item.type !== 'event' && item.stateMutability === 'view' && item.name !== "")).map(filteredItems => (
-                    <AbiCard key={index++ + filteredItems.name} item={filteredItems} abi={abi} token={token} address={address} />
 
-                ))}
-            </TabPanel>
-            <TabPanel className={classes.blue} value={value} index={1}>
-                Write Contract Values
-                {abi.filter(item => (item.type !== 'event' && item.stateMutability !== 'view' && item.name !== "")).map(filteredItems => (
-                    <AbiCard key={index++ + filteredItems.name} item={filteredItems} abi={abi} token={token} address={address} />
-                ))}
-            </TabPanel>
+            <PageHeader title='Verify Contract' subtitle={ethAddress && "Account: " + ethAddress + " Balance:" + balance + " ONE"} />
+            <MetamaskConnect onConnect={dataReceived} />
 
+            {ethAddress &&
+                <div className={classes.root}>
+                    <AppBar position="static" className={classes.root}>
+                        <Tabs className={classes.red} value={value} onChange={handleChange} aria-label="Contract Testbed">
+                            <Tab label="Read" {...a11yProps(0)} />
+                            <Tab label="Write" {...a11yProps(1)} />
+                        </Tabs>
+                    </AppBar>
+                    <TabPanel className={classes.blue} value={value} index={0}>
+                        Read Contract Values
+                        {abi.filter(item => (item.type !== 'event' && item.stateMutability === 'view' && item.name !== "")).map(filteredItems => (
+                            <AbiCard key={index++ + filteredItems.name} item={filteredItems} abi={abi} token={token} address={ethAddress} />
 
+                        ))}
+                    </TabPanel>
+                    <TabPanel className={classes.blue} value={value} index={1}>
+                        Write Contract Values
+                        {abi.filter(item => (item.type !== 'event' && item.stateMutability !== 'view' && item.name !== "")).map(filteredItems => (
+                            <AbiCard key={index++ + filteredItems.name} item={filteredItems} abi={abi} token={token} address={ethAddress} />
+                        ))}
+                    </TabPanel>
+                </div>
+            }
 
         </div>
 

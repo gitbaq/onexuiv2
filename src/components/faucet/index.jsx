@@ -150,10 +150,10 @@ export default function Faucet() {
 
   return (
     <div className={classes.root}>
-      <Card className={`${classes.card} ${classes.gradient}`} onClick={() => faucet()}>
+      <Card className={`${classes.card} ${classes.gradient}`} >
         <AttachMoneyIcon className={`${classes.icon} icon`} />
         <Typography variant={'h3'} className={`${classes.title} title`}>Faucet</Typography>
-        <Typography variant={'h6'} className={`${classes.subTitle} title`}>(Click to request funds)</Typography>
+        <Typography variant={'h6'} className={`${classes.subTitle} title`} onClick={() => faucet()}>(Click to request funds)</Typography>
       </Card>
       {loading && <ColoredLoader />}
       {snackbarMessage && renderSnackbar()}

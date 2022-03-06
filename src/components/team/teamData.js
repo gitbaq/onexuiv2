@@ -8,7 +8,7 @@ const teamData = [
         twitter: 'lancePlume',
         telegram: 'lancePlume',
         reddit: 'lancePlume',
-        weight: '5',
+        weight: 5,
     },
     {
         id: 2,
@@ -19,7 +19,7 @@ const teamData = [
         twitter: 'tyler',
         telegram: 'tyler',
         reddit: 'tyler',
-        weight: '7',
+        weight: 7,
     },
     {
         id: 4,
@@ -30,7 +30,7 @@ const teamData = [
         twitter: 'gitbaq',
         telegram: 'gitbaq',
         reddit: 'gitbaq',
-        weight: '7',
+        weight: 7,
     }, {
         id: 5,
         name: '@nico',
@@ -40,7 +40,7 @@ const teamData = [
         twitter: 'nico',
         telegram: 'nico',
         reddit: 'nico',
-        weight: '7',
+        weight: 7,
     },
     {
         id: 3,
@@ -51,7 +51,7 @@ const teamData = [
         twitter: 'cryptonian',
         telegram: 'cryptonian',
         reddit: 'cryptonian',
-        weight: '5',
+        weight: 5,
     },
 
 

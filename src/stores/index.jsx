@@ -13,6 +13,8 @@ import {
 
 import { OneWalletConnector } from '@harmony-react/onewallet-connector'
 import { MathWalletConnector } from '@harmony-react/mathwallet-connector'
+import { BN } from "bn.js";
+
 
 import { Hmy } from '@harmony-utils/wrappers'
 
@@ -40,6 +42,7 @@ class Store {
       connectorsByName: {
         OneWallet: onewallet,
         MathWallet: mathwallet,
+
       },
       tokens: [
         {
@@ -192,7 +195,73 @@ class Store {
     // return faucetContract.methods.fund(account.address).send({ ...hmy.gasOptions(), from: account.address })
     return faucetContract.methods.fund(account.address).send({ "gasPrice": 80000000000, "gasLimit": 6721900, from: account.address })
   }
+
+
+
+  transferTokens = async (receiver, amount) => {
+    console.log('in Store: ' + receiver + ' ' + amount);
+    const hmy = store.getStore('hmy')
+    const account = store.getStore('account')
+    const context = store.getStore('web3context')
+    var connector = null
+
+    if (context) {
+      connector = context.connector
+    }
+
+    if (!connector) {
+      throw new WalletConnectionError('No wallet connected')
+    }
+    let tokenContract = hmy.client.contracts.createContract(require('../abi/onexv2.json'), config.addresses.token)
+    tokenContract = await connector.attachToContract(tokenContract)
+    console.log("Gas Options: " + JSON.stringify(hmy.gasOptions()))
+    return tokenContract.methods.transfer(receiver, new BN(amount + '000000000000000000')).send({ "gasPrice": 80000000000, "gasLimit": 6721900, from: account.address })
+  }
+
+
+  swapOneX = async (swapAmount) => {
+    console.log('in Store: swapOneX ' + swapAmount);
+    const hmy = store.getStore('hmy')
+    const account = store.getStore('account')
+    const context = store.getStore('web3context')
+    var connector = null
+
+    if (context) {
+      connector = context.connector
+    }
+
+    if (!connector) {
+      throw new WalletConnectionError('No wallet connected')
+    }
+    let tokenContract = hmy.client.contracts.createContract(require('../abi/onexv2.json'), config.addresses.token)
+    tokenContract = await connector.attachToContract(tokenContract)
+    console.log("Gas Options: " + JSON.stringify(hmy.gasOptions()))
+    return tokenContract.methods.swapOneXToOne(new BN(swapAmount)).send({ "gasPrice": 80000000000, "gasLimit": 6721900, from: account.address })
+  }
+
+
+  processDividend = async () => {
+    console.log('in Store: processDividend ');
+    const hmy = store.getStore('hmy')
+    const account = store.getStore('account')
+    const context = store.getStore('web3context')
+    var connector = null
+
+    if (context) {
+      connector = context.connector
+    }
+
+    if (!connector) {
+      throw new WalletConnectionError('No wallet connected')
+    }
+    let tokenContract = hmy.client.contracts.createContract(require('../abi/onexv2.json'), config.addresses.token)
+    tokenContract = await connector.attachToContract(tokenContract)
+    console.log("Gas Options: " + JSON.stringify(hmy.gasOptions()))
+    return tokenContract.methods.processDividend().send({ "gasPrice": 80000000000, "gasLimit": 6721900, from: account.address })
+  }
+
 }
+
 
 const store = new Store()
 const stores = {

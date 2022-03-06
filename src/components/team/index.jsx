@@ -53,7 +53,7 @@ export default function Team() {
                 justifyContent="center"
                 alignItems="center">
                 {teamData.map(filteredItems => (
-                    <Grid item xs={filteredItems.weight}>
+                    <Grid key={filteredItems.id} item xs={filteredItems.weight}>
                         <TeamCard key={filteredItems.id} item={filteredItems} className={classes.paper} />
                     </Grid>
                 ))}

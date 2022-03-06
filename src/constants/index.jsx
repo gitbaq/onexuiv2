@@ -58,4 +58,8 @@ export const GET_VOTE_STATUS_RETURNED = 'GET_VOTE_STATUS_RETURNED'
 
 export const WALLET_LOCKED = 'WALLET_LOCKED'
 
-export class WalletConnectionError extends Error {}
+export const TOKEN_ADDRESS = "0x2030E54657Dd3f2B10ED41445F094baDfF100282"
+
+export const HMY_TESTNET_URL = "https://api.s0.b.hmny.io"
+
+export class WalletConnectionError extends Error { }
