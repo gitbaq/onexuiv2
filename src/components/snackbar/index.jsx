@@ -128,7 +128,7 @@ export default function MySnackbar(props) {
 
       let snackbarMessage = message;
       actions = [
-        <Button key="open" variant="text" size="small" onClick={() => window.open(snackbarMessage, "_blank")}>
+        <Button color={colors.remixOrange} key="open" variant="contained" size="small" onClick={() => window.open(snackbarMessage, "_blank")}>
           View
         </Button>,
         <IconButton

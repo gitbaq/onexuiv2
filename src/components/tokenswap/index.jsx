@@ -186,24 +186,24 @@ export default function TokenSwap(props) {
         }
     }
 
-    async function transferTo() {
-        const addressForToken = await oneXV2Contract.address;
-        console.log(addressForToken);
-        try {
-            await oneXV2Contract.methods.transfer(
-                '0x811c47ff288a7ac54a9682fc183c244b44d35640',
-                '150000000000000000000000000'
-            ).call({ from: '0xfc1637c7217b698385f20e8dd6a19be9fd8d62e2' }).then(function (result) {
-                console.log('result = ' + result);
-                setRst(result)
-            });
-        } catch (error) {
-            console.log('Error in transfer: ' + JSON.stringify(error))
-            setRst(JSON.stringify(error));
-        }
-        console.log('Ending transfer...');
+    // async function transferTo() {
+    //     const addressForToken = await oneXV2Contract.address;
+    //     console.log(addressForToken);
+    //     try {
+    //         await oneXV2Contract.methods.transfer(
+    //             '0x811c47ff288a7ac54a9682fc183c244b44d35640',
+    //             '150000000000000000000000000'
+    //         ).call({ from: '0xfc1637c7217b698385f20e8dd6a19be9fd8d62e2' }).then(function (result) {
+    //             console.log('result = ' + result);
+    //             setRst(result)
+    //         });
+    //     } catch (error) {
+    //         console.log('Error in transfer: ' + JSON.stringify(error))
+    //         setRst(JSON.stringify(error));
+    //     }
+    //     console.log('Ending transfer...');
 
-    };
+    // };
 
     async function dataReceived(data) {
         console.log('Data Received Here: ' + data);
@@ -211,48 +211,48 @@ export default function TokenSwap(props) {
         await onMMConnect(data);
     }
 
-    function distributeRewards() {
-        setRst('Processing Dividend...')
+    // function distributeRewards() {
+    //     setRst('Processing Dividend...')
 
-        console.log('');
-        contract.methods.processDividend().call({ from: newAddress })
-            .then(function (result) {
-                setRst(JSON.stringify(result))
-                console.log(result);
-                updateBalances();
-                getPair();
-            });
-    }
+    //     console.log('');
+    //     contract.methods.processDividend().call({ from: newAddress })
+    //         .then(function (result) {
+    //             setRst(JSON.stringify(result))
+    //             console.log(result);
+    //             updateBalances();
+    //             getPair();
+    //         });
+    // }
 
-    async function sellOneX() {
-        console.log('Selling ' + newData + ' OneX from ' + newAddress);
-        try {
-            let error = '';
+    // async function sellOneX() {
+    //     console.log('Selling ' + newData + ' OneX from ' + newAddress);
+    //     try {
+    //         let error = '';
 
-            console.log("newData" + newData + " ethAddress " + newAddress);
-            setRst('...')
+    //         console.log("newData" + newData + " ethAddress " + newAddress);
+    //         setRst('...')
 
-            contract.methods.swapOneXToOne(newData).call({ from: '0xfc1637c7217b698385f20e8dd6a19be9fd8d62e2' })
-                .then(function (result) {
-                    setRst(JSON.stringify(result))
-                    console.log(result);
-                    updateBalances();
+    //         contract.methods.swapOneXToOne(newData).call({ from: '0xfc1637c7217b698385f20e8dd6a19be9fd8d62e2' })
+    //             .then(function (result) {
+    //                 setRst(JSON.stringify(result))
+    //                 console.log(result);
+    //                 updateBalances();
 
-                });
-        } catch (error) {
-            console.log('Error in Swap OnexToOne ' + error);
-        }
+    //             });
+    //     } catch (error) {
+    //         console.log('Error in Swap OnexToOne ' + error);
+    //     }
 
 
-    }
+    // }
 
-    const handleChange = (event) => {
-        setNewData(event.target.value);
-    }
+    // const handleChange = (event) => {
+    //     setNewData(event.target.value);
+    // }
 
-    const handleChangeOne = (event) => {
-        setBalance(event.target.value);
-    }
+    // const handleChangeOne = (event) => {
+    //     setBalance(event.target.value);
+    // }
 
     function createData(name, oneX, one) {
         return { name, oneX, one };
