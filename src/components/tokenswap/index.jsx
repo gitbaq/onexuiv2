@@ -383,7 +383,7 @@ export default function TokenSwap(props) {
 
     }
 
-
+    const [swapAmount, setSwapAmount] = useState(0);
 
 
     return (
@@ -414,7 +414,8 @@ export default function TokenSwap(props) {
                                         <TextField className={`${classes.controlT}`} name="swapAmount" id="swapAmount" label="OneX" variant="outlined" onChange={handleChangeS} />
                                         <Button className={`${classes.button} ${classes.controlB}`} id='oneTokens' variant="contained" color="secondary" onClick={() => swapOneX(swapParams["swapAmount"])}>Swap OneX to ONE</Button>
                                     </Grid>
-                                    <Grid item className={classes.gridItem}>
+                                    <Grid item className={classes.gridItem}
+                                        onClick={e => setSwapAmount(newData)}>
                                         Max: {newData}
                                     </Grid>
                                 </Grid>
