@@ -150,6 +150,13 @@ const PrimarySearchAppBar = props => {
 
                         </IconButton>
                     </Tooltip>
+                    <Tooltip title="Verify Contract">
+                        <IconButton aria-label="Account" color="inherit" onClick={() => handleButtonClick("/verifycontract")}>
+                            <DoneAllRoundedIcon />
+                            <div className="appBarLabel">Verify Contract</div>
+
+                        </IconButton>
+                    </Tooltip>
 
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
@@ -202,20 +209,14 @@ const PrimarySearchAppBar = props => {
 
                         <Divider orientation="vertical" flexItem />
 
-                        <Tooltip title="Test Contract">
+                        {/* <Tooltip title="Test Contract">
                             <IconButton aria-label="Account" color="inherit" onClick={() => handleButtonClick("/testcontract")}>
                                 <PermDataSettingRoundedIcon />
                                 <div className="appBarLabel">Contract</div>
 
                             </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Verify Contract">
-                            <IconButton aria-label="Account" color="inherit" onClick={() => handleButtonClick("/verifycontract")}>
-                                <DoneAllRoundedIcon />
-                                <div className="appBarLabel">Verify Contract</div>
+                        </Tooltip> */}
 
-                            </IconButton>
-                        </Tooltip>
                         <Tooltip title="Faucet">
                             <IconButton aria-label="Faucet" color="inherit" onClick={() => handleButtonClick("/faucet")}>
                                 <GetAppIcon />
@@ -226,16 +227,17 @@ const PrimarySearchAppBar = props => {
                             <IconButton aria-label="Token Swap" color="inherit" onClick={() => handleButtonClick("/tokenswap")}>
                                 <SwapHorizRoundedIcon />
                                 <div className="appBarLabel">Token Swap</div>
-
                             </IconButton>
                         </Tooltip>
-                        <Tooltip title="Rewards">
+                        <Divider orientation="vertical" flexItem />
+
+                        {/* <Tooltip title="Rewards">
                             <IconButton aria-label="Rewards" color="inherit" onClick={() => handleButtonClick("/rewards")}>
                                 <AttachMoneyRoundedIcon />
                                 <div className="appBarLabel">Rewards</div>
 
                             </IconButton>
-                        </Tooltip>
+                        </Tooltip> */}
                         {/* <Divider orientation="vertical" flexItem /> */}
                     </div>&nbsp;&nbsp;
                     <Header />
