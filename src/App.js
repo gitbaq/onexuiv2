@@ -167,9 +167,9 @@ export default function App() {
               <Route exact path="/faq">
                 <Faq />
               </Route>
-              <Route exact path="/rewards">
+              {/* <Route exact path="/rewards">
                 <Rewards />
-              </Route>
+              </Route> */}
               <Route exact path="/team">
                 <Team />
               </Route>
