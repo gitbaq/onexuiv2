@@ -282,6 +282,8 @@ export default function TokenSwap(props) {
                     setSnackbarMessage(url)
                     setSnackbarType("Hash")
                     setLoading(false)
+                    updateBalances();
+
                 } else {
                     setSnackbarMessage("An error occurred :(. Please try again!")
                     setSnackbarType("Error")
@@ -317,7 +319,8 @@ export default function TokenSwap(props) {
                     url = `${hmy.explorerUrl}/tx/${res.transaction.receipt.transactionHash}`
                     setSnackbarMessage(url)
                     setSnackbarType("Hash")
-                    setLoading(false)
+                    setLoading(false);
+                    updateBalances();
                 } else {
                     setSnackbarMessage("An error occurred :(. Please try again!")
                     setSnackbarType("Error")
@@ -451,7 +454,9 @@ export default function TokenSwap(props) {
                     </Grid>
                     <Grid item xs={6}>
                         <Paper className={`${classes.paper}`} elevation={3} >
-                            <Button className={classes.button} variant="contained" color="secondary" onClick={resetData}>Clear Logs</Button>
+                            <div><Button className={classes.button} variant="contained" color="primary" onClick={updateBalances}>View Balances</Button>
+                                <Button className={classes.button} variant="contained" color="secondary" onClick={resetData}>Clear Logs</Button></div>
+
                             <DataTable rows={rows} />
                         </Paper>
                     </Grid>
