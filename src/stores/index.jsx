@@ -12,9 +12,12 @@ import {
 } from '../constants'
 
 import { OneWalletConnector } from '@harmony-react/onewallet-connector'
-import { MathWalletConnector } from '@harmony-react/mathwallet-connector'
-import { BN } from "bn.js";
+// import { MathWalletConnector } from '@harmony-react/mathwallet-connector'
+import { InjectedConnector } from '@web3-react/injected-connector'
 
+import { BN } from "bn.js";
+import Web3 from "web3";
+import { signInMetamask } from "./userWallet";
 
 import { Hmy } from '@harmony-utils/wrappers'
 
@@ -23,12 +26,16 @@ const Emitter = require('events').EventEmitter
 
 const dispatcher = new Dispatcher()
 const emitter = new Emitter()
+let web3;
+let contract;
+let faucetContract;
 
 class Store {
   constructor() {
     const hmy = new Hmy(config.network)
     const onewallet = new OneWalletConnector({ chainId: hmy.client.chainId })
-    const mathwallet = new MathWalletConnector({ chainId: hmy.client.chainId })
+    // const mathwallet = new MathWalletConnector({ chainId: hmy.client.chainId })
+    const metaMask = new InjectedConnector({ chainId: hmy.client.chainId });
 
     this.store = {
       votingStatus: false,
@@ -40,8 +47,9 @@ class Store {
       web3: null,
       web3context: null,
       connectorsByName: {
-        OneWallet: onewallet,
-        MathWallet: mathwallet,
+        // OneWallet: onewallet,
+        // MathWallet: mathwallet,
+        Metamask: metaMask,
 
       },
       tokens: [
@@ -176,7 +184,7 @@ class Store {
     }
   }
 
-  useFaucet = async () => {
+  useFaucet_one = async () => {
     const hmy = store.getStore('hmy')
     const account = store.getStore('account')
     const context = store.getStore('web3context')
@@ -192,13 +200,12 @@ class Store {
     let faucetContract = hmy.client.contracts.createContract(require('../abi/Faucet.json'), config.addresses.faucet)
     faucetContract = await connector.attachToContract(faucetContract)
     console.log("Gas Options: " + JSON.stringify(hmy.gasOptions()))
-    // return faucetContract.methods.fund(account.address).send({ ...hmy.gasOptions(), from: account.address })
-    return faucetContract.methods.fund(account.address).send({ "gasPrice": 80000000000, "gasLimit": 6721900, from: account.address })
+    return faucetContract.methods.fund(account.address).send({ "gasPrice": 2000000000, "gasLimit": 6721900, from: account.address })
   }
 
 
 
-  transferTokens = async (receiver, amount) => {
+  transferTokens_one = async (receiver, amount) => {
     console.log('in Store: ' + receiver + ' ' + amount);
     const hmy = store.getStore('hmy')
     const account = store.getStore('account')
@@ -213,13 +220,13 @@ class Store {
       throw new WalletConnectionError('No wallet connected')
     }
     let tokenContract = hmy.client.contracts.createContract(require('../abi/onexv2.json'), config.addresses.token)
-    tokenContract = await connector.attachToContract(tokenContract)
+    // tokenContract = await connector.attachToContract(tokenContract)
     console.log("Gas Options: " + JSON.stringify(hmy.gasOptions()))
     return tokenContract.methods.transfer(receiver, new BN(amount + '000000000000000000')).send({ "gasPrice": 80000000000, "gasLimit": 6721900, from: account.address })
   }
 
 
-  swapOneX = async (swapAmount) => {
+  swapOneX_one = async (swapAmount) => {
     console.log('in Store: swapOneX ' + swapAmount);
     const hmy = store.getStore('hmy')
     const account = store.getStore('account')
@@ -234,13 +241,13 @@ class Store {
       throw new WalletConnectionError('No wallet connected')
     }
     let tokenContract = hmy.client.contracts.createContract(require('../abi/onexv2.json'), config.addresses.token)
-    tokenContract = await connector.attachToContract(tokenContract)
+    // tokenContract = await connector.attachToContract(tokenContract)
     console.log("Gas Options: " + JSON.stringify(hmy.gasOptions()))
-    return tokenContract.methods.swapOneXToOne(new BN(swapAmount)).send({ "gasPrice": 80000000000, "gasLimit": 6721900, from: account.address })
+    return tokenContract.methods.swapOneXToOne(new BN(swapAmount)).send({ "gasPrice": 2000000000, "gasLimit": 6721900, from: account.address })
   }
 
 
-  processDividend = async () => {
+  processDividend_one = async () => {
     console.log('in Store: processDividend ');
     const hmy = store.getStore('hmy')
     const account = store.getStore('account')
@@ -249,6 +256,7 @@ class Store {
 
     if (context) {
       connector = context.connector
+      debugger;
     }
 
     if (!connector) {
@@ -259,6 +267,60 @@ class Store {
     console.log("Gas Options: " + JSON.stringify(hmy.gasOptions()))
     return tokenContract.methods.processDividend().send({ "gasPrice": 80000000000, "gasLimit": 6721900, from: account.address })
   }
+
+  setupContract = async () => {
+    await signInMetamask();
+    web3 = new Web3(window.web3.currentProvider);
+    const contractFile = require('./OneXV2.json');
+    // console.log(contractFile.abi)
+    const contractInstance = new web3.eth.Contract(contractFile.abi, config.addresses.token);
+    contract = contractInstance;
+  }
+
+  setupFaucetContract = async () => {
+    await signInMetamask();
+    web3 = new Web3(window.web3.currentProvider);
+    const contractFile = require('./Faucet.json');
+    // console.log(contractFile.abi)
+    const contractInstance = new web3.eth.Contract(contractFile.abi, config.addresses.faucet);
+    faucetContract = contractInstance;
+  }
+
+  getBal = async () => {
+    await this.setupContract();
+    const account = store.getStore('account');
+    // const hmy = store.getStore('hmy');
+    // console.log('Getting Name: ' + account.address);
+    // const hmyGas = hmy.gasOptions();
+    const value = await contract.methods.balanceOf(account.address).call({ "gasPrice": 8000000000, "gasLimit": 6721900, from: account.address });
+    return value;
+  }
+
+  processDividend = async () => {
+    await this.setupContract();
+    const account = store.getStore('account');
+    const value = await contract.methods.processDividend().send({ "gasPrice": 8000000000, "gasLimit": 6721900, from: account.address })
+    return value;
+  }
+
+  swapOneX = async (swapAmount) => {
+    await this.setupContract();
+    const account = store.getStore('account');
+    return contract.methods.swapOneXToOne(new BN(swapAmount)).send({ "gasPrice": 80000000000, "gasLimit": 6721900, from: account.address })
+  }
+
+  transferTokens = async (receiver, amount) => {
+    await this.setupContract();
+    const account = store.getStore('account');
+    return contract.methods.transfer(receiver, new BN(amount + '000000000000000000')).send({ "gasPrice": 80000000000, "gasLimit": 6721900, from: account.address })
+  }
+
+  useFaucet = async () => {
+    await this.setupFaucetContract();
+    const account = store.getStore('account');
+    return faucetContract.methods.fund(account.address).send({ "gasPrice": 80000000000, "gasLimit": 6721900, from: account.address })
+  }
+
 
 }
 

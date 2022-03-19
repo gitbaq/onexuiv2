@@ -69,6 +69,7 @@ export default function MetamaskConnect(props) {
             console.error('Metamask not found');
             return;
         }
+        mm_task();
 
         // MetaMask events
         provider.on('accountsChanged', await handleAccountsChanged);

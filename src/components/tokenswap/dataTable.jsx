@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -14,7 +14,7 @@ import { colors } from '../../theme'
 const useStyles = makeStyles({
     table: {
         width: "100%",
-
+        maxHeight: 440,
     },
     header: {
         fontWeight: "bold",
@@ -25,38 +25,56 @@ const useStyles = makeStyles({
 
         color: colors.remixBlue,
 
-    }
+    },
+    root: {
+        width: '100%',
+    },
+    container: {
+        maxHeight: 400,
+    },
 });
 
 
 
 export default function DataTable(props) {
     const classes = useStyles();
+    const StyledTableRow = withStyles((theme) => ({
+        root: {
+            '&:nth-of-type(odd)': {
+                backgroundColor: theme.palette.action.hover,
+            },
+        },
+    }))(TableRow);
     const rows = props.rows ? props.rows : [];
     let index = 0;
     return (
-        <TableContainer component={Paper}>
-            <Table className={classes.table} size="small" aria-label="a dense table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell className={classes.header}>Wallet</TableCell>
-                        <TableCell align="right" className={classes.header}>OneX</TableCell>
-                        <TableCell align="right" className={classes.header}>One</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows.map((row) => (
-                        <TableRow key={index++}>
-                            <TableCell component="th" scope="row" className={`${classes.header} ${classes.upperText}`}>
-                                {row.name}
-                            </TableCell>
-                            <TableCell align="right">{row.oneX}</TableCell>
-                            <TableCell align="right">{row.one}</TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <Paper className={classes.root}>
+            <TableContainer className={classes.container}>
+                <Table stickyHeader aria-label="sticky table" size='small'>
+                    <TableHead>
+                        <StyledTableRow >
+                            <TableCell className={classes.header}>&nbsp;</TableCell>
+                            <TableCell className={classes.header}>Wallet</TableCell>
+                            <TableCell align="right" className={classes.header}>OneX</TableCell>
+                            <TableCell align="right" className={classes.header}>One</TableCell>
+                        </StyledTableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((row) => (
+                            <StyledTableRow key={index++} style={{ backgroundColor: (!row.oneX && !row.one) ? colors.harmonyGradient : 'white' }}>
+                                <TableCell align="right">{row.date}</TableCell>
+
+                                <TableCell component="th" scope="row" className={`${classes.header} ${classes.upperText}`}>
+                                    {row.name}
+                                </TableCell>
+                                <TableCell align="right">{row.oneX}</TableCell>
+                                <TableCell align="right">{row.one}</TableCell>
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Paper>
     )
 }
 

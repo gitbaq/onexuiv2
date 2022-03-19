@@ -14,7 +14,8 @@ import {
 
 import HarmonyLogo from '../../assets/harmony.png'
 import MathWalletLogo from '../../assets/mathwallet.png'
-import MetamaskLogo from '../../assets/mathwallet.png'
+import MetamaskLogo from '../../assets/metamask.svg';
+
 
 
 import Store from "../../stores";

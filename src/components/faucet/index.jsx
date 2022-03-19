@@ -125,8 +125,8 @@ export default function Faucet() {
       try {
         const res = await store.useFaucet()
 
-        if (res.status === 'called' || res.status === 'call') {
-          url = `${hmy.explorerUrl}/tx/${res.transaction.receipt.transactionHash}`
+        if (res.status) {
+          url = `${hmy.explorerUrl}/tx/${res.transactionHash}`
           setSnackbarMessage(url)
           setSnackbarType("Hash")
           setLoading(false)

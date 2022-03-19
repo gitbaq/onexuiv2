@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { makeStyles } from '@material-ui/core/styles'
 import PageHeader from "../pageHeader";
 import Paper from '@material-ui/core/Paper';
@@ -18,6 +18,7 @@ import MetamaskConnect from '../metamask';
 import { getAddress } from "../../constants/utility";
 import { BN } from "bn.js";
 
+
 import {
     TOKEN_ADDRESS,
     HMY_TESTNET_URL,
@@ -27,6 +28,7 @@ import DataTable from "./dataTable";
 const store = Store.store
 let tParams = { receiver: '', amount: 0 };
 let swapParams = { swapAmount: 0 };
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -91,6 +93,8 @@ let ethersProvider;
 
 export default function TokenSwap(props) {
     const classes = useStyles();
+    const [rows, setRows] = React.useState([]);
+
     // const [ethAddress, setEthAddress] = useState();
     const [newData, setNewData] = useState(0);
     const [pair, setPair] = useState('...');
@@ -114,33 +118,24 @@ export default function TokenSwap(props) {
 
     const fetchBalance = async (balAddress, key) => {
         console.log('Fetching Balance for ' + key + " -- " + balAddress);
-        // if (!balAddress || balAddress === undefined || balAddress === null || balAddress.length < 30) {
-        //     return;
-        // }
         const response = await web3.eth.getBalance(balAddress);
         const addrBalance = await contract.methods.balanceOf(balAddress).call();
+        rows.push(createData('', key, addrBalance / 1e18, response / 1e18));
+        console.log("Rows:" + rows.length);
+        updateDataTable();
 
-        rows.push(createData(key, addrBalance / 1e18, response / 1e18));
     };
-
-    // const [expenseBalance, setExpenseBalance] = React.useState(0);
-    // const [liquidityBalance, setLiquidityBalance] = React.useState(0);
-    // const [stakingBalance, setStakingBalance] = React.useState(0);
-
 
 
 
 
     async function updateBalances() {
-        rows.push(createData(new Date().toLocaleString('en-US')))
-        fetchBalance(expenseWallet, 'expense');
-        fetchBalance(liquidityWallet, 'liquidity');
-        fetchBalance(stakingWallet, 'staking');
-        fetchBalance('0xfc1637c7217b698385f20e8dd6a19be9fd8d62e2', 'connected');
+        rows.push(createData(new Date().toLocaleString('en-US'), null, null, null))
+        await fetchBalance(expenseWallet, 'expense');
+        await fetchBalance(liquidityWallet, 'liquidity');
+        await fetchBalance(stakingWallet, 'staking');
+        await fetchBalance('0xfc1637c7217b698385f20e8dd6a19be9fd8d62e2', 'connected');
     }
-
-
-
 
     async function getData(addr) {
         let error;
@@ -152,7 +147,6 @@ export default function TokenSwap(props) {
         } catch {
             console.log("Something Wrong Happened..." + error)
         }
-
     };
 
 
@@ -186,83 +180,26 @@ export default function TokenSwap(props) {
         }
     }
 
-    // async function transferTo() {
-    //     const addressForToken = await oneXV2Contract.address;
-    //     console.log(addressForToken);
-    //     try {
-    //         await oneXV2Contract.methods.transfer(
-    //             '0x811c47ff288a7ac54a9682fc183c244b44d35640',
-    //             '150000000000000000000000000'
-    //         ).call({ from: '0xfc1637c7217b698385f20e8dd6a19be9fd8d62e2' }).then(function (result) {
-    //             console.log('result = ' + result);
-    //             setRst(result)
-    //         });
-    //     } catch (error) {
-    //         console.log('Error in transfer: ' + JSON.stringify(error))
-    //         setRst(JSON.stringify(error));
-    //     }
-    //     console.log('Ending transfer...');
-
-    // };
 
     async function dataReceived(data) {
         console.log('Data Received Here: ' + data);
-
         await onMMConnect(data);
     }
 
-    // function distributeRewards() {
-    //     setRst('Processing Dividend...')
-
-    //     console.log('');
-    //     contract.methods.processDividend().call({ from: newAddress })
-    //         .then(function (result) {
-    //             setRst(JSON.stringify(result))
-    //             console.log(result);
-    //             updateBalances();
-    //             getPair();
-    //         });
-    // }
-
-    // async function sellOneX() {
-    //     console.log('Selling ' + newData + ' OneX from ' + newAddress);
-    //     try {
-    //         let error = '';
-
-    //         console.log("newData" + newData + " ethAddress " + newAddress);
-    //         setRst('...')
-
-    //         contract.methods.swapOneXToOne(newData).call({ from: '0xfc1637c7217b698385f20e8dd6a19be9fd8d62e2' })
-    //             .then(function (result) {
-    //                 setRst(JSON.stringify(result))
-    //                 console.log(result);
-    //                 updateBalances();
-
-    //             });
-    //     } catch (error) {
-    //         console.log('Error in Swap OnexToOne ' + error);
-    //     }
 
 
-    // }
-
-    // const handleChange = (event) => {
-    //     setNewData(event.target.value);
-    // }
-
-    // const handleChangeOne = (event) => {
-    //     setBalance(event.target.value);
-    // }
-
-    function createData(name, oneX, one) {
-        return { name, oneX, one };
+    function createData(date, name, oneX, one) {
+        return { date, name, oneX, one };
     }
 
 
 
-    const [rows, setRows] = React.useState([]);
     function resetData() {
         setRows(new Array());
+    }
+
+    function updateDataTable() {
+        setRows(rows.slice(0));
     }
 
     const transferToken = async (receiver, amount) => {
@@ -275,10 +212,12 @@ export default function TokenSwap(props) {
             let url = ''
             try {
                 const res = await store.transferTokens(receiver, amount)
-                console.log('Res from Store Transfer: ' + JSON.stringify(res));
+                // console.log(res.status + 'Res from Store Transfer: ' + JSON.stringify(res));
 
-                if (res.status === 'called' || res.status === 'call') {
-                    url = `${hmy.explorerUrl}/tx/${res.transaction.receipt.transactionHash}`
+                // if (res.status === 'called' || res.status === 'call' || res.status === 'true') {
+                if (res.status) {
+                    console.log('Success');
+                    url = `${hmy.explorerUrl}/tx/${res.transactionHash}`
                     setSnackbarMessage(url)
                     setSnackbarType("Hash")
                     setLoading(false)
@@ -313,10 +252,10 @@ export default function TokenSwap(props) {
             let url = ''
             try {
                 const res = await store.swapOneX(swapAmount)
-                console.log('Res from Store Transfer: ' + JSON.stringify(res));
+                console.log('Res from Store swapOneX: ' + JSON.stringify(res));
 
-                if (res.status === 'called' || res.status === 'call') {
-                    url = `${hmy.explorerUrl}/tx/${res.transaction.receipt.transactionHash}`
+                if (res.status) {
+                    url = `${hmy.explorerUrl}/tx/${res.transactionHash}`
                     setSnackbarMessage(url)
                     setSnackbarType("Hash")
                     setLoading(false);
@@ -349,13 +288,14 @@ export default function TokenSwap(props) {
             let url = ''
             try {
                 const res = await store.processDividend()
-                console.log('Res from Store Transfer: ' + JSON.stringify(res));
+                // console.log('Res from Store processDividend: ' + JSON.stringify(res));
 
-                if (res.status === 'called' || res.status === 'call') {
-                    url = `${hmy.explorerUrl}/tx/${res.transaction.receipt.transactionHash}`
+                if (res.status) {
+                    url = `${hmy.explorerUrl}/tx/${res.transactionHash}`
                     setSnackbarMessage(url)
                     setSnackbarType("Hash")
-                    setLoading(false)
+                    setLoading(false);
+                    updateBalances();
                 } else {
                     setSnackbarMessage("An error occurred :(. Please try again!")
                     setSnackbarType("Error")
@@ -373,6 +313,39 @@ export default function TokenSwap(props) {
             }
         }
     }
+
+
+    const getBal = async () => {
+        if (!loading) {
+            setSnackbarMessage(null)
+            setSnackbarType(null)
+            setLoading(true)
+
+            const hmy = store.getStore('hmy')
+            let url = ''
+            try {
+                const res = await store.getBal()
+                // console.log('Res from Store getBal: ' + JSON.stringify(res));
+
+
+                setSnackbarMessage('Account Balance: ' + JSON.stringify(res))
+                setSnackbarType("Info")
+                setLoading(false)
+
+            } catch (error) {
+                if (error instanceof WalletConnectionError) {
+                    setSnackbarMessage("Please connect a wallet and then try again!")
+                } else {
+                    setSnackbarMessage(url + "2. An error occurred :(. Please try again!" + error)
+                }
+
+                setSnackbarType("Error")
+                setLoading(false)
+            }
+        }
+    }
+
+
 
     const handleChangeD = (event) => {
         tParams[event.target.name] = event.target.value
@@ -392,78 +365,68 @@ export default function TokenSwap(props) {
     return (
         <Grid container className={classes.root} spacing={2}>
             <PageHeader title='Swap' subtitle={"Token Swap " + getAddress(newAddress)} />
-            {/* <form > */}
+
             {loading && <ColoredLoader />}
             {snackbarMessage && renderSnackbar()}
-            <Grid item xs={12} className={classes.root}>
-                <Grid container justifyContent="center" spacing={2}>
-                    <Grid item xs={6} >
-                        <Paper className={`${classes.paper}`} elevation={3} >
-                            <div><MetamaskConnect onConnect={dataReceived} /></div>
+            <Grid container justifyContent="center" spacing={2}>
+                <Grid item xs={6} >
+                    <Paper className={`${classes.paper}`} elevation={3} >
 
-                            <div className={classes.margin}>
-                                <Grid container spacing={1} alignItems="flex-end">
 
-                                    <Grid item>
-                                        Pair Address (on Viperswap): {getAddress(pair)}
-                                    </Grid>
+                        <div className={classes.margin}>
+                            <Grid container spacing={1} className={classes.container}>
+                                <Grid item className={classes.gridItem}>
+
+                                    <TextField type='number' className={`${classes.controlT}`} name="swapAmount" id="swapAmount" label="OneX" variant="outlined" onChange={handleChangeS} />
+                                    <Button className={`${classes.button} ${classes.controlB}`} id='oneTokens' variant="contained" color="secondary" onClick={() => swapOneX(swapParams["swapAmount"])}>Swap OneX to ONE</Button>
                                 </Grid>
-                            </div>
-
-                            <div className={classes.margin}>
-                                <Grid container spacing={1} className={classes.container}>
-                                    <Grid item className={classes.gridItem}>
-
-                                        <TextField className={`${classes.controlT}`} name="swapAmount" id="swapAmount" label="OneX" variant="outlined" onChange={handleChangeS} />
-                                        <Button className={`${classes.button} ${classes.controlB}`} id='oneTokens' variant="contained" color="secondary" onClick={() => swapOneX(swapParams["swapAmount"])}>Swap OneX to ONE</Button>
-                                    </Grid>
-                                    <Grid item className={classes.gridItem}
-                                        onClick={e => setSwapAmount(newData)}>
-                                        Max: {newData}
-                                    </Grid>
+                                <Grid item className={classes.gridItem}
+                                    onClick={e => setSwapAmount(newData)}>
+                                    Max: {newData}
                                 </Grid>
-                                <Grid container spacing={1} className={classes.container}>
-                                    <Grid item className={classes.gridItem}>
-                                        <TextField className={`${classes.controlT}`} id="receiver" name="receiver" label="Receiver (Address)" variant="outlined" onChange={handleChangeD} />
-                                        <TextField className={`${classes.controlT}`} id="amount" name="amount" label="Amount" variant="outlined" onChange={handleChangeD} />
-                                    </Grid>
-                                    <Grid item className={classes.gridItem}>
-                                        <Button className={`${classes.button} ${classes.controlB}`} id='transferButton' variant="contained" color="secondary" onClick={() => transferToken(tParams["receiver"], tParams["amount"])}>Send OneX</Button>
-                                    </Grid>
-
+                            </Grid>
+                            <Grid container spacing={1} className={classes.container}>
+                                <Grid item className={classes.gridItem}>
+                                    <TextField className={`${classes.controlT}`} id="receiver" name="receiver" label="Receiver (Address)" variant="outlined" onChange={handleChangeD} />
+                                    <TextField type='number' className={`${classes.controlT}`} id="amount" name="amount" label="Amount" variant="outlined" onChange={handleChangeD} />
                                 </Grid>
-                                <Grid container spacing={1} className={classes.container}>
-                                    <Grid item className={classes.gridItem}>
-                                        Result = {rst}
-                                    </Grid>
+                                <Grid item className={classes.gridItem}>
+                                    <Button className={`${classes.button} ${classes.controlB}`} id='transferButton' variant="contained" color="secondary" onClick={() => transferToken(tParams["receiver"], tParams["amount"])}>Send OneX</Button>
                                 </Grid>
-                                <Grid container spacing={2} className={classes.container}>
-                                    <Grid item className={classes.gridItem}>
-                                        <Button className={`${classes.button} ${classes.controlB}`} variant="contained" color="secondary" onClick={() => processDividend()}>Distribute Rewards</Button>
-                                    </Grid>
+
+                            </Grid>
+                            <Grid container spacing={1} className={classes.container}>
+                                <Grid item className={classes.gridItem}>
+                                    Result = {rst}
                                 </Grid>
-                                {/* <Grid container spacing={2} className={classes.container}>
-                                    <Grid item className={classes.gridItem}>
-                                        <TextField className={`${classes.controlT}`} name="tokenTransfer" label="Transfer" variant="outlined" value={newData} onChange={handleChange} />
-                                        <Button className={`${classes.button} ${classes.controlB}`} variant="contained" color="secondary" >Transfer</Button>
-                                    </Grid>
-                                </Grid> */}
-                            </div>
+                            </Grid>
+                            <Grid container spacing={2} className={classes.container}>
+                                <Grid item className={classes.gridItem}>
+                                    <Button className={`${classes.button} ${classes.controlB}`} variant="contained" color="secondary" onClick={() => processDividend()}>Distribute Rewards</Button>
+                                </Grid>
+                            </Grid>
 
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Paper className={`${classes.paper}`} elevation={3} >
-                            <div><Button className={classes.button} variant="contained" color="primary" onClick={updateBalances}>View Balances</Button>
-                                <Button className={classes.button} variant="contained" color="secondary" onClick={resetData}>Clear Logs</Button></div>
 
-                            <DataTable rows={rows} />
-                        </Paper>
-                    </Grid>
+                            <Grid container spacing={2} className={classes.container}>
+                                <Grid item className={classes.gridItem}>
+                                    <Button className={`${classes.button} ${classes.controlB}`} variant="contained" color="secondary" onClick={() => getBal()}>Get Bal</Button>
+                                </Grid>
+                            </Grid>
+
+
+                        </div>
+
+                    </Paper>
+                </Grid>
+                <Grid item xs={6}>
+                    <Paper className={`${classes.paper}`} elevation={3} >
+                        <div><Button className={classes.button} variant="contained" color="primary" onClick={updateBalances}>View Balances</Button>
+                            <Button className={classes.button} variant="contained" color="secondary" onClick={resetData}>Clear Logs</Button></div>
+
+                        <DataTable rows={rows} id='dataTable' />
+                    </Paper>
                 </Grid>
             </Grid>
-            {/* </form> */}
-        </Grid >
-        // </div>
+        </Grid>
     )
 }
