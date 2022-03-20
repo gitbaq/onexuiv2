@@ -106,11 +106,13 @@ export default function WalletComponent({ closeModal }) {
 
         var url;
         var display = (hovered && connected) ? 'Disconnect' : name;
-        if (name === 'OneWallet') {
-          url = HarmonyLogo
-        } else if (name === 'MathWallet') {
-          url = MathWalletLogo
-        } else if (name === 'Metamask') {
+        // if (name === 'OneWallet') {
+        //   url = HarmonyLogo
+        // } else if (name === 'MathWallet') {
+        //   url = MathWalletLogo
+        // } 
+        // else 
+        if (name === 'Metamask') {
           url = MetamaskLogo
         }
 
