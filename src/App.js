@@ -64,6 +64,11 @@ const useStyles = makeStyles(theme => ({
     width: '100vw',
     height:'150px'
   },
+  divider:{
+  background:
+            'linear-gradient(45deg, rgba(135,233,196,1.0) 50%, rgba(79,174,220,1.0) 100%)',
+  height: "3px",
+  }
 
 
 }));
@@ -136,7 +141,7 @@ export default function App() {
             minWidth: '100vw',
           }}>
             <ResponsiveAppBar />
-            <Divider/>
+            <Divider className={classes.divider}/>
           </div>
           <div className={classes.content}>
             <Switch>
@@ -188,8 +193,9 @@ export default function App() {
             </Switch>
           </div>
           <div className={`${classes.background}`}>
-          <Socials/>
           <BottomBar />
+          <Socials/>
+
           </div>
         </div>
       </IpfsRouter>

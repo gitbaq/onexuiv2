@@ -5,6 +5,12 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import oneXLogo from "../../assets/v3_white_nocircle.svg";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import DoneOutlineRoundedIcon from "@material-ui/icons/DoneOutlineRounded";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     margin: "auto",
-    maxWidth: 500,
+    maxWidth: "60vw",
   },
   image: {
     width: 128,
@@ -43,24 +49,54 @@ export default function Home() {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
-                  Standard license
+                  Not interested in Nft ?
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  Full resolution 1920x1080 • JPEG
+                  Fed up with over complicated ( and underperforming) Defi
+                  protocols ?
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  ID: 1030114
+                  In Love with One and Harmony chain ?
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant="body2" style={{ cursor: "pointer" }}>
-                  Remove
+                  Here is what we offer: OneX
+                </Typography>
+                <List component="nav" aria-label="main mailbox folders">
+                  <ListItem button>
+                    <ListItemIcon>
+                      <DoneOutlineRoundedIcon color="secondary" />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="a simple and efficient reward
+                  token, launching on Harmony"
+                    />
+                  </ListItem>
+                  <Divider />
+                  <ListItem button>
+                    <ListItemIcon>
+                      <DoneOutlineRoundedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="rewards are provided in $One" />
+                  </ListItem>
+
+                  <ListItem button>
+                    <ListItemIcon>
+                      <DoneOutlineRoundedIcon />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary="a small market cap with high
+                  potential"
+                    />
+                  </ListItem>
+                </List>
+                <Typography variant="subtitle1">
+                  OneX - Amplify ONE rewards
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item>
-              <Typography variant="subtitle1">$19.00</Typography>
-            </Grid>
+            <Grid item></Grid>
           </Grid>
         </Grid>
       </Paper>
