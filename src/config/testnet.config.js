@@ -13,9 +13,10 @@ const config = {
   // }
 
   addresses: {
-    "token": "0xE2C69455520fAa1cc25c2747870Ee0D656dE9420",
-    "faucet": "0xa57aa13c71cd64cD1e18810d907867C46c75907b"
+    "token": "0xb2D30Fecc5A4b679796A66Ba975e41903b025E43",
+    "faucet": "0x4B23236BAF894D58Df9915A2CcE45B982381516D"
   }
+  
 
 };
 

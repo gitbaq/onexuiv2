@@ -1,88 +1,64 @@
-import React from "react"
-import { makeStyles } from '@material-ui/core/styles'
-import {
-    Card,
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { colors } from "../../theme";
+import TwitterIcon from "@material-ui/icons/Twitter";
+import TelegramIcon from "@material-ui/icons/Telegram";
+import RedditIcon from "@material-ui/icons/Reddit";
 
-} from '@material-ui/core';
-import { colors } from '../../theme'
-import TwitterIcon from '@material-ui/icons/Twitter';
-import TelegramIcon from '@material-ui/icons/Telegram';
-import RedditIcon from '@material-ui/icons/Reddit';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    // backgroundColor: "rgb(28,28,28)",
+    color: colors.darkGray,
+    width: "100%",
+    background:
+      "linear-gradient(30deg,rgba(241, 245, 249, 1.0)10%, rgba(241, 245, 249, 0.1)100%)",
+  },
 
-
-
-const useStyles = makeStyles(theme => ({
-    root: {
-        marginTop: '15px',
-        flex: 1,
-        display: 'flex',
-        width: '100%',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        flexDirection: 'column',
-        [theme.breakpoints.up('sm')]: {
-            flexDirection: 'row',
-        }
+  title: {
+    padding: "24px 0 12px 0",
+    [theme.breakpoints.up("sm")]: {
+      paddingBottom: "12px",
     },
-    card: {
-        flex: '1',
-        height: '25vh',
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        cursor: 'pointer',
-        borderRadius: '0px',
-        border: '1px solid primary',
-        borderColor: colors.harmonyGradient,
-        transition: 'background-color 0.2s linear',
-        [theme.breakpoints.up('sm')]: {
-            height: '50px',
-            minWidth: '20%',
-            minHeight: '50px',
-        }
+  },
+  subTitle: {
+    padding: "0 0 12px 0",
+    fontSize: "12px",
+    [theme.breakpoints.up("sm")]: {
+      paddingBottom: "12px",
     },
-
-    title: {
-        padding: '24px 0 12px 0',
-        [theme.breakpoints.up('sm')]: {
-            paddingBottom: '12px'
-        }
+  },
+  icon: {
+    fontSize: "60px",
+    [theme.breakpoints.up("sm")]: {
+      fontSize: "100px",
     },
-    subTitle: {
-        padding: '0 0 12px 0',
-        fontSize: '12px',
-        [theme.breakpoints.up('sm')]: {
-            paddingBottom: '12px'
-        }
-    },
-    icon: {
-        fontSize: '60px',
-        [theme.breakpoints.up('sm')]: {
-            fontSize: '100px',
-        }
-    },
-    link: {
-        textDecoration: 'none'
-    }
+  },
+  link: {
+    textDecoration: "none",
+  },
 }));
 
-export default function Socials() {
-    const classes = useStyles();
+export default function Socials(props) {
+  const classes = useStyles();
 
-    return (
-        <div className={classes.root}>
-            <Card className={`${classes.card}`} >
-                Let's start a conversation:
-                <a href='https://twitter.com/OneXToken' target='_twitter' > <TwitterIcon className="twitterIcon" fontSize='large' /></a>
-                <a href='https://t.me/OnexMainTG' target='_telegram' > <TelegramIcon color='secondary' fontSize='large' /></a>
-                <a href='https://www.reddit.com/r/OneXTokenHRC/' target='_reddit' > <RedditIcon color='error' fontSize='large' /></a>
-
-
-
-
-            </Card>
-        </div>
-    )
+  return (
+    <div className={classes.root}>
+      Let's start a conversation:&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="https://twitter.com/OneXToken" target="_twitter">
+        <TwitterIcon className="twitterIcon" />
+      </a>
+      &nbsp;&nbsp;
+      <a href="https://t.me/OnexMainTG" target="_telegram">
+        <TelegramIcon className="telegramIcon" />
+      </a>
+      &nbsp;&nbsp;
+      <a href="https://www.reddit.com/r/OneXTokenHRC/" target="_reddit">
+        <RedditIcon className="redditIcon" />
+      </a>
+    </div>
+  );
 }

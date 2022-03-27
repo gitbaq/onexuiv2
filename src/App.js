@@ -7,20 +7,14 @@ import {
   Redirect
 } from "react-router-dom";
 import IpfsRouter from 'ipfs-react-router'
-import { colors } from './theme'
 
 import interestTheme from './theme';
 import { makeStyles } from '@material-ui/core/styles';
-
-
-// import Account from './components/account';
 import Faucet from './components/faucet';
 import Landing from './components/landing';
 import ResponsiveAppBar from './components/appbar';
 import Contract from './components/contract';
 import Calculator from './components/calculator';
-import Rewards from './components/rewards';
-// import Socials from './components/socials';
 
 import {
   CONNECTION_CONNECTED,
@@ -37,14 +31,15 @@ import Home from './components/home';
 import Account from './components/account';
 import Whitepaper from './components/whitepaper';
 import Swap from './components/swap';
-// import { colors } from '@material-ui/core';
 import Faq from './components/faq';
-// import { UrlJsonRpcProvider } from '@ethersproject/providers';
 import BottomBar from './components/bottombar';
 import Team from './components/team';
 import Roadmap from './components/roadmap';
 import VerifyContract from './components/verifycontract';
 import TokenSwap from './components/tokenswap';
+import Socials from './components/socials';
+import { Divider } from '@material-ui/core';
+import background from './assets/blobs.svg'
 const emitter = Store.emitter
 const dispatcher = Store.dispatcher
 // const store = Store.store
@@ -52,15 +47,22 @@ const dispatcher = Store.dispatcher
 const useStyles = makeStyles(theme => ({
 
   gradient: {
-    backgroundColor: colors.grad,
+    background:
+      "linear-gradient(30deg,rgba(241, 245, 249, 1.0)10%, rgba(241, 245, 249, 0.1)100%)",
 
   },
   content: {
-    minHeight: 'calc(100vh - 360px)',
-    background: 'linear-gradient(180deg, rgba(40,185,216, 0.1), rgba(69, 214, 202,0.1), rgba(86,234,190, 0.1))',
+    minHeight: 'calc(100vh - 200px)',
+    
     width: '100vw',
-    // padding: '0'
-    // alignItems: 'top'
+  },
+  background: {
+    display: 'flex',
+    flex:1,
+    flexDirection: "column",
+    backgroundImage: `url(${background})`,
+    width: '100vw',
+    height:'150px'
   },
 
 
@@ -134,6 +136,7 @@ export default function App() {
             minWidth: '100vw',
           }}>
             <ResponsiveAppBar />
+            <Divider/>
           </div>
           <div className={classes.content}>
             <Switch>
@@ -184,12 +187,10 @@ export default function App() {
               </Route>
             </Switch>
           </div>
-          <div>
-
-
-          </div>
-          {/* <Socials /> */}
+          <div className={`${classes.background}`}>
+          <Socials/>
           <BottomBar />
+          </div>
         </div>
       </IpfsRouter>
     </MuiThemeProvider>

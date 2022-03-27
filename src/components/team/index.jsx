@@ -1,14 +1,18 @@
 import React from "react"
 import { makeStyles } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
+
 import PageHeader from "../pageHeader";
 import TeamCard from "./teamCard"
-import teamData from './teamData';
-import { colors } from '../../theme';
+
+import coreTeamData from './coreTeamData';
+import daoTeamData from './daoTeamData';
+
 import background from "../../assets/blobs.svg";
 
 
+ 
 
 
 
@@ -48,12 +52,23 @@ export default function Team() {
 
     return (
         <div className={classes.root}>
-            <PageHeader title="Team" subtitle="OneX Core Team" />
+            <PageHeader title="Team" subtitle="OneX Team" />
             <Grid container spacing={1} direction="row"
                 justifyContent="center"
                 alignItems="center">
-                {teamData.map(filteredItems => (
-                    <Grid key={filteredItems.id} item xs={filteredItems.weight}>
+                {coreTeamData.map(filteredItems => (
+                    <Grid key={filteredItems.id} item xs={3}>
+                        {filteredItems.name}:{filteredItems.role} 
+                        <TeamCard key={filteredItems.id} item={filteredItems} className={classes.paper} />
+                    </Grid>
+                ))}
+            </Grid>
+            <Divider variant="middle" />
+            <Grid container spacing={1} direction="row"
+                justifyContent="center"
+                alignItems="center">
+                {daoTeamData.map(filteredItems => (
+                    <Grid key={filteredItems.id} item xs={3}>
                         <TeamCard key={filteredItems.id} item={filteredItems} className={classes.paper} />
                     </Grid>
                 ))}
