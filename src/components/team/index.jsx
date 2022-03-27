@@ -45,7 +45,6 @@ export default function Team() {
       >
         {coreTeamData.map((filteredItems) => (
           <Grid key={filteredItems.id} item xs={3}>
-            {filteredItems.name}:{filteredItems.role}
             <TeamCard
               key={filteredItems.id}
               item={filteredItems}

@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
 const PrimarySearchAppBar = (props) => {
   const { history } = props;
   const classes = useStyles();
+  const [value, setValue] = React.useState(0);
 
   const handleButtonClick = (pageURL) => {
     history.push(pageURL);
@@ -69,7 +70,14 @@ const PrimarySearchAppBar = (props) => {
   return (
     <div className={classes.grow}>
       <AppBar position="sticky" className={classes.appBar} elevation={1}>
-        <Toolbar className={classes.toolbar}>
+        <Toolbar
+          className={classes.toolbar}
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          showLabels
+        >
           <div>
             <img alt="OneX logo" src={oneXLogo} className="logo" />
           </div>
