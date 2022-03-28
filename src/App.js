@@ -41,21 +41,40 @@ import Socials from './components/socials';
 import { Divider } from '@material-ui/core';
 import background from './assets/blobs.svg'
 import Footer from './components/footer';
+// import background from './assets/harmony.png'
+
+// import { colors } from "./theme";
+
+
 const emitter = Store.emitter
 const dispatcher = Store.dispatcher
 // const store = Store.store
 
 const useStyles = makeStyles(theme => ({
 
-  gradient: {
-    background:
-      "linear-gradient(30deg,rgba(241, 245, 249, 1.0)10%, rgba(241, 245, 249, 0.1)100%)",
-
+  root: {
+    background:"linear-gradient(to bottom right, rgba(205, 238, 229, 1.0) 5%,rgba(53, 194, 220, 0.8)70%, rgba(23, 31, 107, 0.8)100%)",
+    width: "100vw",
+    display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center'
+    
+  },
+  appBar:{
+    minWidth:'100vw',
   },
   content: {
     minHeight: 'calc(100vh - 200px)',
-    
-    width: '100vw',
+    background:"linear-gradient(to bottom, rgba(57, 134, 246, 0.1),rgba(57, 134, 246, 0.2))",
+    // backgroundImage: `url(${background})`,
+    backgroundSize: "cover",
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    width: '90vw',
+    // border:'2px solid',
+    // borderColor:colors.harmonyGradient,
+    borderRadius:'15px',
+    margin:'10px'
   },
   background: {
     display: 'flex',
@@ -67,8 +86,8 @@ const useStyles = makeStyles(theme => ({
   },
   divider:{
   background:
-            'linear-gradient(45deg, rgba(135,233,196,1.0) 50%, rgba(79,174,220,1.0) 100%)',
-  height: "3px",
+            'linear-gradient(to right, rgba(135,233,196,1.0) 50%, rgba(79,174,220,1.0) 100%)',
+  height: "1px",
   }
 
 
@@ -116,31 +135,9 @@ export default function App() {
     <MuiThemeProvider theme={createTheme(interestTheme)}>
       <CssBaseline />
       <IpfsRouter>
-        {/* {!account &&
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '100vh',
-            minWidth: '100vw',
-            justifyContent: 'center',
-            alignItems: 'center',
-            background: "#f9fafb"
-          }}>
-            <Account />
-          </div>
-        } */}
-        <div className={classes.gradient} style={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh',
-          // backgroundColor: colors.grad,
-          alignItems: 'center'
-
-
-        }}>
-          <div style={{
-            minWidth: '100vw',
-          }}>
+        
+        <div className={classes.root}>
+          <div className={classes.appBar}>
             <ResponsiveAppBar />
             <Divider className={classes.divider}/>
           </div>
@@ -194,8 +191,8 @@ export default function App() {
             </Switch>
           </div>
           <div className={`${classes.background}`}>
-          <BottomBar />
           <Socials/>
+          <BottomBar />
           <Footer/>
           </div>
         </div>

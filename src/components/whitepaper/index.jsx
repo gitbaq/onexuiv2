@@ -1,11 +1,15 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
+// import { Typography } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import { colors } from "../../theme";
+// import ButtonBase from "@material-ui/core/ButtonBase";
+// import oneXLogo from "../../assets/v3_white_nocircle.svg";
+import "./whitepaper.css";
 
-import PageHeader from "../pageHeader";
+// import PageHeader from "../pageHeader";
 // import { palette } from '@material-ui/system';
 // import { positions } from '@material-ui/system';
 
@@ -26,54 +30,13 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     maxWidth: "60vw",
   },
-  card: {
-    flex: "1",
-    height: "25vh",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    cursor: "pointer",
-    borderRadius: "5px",
-    // border: '1px solid',
-    transition: "background-color 0.2s linear",
-    [theme.breakpoints.up("sm")]: {
-      padding: "25px",
 
-      // height: '100vh',
-      // minWidth: '20%',
-      // minHeight: '50vh',
-    },
-  },
   content: {
     [theme.breakpoints.up("sm")]: {
       padding: "15px",
     },
   },
 
-  title: {
-    fontSize: "16px",
-    fontWeight: "bold",
-    padding: "12px 0 6px 0",
-    [theme.breakpoints.up("sm")]: {
-      paddingBottom: "12px",
-      padding: "15px",
-    },
-  },
-  subTitle: {
-    padding: "0 0 12px 0",
-    fontSize: "12px",
-    [theme.breakpoints.up("sm")]: {
-      paddingBottom: "12px",
-      padding: "20px",
-    },
-  },
-  heading: {
-    fontSize: "18px",
-    fontWeight: "bold",
-    [theme.breakpoints.up("sm")]: {},
-  },
   icon: {
     fontSize: "60px",
     [theme.breakpoints.up("sm")]: {
@@ -82,6 +45,35 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: "none",
+  },
+
+  subtitle1: {
+    fontSize: "40px",
+    fontWeight: "bold",
+    color: colors.white,
+    justifyContent: "center",
+    justifyItems: "flex-start",
+  },
+  title: {
+    fontSize: "40px",
+    fontWeight: "bold",
+    color: colors.white,
+  },
+  subTitle: {
+    fontSize: "16px",
+    fontWeight: "bold",
+    justifyContent: "flex-end",
+    color: colors.iconGreen,
+  },
+  image: {
+    width: 128,
+    height: 128,
+  },
+  img: {
+    margin: "auto",
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%",
   },
 }));
 
@@ -96,33 +88,21 @@ export default function Whitepaper() {
       /> */}
       <Paper className={classes.paper}>
         <Grid container spacing={1}>
-          <Grid item xs={12} sm={12} className={classes.content}>
+          <Grid item xs={12} className={classes.content} sm container>
             <Box sm="8">
-              {/* <Typography className={`${classes.title} title`}>
-                Token: OneX
-                <br />
-                Chain: Harmony
-                <br />
-                Launch Date: TBD
-                <br />
-                Launch Time: TBD
-                <br />
-                Contract Address: TBD
-                <br />
-                Premise: Rewards in Harmony $ONE
-                <br />
-              </Typography> */}
-
               <div className={`${classes.subTitle} subTitle`}>
-                <div className={classes.heading}>Concept</div>
+                <div className={classes.title}>Concept</div>
                 The OneX team is proud to present a new concept in crypto. How
                 do you create sustainable and constantly-growing rewards?
+                {/* <svg viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet">
+                  <path
+                    d="M0,100 C150,200 350,0 500,100 L500,00 L0,0 Z"
+                    style={{ stroke: "none", fill: colors.harmonyGradient }}
+                  ></path>
+                </svg> */}
+                <div id="wave"></div>
                 <br />
-                PAMP - A unique way to manage assets and increase rewards for
-                holders
-                <br />
-                <br />
-                <div className={classes.heading}>Harmony Grant</div>
+                <div className={classes.title}>Harmony Grant</div>
                 OneX has been awarded a $50K USD grant from Harmony Protocol.
                 This grant will be used to establish initial liquidity and other
                 expenses involved with launching and maintaining the project.
@@ -131,13 +111,13 @@ export default function Whitepaper() {
                 successful launch and bright future for OneX.
                 <br />
                 <br />
-                <div className={classes.heading}>Tokenomics</div>
+                <div className={classes.title}>Tokenomics</div>
                 10%- Total Taxes on all transactions
                 <br />
                 Invested to maximize rewards for holders
                 <br />
                 <br />
-                <div className={classes.heading}>
+                <div className={classes.title}>
                   Anti-Whale &amp; Bot features
                 </div>
                 Max wallet- 2%
@@ -147,7 +127,7 @@ export default function Whitepaper() {
                 Cool down period- 60 minutes
                 <br />
                 <br />
-                <div className={classes.heading}>
+                <div className={classes.title}>
                   Method of Rewards Generation
                 </div>
                 A portion of collected taxes is invested by OneX Investment Team
@@ -156,7 +136,7 @@ export default function Whitepaper() {
                 thus amplifying rewards.
                 <br />
                 <br />
-                <div className={classes.heading}>Core Beliefs</div>
+                <div className={classes.title}>Core Beliefs</div>
                 The OneX team consists of community members from the previous
                 BabyHarmony (BSC) project that took over when the founding team
                 departed with a desire to save their investment and build
@@ -171,8 +151,9 @@ export default function Whitepaper() {
                 method of rewards generation, the longer we hold, the more we
                 gain.
                 <br />
+                <div id="wave"></div>
                 <br />
-                <div className={classes.heading}>Community</div>
+                <div className={classes.title}>Community</div>
                 As the team was founded by members of the BabyHarmony community,
                 we place a strong emphasis on community involvement. Important
                 decisions are decided by the community by votes, and the team
@@ -182,7 +163,7 @@ export default function Whitepaper() {
                 communication with the community.
                 <br />
                 <br />
-                <div className={classes.heading}>Security</div>
+                <div className={classes.title}>Security</div>
                 The OneX team is internally doxxed and may consider other
                 options in the future. A multisig Gnosis safe wallet with a
                 majority consensus is used for interaction with the Harmony team

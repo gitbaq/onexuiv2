@@ -7,7 +7,7 @@ import Divider from "@material-ui/core/Divider";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import Tooltip from "@material-ui/core/Tooltip";
 import GetAppIcon from "@material-ui/icons/GetApp";
-import SwapHorizontalCircleRoundedIcon from "@material-ui/icons/SwapHorizontalCircleRounded";
+// import SwapHorizontalCircleRoundedIcon from "@material-ui/icons/SwapHorizontalCircleRounded";
 import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
 import ContactSupportRoundedIcon from "@material-ui/icons/ContactSupportRounded";
 import GroupIcon from "@material-ui/icons/Group";
@@ -15,6 +15,7 @@ import MapRoundedIcon from "@material-ui/icons/MapRounded";
 import DoneAllRoundedIcon from "@material-ui/icons/DoneAllRounded";
 import SwapHorizRoundedIcon from "@material-ui/icons/SwapHorizRounded";
 import { withRouter } from "react-router-dom";
+import { colors } from "../../theme";
 
 import "./appbar.css";
 import oneXLogo from "../../assets/v3_white_nocircle.svg";
@@ -25,8 +26,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   appBar: {
+    // background:
+    //   "linear-gradient(to bottom,rgba(241, 245, 249, 1.0)10%, rgba(241, 245, 249, 0.1)100%)",
     background:
-      "linear-gradient(30deg,rgba(241, 245, 249, 1.0)10%, rgba(241, 245, 249, 0.1)100%)",
+      "linear-gradient(to bottom right, rgba(205, 238, 229, 0.01) 5%,rgba(53, 194, 220, 0.01)70%, rgba(23, 31, 107, 0.01)100%)",
   },
 
   title: {
@@ -55,6 +58,17 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "flex-start",
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1),
+  },
+  iconsLight: {
+    color: colors.iconGreen,
+    fontSize: "2x",
+  },
+  iconsSub: {
+    color: colors.remixOrange,
+    fontSize: "2x",
+  },
+  iconsSubText: {
+    fontSize: "large",
   },
 }));
 
@@ -97,7 +111,7 @@ const PrimarySearchAppBar = (props) => {
               className="appBarLabel"
               onClick={() => handleButtonClick("/verifycontract")}
             >
-              <DoneAllRoundedIcon />
+              <DoneAllRoundedIcon className={classes.iconsSub} />
               <div className="appBarLabel">Verify Contract</div>
             </IconButton>
           </Tooltip>
@@ -109,7 +123,7 @@ const PrimarySearchAppBar = (props) => {
                 color="inherit"
                 onClick={() => handleButtonClick("/home")}
               >
-                <HomeRoundedIcon />
+                <HomeRoundedIcon className={classes.iconsLight} />
               </IconButton>
             </Tooltip>
 
@@ -119,7 +133,7 @@ const PrimarySearchAppBar = (props) => {
                 color="inherit"
                 onClick={() => handleButtonClick("/whitepaper")}
               >
-                <AssignmentRoundedIcon />
+                <AssignmentRoundedIcon className={classes.iconsLight} />
               </IconButton>
             </Tooltip>
 
@@ -129,7 +143,7 @@ const PrimarySearchAppBar = (props) => {
                 color="inherit"
                 onClick={() => handleButtonClick("/faq")}
               >
-                <ContactSupportRoundedIcon />
+                <ContactSupportRoundedIcon className={classes.iconsLight} />
               </IconButton>
             </Tooltip>
             <Tooltip title="Team">
@@ -138,7 +152,7 @@ const PrimarySearchAppBar = (props) => {
                 color="inherit"
                 onClick={() => handleButtonClick("/team")}
               >
-                <GroupIcon />
+                <GroupIcon className={classes.iconsLight} />
               </IconButton>
             </Tooltip>
             <Tooltip title="Roadmap">
@@ -147,11 +161,11 @@ const PrimarySearchAppBar = (props) => {
                 color="inherit"
                 onClick={() => handleButtonClick("/roadmap")}
               >
-                <MapRoundedIcon />
+                <MapRoundedIcon className={classes.iconsLight} />
               </IconButton>
             </Tooltip>
 
-            <Divider orientation="vertical" flexItem />
+            {/* <Divider orientation="vertical" flexItem /> */}
 
             <Tooltip title="Faucet">
               <IconButton
@@ -159,7 +173,7 @@ const PrimarySearchAppBar = (props) => {
                 color="inherit"
                 onClick={() => handleButtonClick("/faucet")}
               >
-                <GetAppIcon />
+                <GetAppIcon className={classes.iconsSub} />
                 <div className="appBarLabel">Faucet</div>
               </IconButton>
             </Tooltip>
@@ -169,7 +183,7 @@ const PrimarySearchAppBar = (props) => {
                 color="inherit"
                 onClick={() => handleButtonClick("/tokenswap")}
               >
-                <SwapHorizRoundedIcon />
+                <SwapHorizRoundedIcon className={classes.iconsSub} />
                 <div className="appBarLabel">Token Swap</div>
               </IconButton>
             </Tooltip>

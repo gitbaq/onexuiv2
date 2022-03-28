@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { colors } from "../../theme";
+// import { colors } from "../../theme";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import TelegramIcon from "@material-ui/icons/Telegram";
 import RedditIcon from "@material-ui/icons/Reddit";
@@ -9,13 +9,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flex: 1,
     display: "flex",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    color: colors.darkGray,
-    width: "100%",
-    height: "60px",
-    background:
-      "linear-gradient(30deg,rgba(241, 245, 249, 1.0)10%, rgba(241, 245, 249, 0.1)100%)",
+    [theme.breakpoints.up("sm")]: {
+      flexDirection: "row",
+      minHeight: "50px",
+    },
   },
 }));
 
