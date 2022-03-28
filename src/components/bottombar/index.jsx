@@ -76,7 +76,6 @@ const BottomBar = (props) => {
           onClick={() => handleButtonClick("/roadmap")}
         />
       </BottomNavigation>
-      &copy; 2022 OneX
     </Grid>
   );
 };

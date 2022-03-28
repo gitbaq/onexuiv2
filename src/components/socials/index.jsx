@@ -11,34 +11,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: "rgb(28,28,28)",
     color: colors.darkGray,
     width: "100%",
+    height: "60px",
     background:
       "linear-gradient(30deg,rgba(241, 245, 249, 1.0)10%, rgba(241, 245, 249, 0.1)100%)",
-  },
-
-  title: {
-    padding: "24px 0 12px 0",
-    [theme.breakpoints.up("sm")]: {
-      paddingBottom: "12px",
-    },
-  },
-  subTitle: {
-    padding: "0 0 12px 0",
-    fontSize: "12px",
-    [theme.breakpoints.up("sm")]: {
-      paddingBottom: "12px",
-    },
-  },
-  icon: {
-    fontSize: "60px",
-    [theme.breakpoints.up("sm")]: {
-      fontSize: "100px",
-    },
-  },
-  link: {
-    textDecoration: "none",
   },
 }));
 

@@ -81,7 +81,7 @@ const PrimarySearchAppBar = (props) => {
           <div>
             <img alt="OneX logo" src={oneXLogo} className="logo" />
           </div>
-          <Tooltip title="BBH Swap">
+          {/* <Tooltip title="BBH Swap">
             <IconButton
               aria-label="BBH Swap"
               className="appBarLabel"
@@ -90,7 +90,7 @@ const PrimarySearchAppBar = (props) => {
               <SwapHorizontalCircleRoundedIcon />
               <div className="appBarLabel">BBH Swap</div>
             </IconButton>
-          </Tooltip>
+          </Tooltip> */}
           <Tooltip title="Verify Contract">
             <IconButton
               aria-label="Account"

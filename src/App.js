@@ -40,6 +40,7 @@ import TokenSwap from './components/tokenswap';
 import Socials from './components/socials';
 import { Divider } from '@material-ui/core';
 import background from './assets/blobs.svg'
+import Footer from './components/footer';
 const emitter = Store.emitter
 const dispatcher = Store.dispatcher
 // const store = Store.store
@@ -195,7 +196,7 @@ export default function App() {
           <div className={`${classes.background}`}>
           <BottomBar />
           <Socials/>
-
+          <Footer/>
           </div>
         </div>
       </IpfsRouter>

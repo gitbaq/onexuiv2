@@ -29,6 +29,10 @@ const emitter = new Emitter();
 let web3;
 let contract;
 let faucetContract;
+let gasOptions = {
+  gasPrice: 30000000000,
+  gasLimit: 672190,
+};
 
 class Store {
   constructor() {
@@ -343,21 +347,23 @@ class Store {
   getBal = async () => {
     await this.setupContract();
     const account = store.getStore("account");
-    // const hmy = store.getStore('hmy');
-    // console.log('Getting Name: ' + account.address);
-    // const hmyGas = hmy.gasOptions();
-    const value = await contract.methods
-      .balanceOf(account.address)
-      .call({ gasPrice: 8000000000, gasLimit: 6721900, from: account.address });
+
+    const value = await contract.methods.balanceOf(account.address).call({
+      gasPrice: gasOptions.gasPrice,
+      gasLimit: gasOptions.gasLimit,
+      from: account.address,
+    });
     return value;
   };
 
   processDividend = async () => {
     await this.setupContract();
     const account = store.getStore("account");
-    const value = await contract.methods
-      .processDividend()
-      .send({ gasPrice: 8000000000, gasLimit: 6721900, from: account.address });
+    const value = await contract.methods.processDividend().send({
+      gasPrice: gasOptions.gasPrice,
+      gasLimit: gasOptions.gasLimit,
+      from: account.address,
+    });
     return value;
   };
 
@@ -365,8 +371,8 @@ class Store {
     await this.setupContract();
     const account = store.getStore("account");
     return contract.methods.swapOneXToOne(new BN(swapAmount)).send({
-      gasPrice: 80000000000,
-      gasLimit: 6721900,
+      gasPrice: gasOptions.gasPrice,
+      gasLimit: gasOptions.gasLimit,
       from: account.address,
     });
   };
@@ -377,8 +383,8 @@ class Store {
     return contract.methods
       .transfer(receiver, new BN(amount + "000000000000000000"))
       .send({
-        gasPrice: 80000000000,
-        gasLimit: 6721900,
+        gasPrice: gasOptions.gasPrice,
+        gasLimit: gasOptions.gasLimit,
         from: account.address,
       });
   };
@@ -387,8 +393,8 @@ class Store {
     await this.setupFaucetContract();
     const account = store.getStore("account");
     return faucetContract.methods.fund(account.address).send({
-      gasPrice: 80000000000,
-      gasLimit: 6721900,
+      gasPrice: gasOptions.gasPrice,
+      gasLimit: gasOptions.gasLimit,
       from: account.address,
     });
   };
