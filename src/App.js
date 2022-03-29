@@ -41,6 +41,7 @@ import Socials from './components/socials';
 import { Divider } from '@material-ui/core';
 import background from './assets/blobs.svg'
 import Footer from './components/footer';
+import TestSetup from './components/testsetup';
 // import background from './assets/harmony.png'
 
 // import { colors } from "./theme";
@@ -187,6 +188,9 @@ export default function App() {
               </Route>
               <Route exact path="/tokenswap">
                 <TokenSwap />
+              </Route>
+              <Route exact path="/testsetup">
+                <TestSetup />
               </Route>
             </Switch>
           </div>

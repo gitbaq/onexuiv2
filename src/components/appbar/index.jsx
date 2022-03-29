@@ -166,7 +166,16 @@ const PrimarySearchAppBar = (props) => {
             </Tooltip>
 
             {/* <Divider orientation="vertical" flexItem /> */}
-
+            <Tooltip title="Test Setup">
+              <IconButton
+                aria-label="Test Setup"
+                color="inherit"
+                onClick={() => handleButtonClick("/testsetup")}
+              >
+                <GetAppIcon className={classes.iconsSub} />
+                <div className="appBarLabel">Test Setup</div>
+              </IconButton>
+            </Tooltip>
             <Tooltip title="Faucet">
               <IconButton
                 aria-label="Faucet"
