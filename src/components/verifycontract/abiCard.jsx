@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     [theme.breakpoints.up("sm")]: {
       flexDirection: "column",
-      width: "95vw",
+      width: "85vw",
     },
     "& .MuiTextField-root": {
       margin: theme.spacing(1),

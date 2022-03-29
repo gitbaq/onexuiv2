@@ -4,11 +4,6 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import DoneOutlineRoundedIcon from "@material-ui/icons/DoneOutlineRounded";
 import { Divider } from "@material-ui/core";
 
 // import Divider from "@material-ui/core/Divider";
@@ -93,6 +88,22 @@ export default function TestSetup() {
                   Setup instructions for test
                 </Typography>
                 <Divider className={classes.divider} />
+                <br />
+                <Typography
+                  variant="body2"
+                  gutterBottom
+                  className={classes.subtitle2}
+                >
+                  Read this first{" "}
+                  <a
+                    className={classes.link}
+                    href="/whitepaper"
+                    target="_whitepaper"
+                  >
+                    OneX Whitepaper
+                  </a>{" "}
+                </Typography>
+
                 <Typography
                   variant="body2"
                   gutterBottom
@@ -132,7 +143,7 @@ export default function TestSetup() {
                     href="https://docs.harmony.one/home/general/wallets/browser-extensions-wallets/metamask-wallet/adding-harmony"
                     target="_harmonyTestnet"
                   >
-                    Guide to configure harmony testnet)
+                    Guide to configure harmony testnet
                   </a>{" "}
                 </Typography>
                 <Typography
@@ -148,7 +159,11 @@ export default function TestSetup() {
                   className={classes.subtitle2}
                 >
                   Go to{" "}
-                  <a className={classes.link} href="/verifycontract">
+                  <a
+                    className={classes.link}
+                    href="/verifycontract"
+                    target="_verifycontract"
+                  >
                     Verify Contract
                   </a>{" "}
                   Click Add OneXT to Metamask
@@ -189,6 +204,52 @@ export default function TestSetup() {
                   >
                     Harmony Testnet Faucet Link
                   </a>{" "}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  gutterBottom
+                  className={classes.subtitle1}
+                >
+                  Step 6:
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  className={classes.subtitle2}
+                >
+                  Go to{" "}
+                  <a className={classes.link} href="/faucet" target="_faucet">
+                    OneX Faucet
+                  </a>{" "}
+                  and Request Test OneX
+                  <br />
+                </Typography>
+                <Typography
+                  variant="body2"
+                  gutterBottom
+                  className={classes.subtitle1}
+                >
+                  Step 7:
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  className={classes.subtitle2}
+                >
+                  Go to{" "}
+                  <a
+                    className={classes.link}
+                    href="/tokenswap"
+                    target="_tokenswap"
+                  >
+                    Token Swap
+                  </a>{" "}
+                  click View Balance and notice balance for 3 wallets receiving
+                  taxes on OneX transactions (Expense, Liquidity and Staking){" "}
+                  <br /> Swap 500000 (Half Million) OneX to ONE
+                  <br />
+                  Once Confirmation message is received, notice change in the
+                  balances of 3 wallets mentioned above.
                 </Typography>
               </Grid>
             </Grid>
