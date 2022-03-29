@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "flex-start",
     minHeight: "calc(100vh - 200px)",
-    backgroundColor: colors.gray,
     padding: "20px",
   },
   paper: {
@@ -77,7 +76,8 @@ const web3 = new Web3(HMY_RPC_URL);
 const { token } = config.addresses;
 const expenseWallet = "0xBF0CA9449b9698e5593b585d591370F81a4a726f"; // gitbaq ONE Wallet
 // const liquidityWallet = '0xAD62fCcCc74283186f4572B8f8EE271B189565fA'; // gitbaq ONE Wallet
-const liquidityWallet = "0xFc1637C7217B698385f20e8DD6a19Be9Fd8d62E2";
+// const liquidityWallet = "0xFc1637C7217B698385f20e8DD6a19Be9Fd8d62E2";
+const liquidityWallet = config.addresses.token;
 const stakingWallet = "0x1BfC2d760e6B75AA626f00177C96CfC84f353D7E"; // harmony2 ONE Wallet
 let ethersProvider;
 

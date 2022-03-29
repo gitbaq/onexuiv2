@@ -9,7 +9,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DoneOutlineRoundedIcon from "@material-ui/icons/DoneOutlineRounded";
-// import Divider from "@material-ui/core/Divider";
 import { colors } from "../../theme";
 import oneXLogo from "../../assets/v3_white_nocircle.svg";
 import "./home.css";
@@ -82,14 +81,14 @@ export default function Home() {
                 >
                   Fed up of over-complicated <br />
                   (and underperforming) <br />
-                  Defi protocols ?
+                  Defi protocols?
                 </Typography>
                 <Typography
                   variant="body2"
                   color="textSecondary"
                   className={classes.subtitle1}
                 >
-                  In Love with One and Harmony chain ?
+                  In Love with $ONE and Harmony chain?
                 </Typography>
               </Grid>
               <Grid item>
@@ -118,8 +117,8 @@ export default function Home() {
                       <DoneOutlineRoundedIcon className={classes.subtitle1} />
                     </ListItemIcon>
                     <ListItemText
-                      primary="a simple and efficient reward
-                  token, launching on Harmony"
+                      primary="Simple and efficient reward
+                  token, on Harmony"
                       classes={{ primary: classes.subtitle1 }}
                     />
                   </ListItem>
@@ -129,7 +128,7 @@ export default function Home() {
                       <DoneOutlineRoundedIcon className={classes.subtitle1} />
                     </ListItemIcon>
                     <ListItemText
-                      primary="rewards are provided in $One"
+                      primary="rewards are provided in $ONE"
                       classes={{ primary: classes.subtitle1 }}
                     />
                   </ListItem>
@@ -145,8 +144,12 @@ export default function Home() {
                     />
                   </ListItem>
                 </List>
-                <Typography variant="subtitle1" className={classes.subtitle1}>
-                  OneX - Amplify ONE rewards
+                <Typography
+                  variant="body2"
+                  style={{ fontSize: "40px" }}
+                  className="animate-charcter"
+                >
+                  OneX - Amplify $ONE rewards
                 </Typography>
               </Grid>
             </Grid>

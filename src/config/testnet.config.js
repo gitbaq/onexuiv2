@@ -16,8 +16,6 @@ const config = {
     "token": "0xb2D30Fecc5A4b679796A66Ba975e41903b025E43",
     "faucet": "0x4B23236BAF894D58Df9915A2CcE45B982381516D"
   }
-  
-
 };
 
 export default config;

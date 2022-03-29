@@ -8,15 +8,16 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
-import Typography from "@material-ui/core/Typography";
-import background from "assets/blobs.svg";
+// import Typography from "@material-ui/core/Typography";
+// import background from "assets/blobs.svg";
 import TwitterIcon from "@material-ui/icons/Twitter";
 import TelegramIcon from "@material-ui/icons/Telegram";
 import RedditIcon from "@material-ui/icons/Reddit";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
+// import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import Box from "@material-ui/core/Box";
 import { colors } from "../../theme";
 import avatar from "assets/photos/avatar.png";
+import { Divider } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,16 +29,33 @@ const useStyles = makeStyles((theme) => ({
     // backgroundImage: `url(${background})`,
     background: "rgb(228,227,227)",
   },
-
+  title: {
+    fontSize: "40px",
+    fontWeight: "bold",
+    color: colors.white,
+  },
+  subtitle: {
+    fontSize: "20px",
+    fontWeight: "bold",
+    color: colors.remixOrange,
+  },
+  description: {
+    fontSize: "14px",
+    color: colors.iconGreen,
+  },
   media: {
     width: "288px",
     justifyContent: "center",
+  },
+  divider: {
+    background:
+      "linear-gradient(to right, rgba(135,233,196,1.0) 50%, rgba(79,174,220,1.0) 100%)",
+    height: "1px",
   },
 }));
 
 const defaultProps = {
   bgcolor: colors.white,
-  // borderColor: colors.borderBlue,
   m: 1,
   border: 1,
   style: { width: "288" },
@@ -84,9 +102,12 @@ export default function TeamCard(props) {
               </CardMedia>
 
               <CardContent>
-                {data.name}
-                <br /> {data.role}
-                <br /> {data.description}
+                <div className={classes.title}>{data.name}</div>
+                <br /> <div className={classes.subtitle}>{data.role}</div>
+                <br />{" "}
+                <div className={classes.description}>{data.description}</div>
+                <br />
+                <Divider className={classes.divider} />
               </CardContent>
             </CardActionArea>
             <CardActions disableSpacing className={classes.cardActions}>

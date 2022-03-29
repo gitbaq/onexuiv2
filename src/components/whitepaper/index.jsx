@@ -85,11 +85,18 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     maxHeight: "100%",
     justifyContent: "center",
+    borderRadius: "15px",
   },
   divider: {
     background:
       "linear-gradient(to right, rgba(135,233,196,1.0) 50%, rgba(79,174,220,1.0) 100%)",
     height: "1px",
+  },
+  gridCenter: {
+    display: "flex",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
 }));
 
@@ -144,7 +151,7 @@ export default function Whitepaper() {
                 Invested to maximize rewards for holders
                 <br />
                 <br />
-                <Grid item>
+                <Grid item className={classes.gridCenter}>
                   <ButtonBase className={classes.image}>
                     <img
                       className={classes.img}

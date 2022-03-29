@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import AssignmentRoundedIcon from "@material-ui/icons/AssignmentRounded";
 import ContactSupportRoundedIcon from "@material-ui/icons/ContactSupportRounded";
+import GroupIcon from "@material-ui/icons/Group";
+import MapRoundedIcon from "@material-ui/icons/MapRounded";
 import Grid from "@material-ui/core/Grid";
 import { withRouter } from "react-router-dom";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
@@ -67,12 +69,12 @@ const BottomBar = (props) => {
         />
         <BottomNavigationAction
           label="Team"
-          icon={<ContactSupportRoundedIcon />}
+          icon={<GroupIcon />}
           onClick={() => handleButtonClick("/team")}
         />
         <BottomNavigationAction
           label="Roadmap"
-          icon={<ContactSupportRoundedIcon />}
+          icon={<MapRoundedIcon />}
           onClick={() => handleButtonClick("/roadmap")}
         />
       </BottomNavigation>
