@@ -167,7 +167,7 @@ export default function Whitepaper() {
                 <br />
                 Max transaction - 0.5% (could be lower during launch)
                 <br />
-                Cool down period - 60 minutes (during launch)
+                Cool down period - 15 minutes (during launch)
                 <br />
                 <div className={classes.subtitle1}>
                   Method of $ONE-Rewards Generation
