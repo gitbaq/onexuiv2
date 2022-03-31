@@ -2,7 +2,7 @@ const teamData = [
     {
         id: 4,
         name: 'Git Baq',
-        role: 'Development Manager',
+        role: 'Co-Founder / Tech Lead',
         description: 'Git Baq has successfully Managed and Delivered IT solutions for more than 2 decades. He enjoys working with teams to deliver value, has completed multiple large scale projects and rejoices coding on daily basis. Loves playing tennis, capturing life through photography, avid reader and fan of travelling.',
         photo: '/images/4.png',
         twitter: 'gitbaq',
