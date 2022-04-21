@@ -106,19 +106,35 @@ export default function Swap() {
 
 
     return (
-        <div className={classes.root}>
-            <PageHeader title='Swap BabyHarmony to OneX' subtitle={'Baby Harmony Balance = ' + newData + ' BTC/USDT = ' + btcUsdt} />
-            <Card className={`${classes.card}`} >
-
-                <div>
-                    {
-                        <Button className={classes.button} variant="contained" color="secondary" onClick={getData}>Get BBH Balance</Button>
-                    }
-                    <Button variant="contained" color="primary" onClick={getBTCUSDTData}>Get BTC/USDT Rate</Button>
-                    {/* <Button variant="outlined" color="secondary">Connect OneX Wallet</Button> */}
-                </div>
-            </Card>
-
-        </div>
-    )
+      <div className={classes.root}>
+        <PageHeader
+          title='Swap BabyHarmony to OneMax'
+          subtitle={
+            "Baby Harmony Balance = " + newData + " BTC/USDT = " + btcUsdt
+          }
+        />
+        <Card className={`${classes.card}`}>
+          <div>
+            {
+              <Button
+                className={classes.button}
+                variant='contained'
+                color='secondary'
+                onClick={getData}
+              >
+                Get BBH Balance
+              </Button>
+            }
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={getBTCUSDTData}
+            >
+              Get BTC/USDT Rate
+            </Button>
+            {/* <Button variant="outlined" color="secondary">Connect OneMax Wallet</Button> */}
+          </div>
+        </Card>
+      </div>
+    );
 }

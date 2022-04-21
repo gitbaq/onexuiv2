@@ -168,9 +168,9 @@ export default function Landing() {
     let expenseWallet = '0xBF0CA9449b9698e5593b585d591370F81a4a726f'; //gitbaq ONE Wallet
     let liquidityWallet = '0xAD62fCcCc74283186f4572B8f8EE271B189565fA'; //gitbaq ONE Wallet
     let stakingWallet = '0x1BfC2d760e6B75AA626f00177C96CfC84f353D7E'; //harmony2 ONE Wallet
-    let oneXContractAddress = '0x53b8955956DE9Df02C10477d3231F78c7b7Db423';
+    let OneMaxContractAddress = "0x53b8955956DE9Df02C10477d3231F78c7b7Db423";
     // web3.eth.defaultAccount = hmyMasterAccount.address
-    web3.eth.defaultAccount = oneXContractAddress;
+    web3.eth.defaultAccount = OneMaxContractAddress;
 
     const myAddress = web3.eth.defaultAccount;
 
@@ -186,33 +186,47 @@ export default function Landing() {
 
 
     return (
-
-        <div className={classes.root}>
-            <Card className={`${classes.card} ${classes.gradient}`} >
-                <Typography variant={'h3'} className={`${classes.title} title`}>OneX Contract</Typography>
-                <Typography variant={'h5'} className={`${classes.title} subTitle`}>Contract Address = {JSON.stringify(oneXContractAddress, null, "  ")}</Typography>
-                <Typography variant={'h4'} className={`${classes.title} title`}>Last Block Details</Typography>
-                <Typography variant={'h6'} className={`${classes.title} subTitle`}>
-                    Block Number: {JSON.stringify(lastBlockNumber, null, "  ")}
-                    <br />
-                    Block Address = {JSON.stringify(block.hash, null, "  ")}
-                    <br />
-                    <Button variant="contained" color="primary" onClick={fetchBlock}>Fetch Block</Button></Typography>
-                <Typography variant={'h4'} className={`${classes.title} title`}>Default Account Details</Typography>
-                <Typography variant={'h6'} className={`${classes.title} subTitle`}>
-                    Address = {JSON.stringify(myAddress, null, "  ")}
-                    <br />
-                    Balance = {JSON.stringify(balance, null, "  ")}</Typography>
-                <Typography variant={'h4'} className={`${classes.title} title`}>Wallet Balances</Typography>
-                <Typography variant={'h6'} className={`${classes.title} subTitle`}>
-                    Expense = {JSON.stringify(expenseBalance, null, "  ")}
-                    <br />
-                    Liquidity = {JSON.stringify(liquidityBalance, null, "  ")}
-                    <br />
-                    Staking = {JSON.stringify(stakingBalance, null, "  ")}</Typography>
-            </Card>
-
-        </div>
+      <div className={classes.root}>
+        <Card className={`${classes.card} ${classes.gradient}`}>
+          <Typography variant={"h3"} className={`${classes.title} title`}>
+            OneMax Contract
+          </Typography>
+          <Typography variant={"h5"} className={`${classes.title} subTitle`}>
+            Contract Address ={" "}
+            {JSON.stringify(OneMaxContractAddress, null, "  ")}
+          </Typography>
+          <Typography variant={"h4"} className={`${classes.title} title`}>
+            Last Block Details
+          </Typography>
+          <Typography variant={"h6"} className={`${classes.title} subTitle`}>
+            Block Number: {JSON.stringify(lastBlockNumber, null, "  ")}
+            <br />
+            Block Address = {JSON.stringify(block.hash, null, "  ")}
+            <br />
+            <Button variant='contained' color='primary' onClick={fetchBlock}>
+              Fetch Block
+            </Button>
+          </Typography>
+          <Typography variant={"h4"} className={`${classes.title} title`}>
+            Default Account Details
+          </Typography>
+          <Typography variant={"h6"} className={`${classes.title} subTitle`}>
+            Address = {JSON.stringify(myAddress, null, "  ")}
+            <br />
+            Balance = {JSON.stringify(balance, null, "  ")}
+          </Typography>
+          <Typography variant={"h4"} className={`${classes.title} title`}>
+            Wallet Balances
+          </Typography>
+          <Typography variant={"h6"} className={`${classes.title} subTitle`}>
+            Expense = {JSON.stringify(expenseBalance, null, "  ")}
+            <br />
+            Liquidity = {JSON.stringify(liquidityBalance, null, "  ")}
+            <br />
+            Staking = {JSON.stringify(stakingBalance, null, "  ")}
+          </Typography>
+        </Card>
+      </div>
     );
 
 }

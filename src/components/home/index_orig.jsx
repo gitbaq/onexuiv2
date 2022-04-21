@@ -34,30 +34,30 @@ export default function Home() {
   return (
     <div className={classes.root}>
       <div className={`${classes.content}`}>
-        <Typography variant="h5" className={`${classes.title} title`}>
-          HOLD $OneX and earn in $ONE
+        <Typography variant='h5' className={`${classes.title} title`}>
+          HOLD $OneMax and earn in $ONE
         </Typography>
-        <Typography variant="h3" className={`${classes.title} title`}>
+        <Typography variant='h3' className={`${classes.title} title`}>
           Revolutionary Auto-staking Rewards
         </Typography>
-        <Typography variant="h2" className={`${classes.title} title`}>
-          OneX - Amplified Rewards on Harmony ONE
+        <Typography variant='h2' className={`${classes.title} title`}>
+          OneMax - Amplified Rewards on Harmony ONE
         </Typography>
 
         <div className={`${classes.rowCard} `}>
           <Button
-            variant="outlined"
-            color="secondary"
-            href="https://viperswap.one/#/swap"
-            target="_viperswap"
+            variant='outlined'
+            color='secondary'
+            href='https://viperswap.one/#/swap'
+            target='_viperswap'
           >
             Buy on Viperswap
           </Button>
           <Button
-            variant="outlined"
-            color="secondary"
-            href="https://www.dextools.io/app/bsc/pair-explorer/"
-            target="_dextools"
+            variant='outlined'
+            color='secondary'
+            href='https://www.dextools.io/app/bsc/pair-explorer/'
+            target='_dextools'
           >
             Chart on Dextools
           </Button>

@@ -18,7 +18,7 @@ import { withRouter } from "react-router-dom";
 import { colors } from "../../theme";
 
 import "./appbar.css";
-import oneXLogo from "../../assets/v3_white_nocircle.svg";
+import OneMaxLogo from "../../assets/OneMax.png";
 import Header from "../header";
 
 const useStyles = makeStyles((theme) => ({
@@ -83,7 +83,7 @@ const PrimarySearchAppBar = (props) => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="sticky" className={classes.appBar} elevation={1}>
+      <AppBar position='sticky' className={classes.appBar} elevation={1}>
         <Toolbar
           className={classes.toolbar}
           value={value}
@@ -93,7 +93,7 @@ const PrimarySearchAppBar = (props) => {
           showLabels
         >
           <div>
-            <img alt="OneX logo" src={oneXLogo} className="logo" />
+            <img alt='OneMax logo' src={OneMaxLogo} className='logo' />
           </div>
           {/* <Tooltip title="BBH Swap">
             <IconButton
@@ -105,60 +105,60 @@ const PrimarySearchAppBar = (props) => {
               <div className="appBarLabel">BBH Swap</div>
             </IconButton>
           </Tooltip> */}
-          <Tooltip title="Verify Contract">
+          <Tooltip title='Verify Contract'>
             <IconButton
-              aria-label="Account"
-              className="appBarLabel"
+              aria-label='Account'
+              className='appBarLabel'
               onClick={() => handleButtonClick("/verifycontract")}
             >
               <DoneAllRoundedIcon className={classes.iconsSub} />
-              <div className="appBarLabel">Verify Contract</div>
+              <div className='appBarLabel'>Verify Contract</div>
             </IconButton>
           </Tooltip>
           <div className={classes.grow} />
           <div className={`${classes.sectionDesktop}`}>
-            <Tooltip title="Home">
+            <Tooltip title='Home'>
               <IconButton
-                aria-label="Home"
-                color="inherit"
+                aria-label='Home'
+                color='inherit'
                 onClick={() => handleButtonClick("/home")}
               >
                 <HomeRoundedIcon className={classes.iconsLight} />
               </IconButton>
             </Tooltip>
 
-            <Tooltip title="Whitepaper">
+            <Tooltip title='Whitepaper'>
               <IconButton
-                aria-label="Whitepaper"
-                color="inherit"
+                aria-label='Whitepaper'
+                color='inherit'
                 onClick={() => handleButtonClick("/whitepaper")}
               >
                 <AssignmentRoundedIcon className={classes.iconsLight} />
               </IconButton>
             </Tooltip>
 
-            <Tooltip title="Frequently Asked Questions">
+            <Tooltip title='Frequently Asked Questions'>
               <IconButton
-                aria-label="FAQ"
-                color="inherit"
+                aria-label='FAQ'
+                color='inherit'
                 onClick={() => handleButtonClick("/faq")}
               >
                 <ContactSupportRoundedIcon className={classes.iconsLight} />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Team">
+            <Tooltip title='Team'>
               <IconButton
-                aria-label="Team"
-                color="inherit"
+                aria-label='Team'
+                color='inherit'
                 onClick={() => handleButtonClick("/team")}
               >
                 <GroupIcon className={classes.iconsLight} />
               </IconButton>
             </Tooltip>
-            <Tooltip title="Roadmap">
+            <Tooltip title='Roadmap'>
               <IconButton
-                aria-label="Roadmap"
-                color="inherit"
+                aria-label='Roadmap'
+                color='inherit'
                 onClick={() => handleButtonClick("/roadmap")}
               >
                 <MapRoundedIcon className={classes.iconsLight} />
@@ -166,37 +166,37 @@ const PrimarySearchAppBar = (props) => {
             </Tooltip>
 
             {/* <Divider orientation="vertical" flexItem /> */}
-            <Tooltip title="Test Setup">
+            <Tooltip title='Test Setup'>
               <IconButton
-                aria-label="Test Setup"
-                color="inherit"
+                aria-label='Test Setup'
+                color='inherit'
                 onClick={() => handleButtonClick("/testsetup")}
               >
                 <GetAppIcon className={classes.iconsSub} />
-                <div className="appBarLabel">Test Setup</div>
+                <div className='appBarLabel'>Test Setup</div>
               </IconButton>
             </Tooltip>
-            <Tooltip title="Faucet">
+            <Tooltip title='Faucet'>
               <IconButton
-                aria-label="Faucet"
-                color="inherit"
+                aria-label='Faucet'
+                color='inherit'
                 onClick={() => handleButtonClick("/faucet")}
               >
                 <GetAppIcon className={classes.iconsSub} />
-                <div className="appBarLabel">Faucet</div>
+                <div className='appBarLabel'>Faucet</div>
               </IconButton>
             </Tooltip>
-            <Tooltip title="Token Swap">
+            <Tooltip title='Token Swap'>
               <IconButton
-                aria-label="Token Swap"
-                color="inherit"
+                aria-label='Token Swap'
+                color='inherit'
                 onClick={() => handleButtonClick("/tokenswap")}
               >
                 <SwapHorizRoundedIcon className={classes.iconsSub} />
-                <div className="appBarLabel">Token Swap</div>
+                <div className='appBarLabel'>Token Swap</div>
               </IconButton>
             </Tooltip>
-            <Divider orientation="vertical" flexItem />
+            <Divider orientation='vertical' flexItem />
           </div>
           &nbsp;&nbsp;
           <Header />

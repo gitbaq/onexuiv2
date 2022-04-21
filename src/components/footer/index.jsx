@@ -22,7 +22,7 @@ export default function Footer(props) {
 
   return (
     <div className={classes.root}>
-      <div className={classes.content}>&copy; 2022 OneX</div>
+      <div className={classes.content}>&copy; 2022 OneMax</div>
     </div>
   );
 }

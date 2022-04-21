@@ -101,50 +101,53 @@ export default function Calculator() {
     }, [])
 
     return (
-        <div className={classes.root}>
-            <PageHeader title='Calculator' subtitle={"You Have " + tokenBalance + " " + token.name + " " + value} />
-            <Grid container className={`${classes.root}`} spacing={2}>
-                <Grid item xs={12}>
-                    <Grid container justifyContent="center" spacing={5}>
-                        <Grid item>
-                            <Paper className={classes.paper} >
-                                <TextField
-                                    id="currPrice"
-                                    label="Current Price"
-                                    placeholder="Enter Current Price"
-                                    variant="outlined"
-                                    onChange={handleChange}
-                                />
-                            </Paper>
-                        </Grid>
-                        <Grid item>
-                            <Paper className={classes.paper} >
-                                <TextField
-
-                                    id="currHoldings"
-                                    label="Current OneX Holdings"
-                                    placeholder="Enter Current Holdings"
-                                    variant="outlined"
-                                    defaultValue={tokenBalance}
-                                />
-                            </Paper>
-                        </Grid>
-                        <Grid item>
-                            <Paper className={classes.paper} >
-                                <TextField
-
-                                    id="result"
-                                    label="Current Value"
-                                    placeholder="Total Value will appear here"
-                                    variant="outlined"
-                                    value={assetValue}
-                                />
-                                <Button variant="outlined" color="secondary" onClick={calc}>Calculate</Button>
-                            </Paper>
-                        </Grid>
-                    </Grid>
-                </Grid>
+      <div className={classes.root}>
+        <PageHeader
+          title='Calculator'
+          subtitle={"You Have " + tokenBalance + " " + token.name + " " + value}
+        />
+        <Grid container className={`${classes.root}`} spacing={2}>
+          <Grid item xs={12}>
+            <Grid container justifyContent='center' spacing={5}>
+              <Grid item>
+                <Paper className={classes.paper}>
+                  <TextField
+                    id='currPrice'
+                    label='Current Price'
+                    placeholder='Enter Current Price'
+                    variant='outlined'
+                    onChange={handleChange}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper className={classes.paper}>
+                  <TextField
+                    id='currHoldings'
+                    label='Current OneMax Holdings'
+                    placeholder='Enter Current Holdings'
+                    variant='outlined'
+                    defaultValue={tokenBalance}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item>
+                <Paper className={classes.paper}>
+                  <TextField
+                    id='result'
+                    label='Current Value'
+                    placeholder='Total Value will appear here'
+                    variant='outlined'
+                    value={assetValue}
+                  />
+                  <Button variant='outlined' color='secondary' onClick={calc}>
+                    Calculate
+                  </Button>
+                </Paper>
+              </Grid>
             </Grid>
-        </div>
+          </Grid>
+        </Grid>
+      </div>
     );
 }

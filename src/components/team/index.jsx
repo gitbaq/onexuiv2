@@ -35,13 +35,13 @@ export default function Team() {
 
   return (
     <div className={classes.root}>
-      <PageHeader title="Team" subtitle="OneX Team" />
+      <PageHeader title='Team' subtitle='OneMax Team' />
       <Grid
         container
         spacing={1}
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
+        direction='row'
+        justifyContent='center'
+        alignItems='center'
       >
         {coreTeamData.map((filteredItems) => (
           <Grid key={filteredItems.id} item xs={3}>

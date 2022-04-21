@@ -8,7 +8,7 @@ import { Divider } from "@material-ui/core";
 
 // import Divider from "@material-ui/core/Divider";
 import { colors } from "../../theme";
-import oneXLogo from "../../assets/v3_white_nocircle.svg";
+import OneMaxLogo from "../../assets/v3_white_nocircle.svg";
 import "./testsetup.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -74,15 +74,15 @@ export default function TestSetup() {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="OneX Logo" src={oneXLogo} />
+              <img className={classes.img} alt='OneMax Logo' src={OneMaxLogo} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
+            <Grid item xs container direction='column' spacing={2}>
               <Grid item xs>
                 <Typography
                   gutterBottom
-                  variant="subtitle"
+                  variant='subtitle'
                   className={`${classes.title}`}
                 >
                   Setup instructions for test
@@ -90,108 +90,108 @@ export default function TestSetup() {
                 <Divider className={classes.divider} />
                 <br />
                 <Typography
-                  variant="body2"
+                  variant='body2'
                   gutterBottom
                   className={classes.subtitle2}
                 >
                   Read this first{" "}
                   <a
                     className={classes.link}
-                    href="/whitepaper"
-                    target="_whitepaper"
+                    href='/whitepaper'
+                    target='_whitepaper'
                   >
-                    OneX Whitepaper
+                    OneMax Whitepaper
                   </a>{" "}
                 </Typography>
 
                 <Typography
-                  variant="body2"
+                  variant='body2'
                   gutterBottom
                   className={classes.subtitle1}
                 >
                   Step 1:
                 </Typography>
                 <Typography
-                  variant="body2"
-                  color="textSecondary"
+                  variant='body2'
+                  color='textSecondary'
                   className={classes.subtitle2}
                 >
                   Ensure You have Metamask Browser Extension installed <br />
                   <a
                     className={classes.link}
-                    href="https://docs.harmony.one/home/general/wallets/browser-extensions-wallets/metamask-wallet/installing-metamask"
-                    target="_addMetamask"
+                    href='https://docs.harmony.one/home/general/wallets/browser-extensions-wallets/metamask-wallet/installing-metamask'
+                    target='_addMetamask'
                   >
                     Guide to install and add Metamask
                   </a>{" "}
                 </Typography>
                 <Typography
-                  variant="body2"
+                  variant='body2'
                   gutterBottom
                   className={classes.subtitle1}
                 >
                   Step 2:
                 </Typography>
                 <Typography
-                  variant="body2"
-                  color="textSecondary"
+                  variant='body2'
+                  color='textSecondary'
                   className={classes.subtitle2}
                 >
                   Ensure You have Harmony Testnet configured in Metamask <br />
                   <a
                     className={classes.link}
-                    href="https://docs.harmony.one/home/general/wallets/browser-extensions-wallets/metamask-wallet/adding-harmony"
-                    target="_harmonyTestnet"
+                    href='https://docs.harmony.one/home/general/wallets/browser-extensions-wallets/metamask-wallet/adding-harmony'
+                    target='_harmonyTestnet'
                   >
                     Guide to configure harmony testnet
                   </a>{" "}
                 </Typography>
                 <Typography
-                  variant="body2"
+                  variant='body2'
                   gutterBottom
                   className={classes.subtitle1}
                 >
                   Step 3:
                 </Typography>
                 <Typography
-                  variant="body2"
-                  color="textSecondary"
+                  variant='body2'
+                  color='textSecondary'
                   className={classes.subtitle2}
                 >
                   Go to{" "}
                   <a
                     className={classes.link}
-                    href="/verifycontract"
-                    target="_verifycontract"
+                    href='/verifycontract'
+                    target='_verifycontract'
                   >
                     Verify Contract
                   </a>{" "}
-                  Click Add OneXT to Metamask
+                  Click Add OneMaxT to Metamask
                 </Typography>
                 <Typography
-                  variant="body2"
+                  variant='body2'
                   gutterBottom
                   className={classes.subtitle1}
                 >
                   Step 4:
                 </Typography>
                 <Typography
-                  variant="body2"
-                  color="textSecondary"
+                  variant='body2'
+                  color='textSecondary'
                   className={classes.subtitle2}
                 >
                   Connect Your Wallet (top right)
                 </Typography>
                 <Typography
-                  variant="body2"
+                  variant='body2'
                   gutterBottom
                   className={classes.subtitle1}
                 >
                   Step 5:
                 </Typography>
                 <Typography
-                  variant="body2"
-                  color="textSecondary"
+                  variant='body2'
+                  color='textSecondary'
                   className={classes.subtitle2}
                 >
                   Ensure You have ONE tokens (Harmony Testnet) in your metamask
@@ -199,54 +199,54 @@ export default function TestSetup() {
                   <br />
                   <a
                     className={classes.link}
-                    href="https://faucet.pops.one/"
-                    target="_harmonyFaucet"
+                    href='https://faucet.pops.one/'
+                    target='_harmonyFaucet'
                   >
                     Harmony Testnet Faucet Link
                   </a>{" "}
                 </Typography>
                 <Typography
-                  variant="body2"
+                  variant='body2'
                   gutterBottom
                   className={classes.subtitle1}
                 >
                   Step 6:
                 </Typography>
                 <Typography
-                  variant="body2"
-                  color="textSecondary"
+                  variant='body2'
+                  color='textSecondary'
                   className={classes.subtitle2}
                 >
                   Go to{" "}
-                  <a className={classes.link} href="/faucet" target="_faucet">
-                    OneX Faucet
+                  <a className={classes.link} href='/faucet' target='_faucet'>
+                    OneMax Faucet
                   </a>{" "}
-                  and Request Test OneX
+                  and Request Test OneMax
                   <br />
                 </Typography>
                 <Typography
-                  variant="body2"
+                  variant='body2'
                   gutterBottom
                   className={classes.subtitle1}
                 >
                   Step 7:
                 </Typography>
                 <Typography
-                  variant="body2"
-                  color="textSecondary"
+                  variant='body2'
+                  color='textSecondary'
                   className={classes.subtitle2}
                 >
                   Go to{" "}
                   <a
                     className={classes.link}
-                    href="/tokenswap"
-                    target="_tokenswap"
+                    href='/tokenswap'
+                    target='_tokenswap'
                   >
                     Token Swap
                   </a>{" "}
                   click View Balance and notice balance for 3 wallets receiving
-                  taxes on OneX transactions (Expense, Liquidity and Staking){" "}
-                  <br /> Swap 500000 (Half Million) OneX to ONE
+                  taxes on OneMax transactions (Expense, Liquidity and Staking){" "}
+                  <br /> Swap 500000 (Half Million) OneMax to ONE
                   <br />
                   Once Confirmation message is received, notice change in the
                   balances of 3 wallets mentioned above.

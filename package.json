@@ -1,6 +1,6 @@
 {
   "homepage": "./",
-  "name": "onex-ui",
+  "name": "onemax-ui",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -57,8 +57,6 @@
     ]
   },
   "devDependencies": {
-    
-    
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",

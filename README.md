@@ -1,4 +1,4 @@
-# OneX UI V2
+# OneMax UI V2
 
 ## Available Scripts
 

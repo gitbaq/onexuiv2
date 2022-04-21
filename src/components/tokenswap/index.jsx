@@ -7,7 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import abi from "abi/onexv2.json";
+import abi from "abi/OneMaxV2.json";
 import PageHeader from "../pageHeader";
 import Store from "../../stores";
 import { colors } from "../../theme";
@@ -116,16 +116,16 @@ export default function TokenSwap(props) {
   const hmy = store.getStore("hmy");
 
   const contract = new web3.eth.Contract(abi, token);
-  const oneXV2Contract = hmy.client.contracts.createContract(
-    require("abi/onexv2.json"),
+  const OneMaxV2Contract = hmy.client.contracts.createContract(
+    require("abi/OneMaxV2.json"),
     token
   );
 
-  function createData(date, name, oneX, one) {
+  function createData(date, name, OneMax, one) {
     return {
       date,
       name,
-      oneX,
+      OneMax,
       one,
     };
   }
@@ -229,7 +229,7 @@ export default function TokenSwap(props) {
   };
 
   // eslint-disable-next-line no-shadow
-  const swapOneX = async (swapAmount) => {
+  const swapOneMax = async (swapAmount) => {
     if (!loading) {
       setSnackbarMessage(null);
       setSnackbarType(null);
@@ -243,7 +243,7 @@ export default function TokenSwap(props) {
           setLoading(false);
           return;
         }
-        const res = await store.swapOneX(swapAmount);
+        const res = await store.swapOneMax(swapAmount);
 
         if (res.status) {
           url = `${hmy.explorerUrl}/tx/${res.transactionHash}`;
@@ -362,36 +362,36 @@ export default function TokenSwap(props) {
   return (
     <Grid container className={classes.root} spacing={2}>
       <PageHeader
-        title="Swap"
+        title='Swap'
         subtitle={`Token Swap ${getAddress(newAddress)}`}
       />
       {snackbarMessage && renderSnackbar()}
-      <Grid container justifyContent="center" spacing={2}>
+      <Grid container justifyContent='center' spacing={2}>
         <Grid item xs={6}>
           <Paper className={`${classes.paper}`} elevation={3}>
-            {loading && <ColoredLoader position="relative" />}
+            {loading && <ColoredLoader position='relative' />}
             <div className={classes.margin}>
               <Grid container spacing={1} className={classes.container}>
                 <Grid item className={classes.gridItem}>
                   <TextField
-                    type="number"
+                    type='number'
                     className={`${classes.controlT}`}
-                    name="swapAmount"
-                    id="swapAmount"
-                    label="OneX"
-                    variant="filled"
+                    name='swapAmount'
+                    id='swapAmount'
+                    label='OneMax'
+                    variant='filled'
                     onChange={handleChangeS}
                   />
                   &nbsp;
                   <Button
                     disabled={loading || !loggedIn}
                     className={`${classes.button} ${classes.controlB}`}
-                    id="oneTokens"
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => swapOneX(swapParams.swapAmount)}
+                    id='oneTokens'
+                    variant='contained'
+                    color='secondary'
+                    onClick={() => swapOneMax(swapParams.swapAmount)}
                   >
-                    Swap OneX to ONE
+                    Swap OneMax to ONE
                   </Button>
                 </Grid>
                 <Grid
@@ -406,20 +406,20 @@ export default function TokenSwap(props) {
                 <Grid item className={classes.gridItem}>
                   <TextField
                     className={`${classes.controlT}`}
-                    id="receiver"
-                    name="receiver"
-                    label="Receiver (Address)"
-                    variant="filled"
+                    id='receiver'
+                    name='receiver'
+                    label='Receiver (Address)'
+                    variant='filled'
                     onChange={handleChangeD}
                   />
                   &nbsp;
                   <TextField
-                    type="number"
+                    type='number'
                     className={`${classes.controlT}`}
-                    id="amount"
-                    name="amount"
-                    label="Amount"
-                    variant="filled"
+                    id='amount'
+                    name='amount'
+                    label='Amount'
+                    variant='filled'
                     onChange={handleChangeD}
                   />
                 </Grid>
@@ -427,14 +427,14 @@ export default function TokenSwap(props) {
                   <Button
                     disabled={loading || !loggedIn}
                     className={`${classes.button} ${classes.controlB}`}
-                    id="transferButton"
-                    variant="contained"
-                    color="secondary"
+                    id='transferButton'
+                    variant='contained'
+                    color='secondary'
                     onClick={() =>
                       transferToken(tParams.receiver, tParams.amount)
                     }
                   >
-                    Send OneX
+                    Send OneMax
                   </Button>
                 </Grid>
               </Grid>
@@ -448,8 +448,8 @@ export default function TokenSwap(props) {
                   <Button
                     disabled={loading || !loggedIn}
                     className={`${classes.button} ${classes.controlB}`}
-                    variant="contained"
-                    color="secondary"
+                    variant='contained'
+                    color='secondary'
                     onClick={() => processDividend()}
                   >
                     Distribute Rewards
@@ -461,8 +461,8 @@ export default function TokenSwap(props) {
                   <Button
                     disabled={loading || !loggedIn}
                     className={`${classes.button} ${classes.controlB}`}
-                    variant="contained"
-                    color="secondary"
+                    variant='contained'
+                    color='secondary'
                     onClick={() => getBal()}
                   >
                     Get Bal
@@ -477,22 +477,22 @@ export default function TokenSwap(props) {
             <div>
               <Button
                 className={classes.button}
-                variant="contained"
-                color="primary"
+                variant='contained'
+                color='primary'
                 onClick={updateBalances}
               >
                 View Balances
               </Button>
               <Button
                 className={classes.button}
-                variant="contained"
-                color="secondary"
+                variant='contained'
+                color='secondary'
                 onClick={resetData}
               >
                 Clear Logs
               </Button>
             </div>
-            <DataTable rows={rows} id="dataTable" />
+            <DataTable rows={rows} id='dataTable' />
           </Paper>
         </Grid>
       </Grid>

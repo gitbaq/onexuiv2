@@ -21,10 +21,10 @@ export default function Contract() {
     const classes = useStyles();
 
     return (
-        <div className={classes.root} >
-            <Paper elevation={2}>
-                <Typography variant="h4">OneX Contract</Typography>
-            </Paper>
-        </div>
+      <div className={classes.root}>
+        <Paper elevation={2}>
+          <Typography variant='h4'>OneMax Contract</Typography>
+        </Paper>
+      </div>
     );
 }

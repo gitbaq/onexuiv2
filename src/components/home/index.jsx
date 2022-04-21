@@ -10,7 +10,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import DoneOutlineRoundedIcon from "@material-ui/icons/DoneOutlineRounded";
 import { colors } from "../../theme";
-import oneXLogo from "../../assets/v3_white_nocircle.svg";
+import OneMaxLogo from "../../assets/OneMax.png";
 import "./home.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -61,21 +61,21 @@ export default function Home() {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="OneX Logo" src={oneXLogo} />
+              <img className={classes.img} alt='OneMax Logo' src={OneMaxLogo} />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
+            <Grid item xs container direction='column' spacing={2}>
+              {/* <Grid item xs>
                 <Typography
                   gutterBottom
-                  variant="subtitle"
+                  variant='subtitle'
                   className={`${classes.subtitle1}`}
                 >
                   Not interested in NFTs?
                 </Typography>
                 <Typography
-                  variant="body2"
+                  variant='body2'
                   gutterBottom
                   className={classes.subtitle2}
                 >
@@ -84,32 +84,32 @@ export default function Home() {
                   Defi protocols?
                 </Typography>
                 <Typography
-                  variant="body2"
-                  color="textSecondary"
+                  variant='body2'
+                  color='textSecondary'
                   className={classes.subtitle1}
                 >
                   In Love with $ONE and Harmony chain?
                 </Typography>
-              </Grid>
+              </Grid> */}
               <Grid item>
                 <Typography
-                  variant="body2"
+                  variant='body2'
                   style={{ cursor: "pointer" }}
                   className={classes.subtitle2}
                 >
                   Here is what we offer:{" "}
-                  {/* <span className={classes.subtitle1}>OneX</span> */}
+                  {/* <span className={classes.subtitle1}>OneMax</span> */}
                 </Typography>
                 <Typography
-                  variant="body2"
+                  variant='body2'
                   style={{ fontSize: "190px" }}
-                  className="animate-charcter"
+                  className='animate-charcter'
                 >
-                  OneX
+                  OneMax
                 </Typography>
                 <List
-                  component="nav"
-                  aria-label="main mailbox folders"
+                  component='nav'
+                  aria-label='main mailbox folders'
                   className={classes.subtitle2}
                 >
                   <ListItem button style={{ fontSize: "60px" }}>
@@ -117,8 +117,8 @@ export default function Home() {
                       <DoneOutlineRoundedIcon className={classes.subtitle1} />
                     </ListItemIcon>
                     <ListItemText
-                      primary="Simple and efficient reward
-                  token, on Harmony"
+                      primary='Simple and efficient reward
+                  token, on Harmony'
                       classes={{ primary: classes.subtitle1 }}
                     />
                   </ListItem>
@@ -128,7 +128,7 @@ export default function Home() {
                       <DoneOutlineRoundedIcon className={classes.subtitle1} />
                     </ListItemIcon>
                     <ListItemText
-                      primary="rewards are provided in $ONE"
+                      primary='rewards are provided in $ONE'
                       classes={{ primary: classes.subtitle1 }}
                     />
                   </ListItem>
@@ -138,18 +138,18 @@ export default function Home() {
                       <DoneOutlineRoundedIcon className={classes.subtitle1} />
                     </ListItemIcon>
                     <ListItemText
-                      primary="a small market cap with high
-                  potential"
+                      primary='a small market cap with high
+                  potential'
                       classes={{ primary: classes.subtitle1 }}
                     />
                   </ListItem>
                 </List>
                 <Typography
-                  variant="body2"
+                  variant='body2'
                   style={{ fontSize: "40px" }}
-                  className="animate-charcter"
+                  className='animate-charcter'
                 >
-                  OneX - Amplify $ONE rewards
+                  OneMax - Passive Rewards Token
                 </Typography>
               </Grid>
             </Grid>

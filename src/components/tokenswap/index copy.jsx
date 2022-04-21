@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 
-import abi from "abi/onexv2.json";
+import abi from "abi/OneMaxv2.json";
 import MetamaskConnect from '../metamask';
 import { getAddress } from "../../constants/utility";
 // import { BN } from "bn.js";
@@ -168,28 +168,28 @@ export default function TokenSwap(props) {
             });
     }
 
-    async function sellOneX() {
-        console.log('Selling ' + newData + ' OneX from ' + ethAddress);
-        // contract.methods.swapOneXToOne(newData)
-        try {
-            let error = '';
-            // contract.methods.swapOneXToOne(newData).call((err, result) => {
-            //     error = err ? setResult("Error = " + JSON.stringify(err)) : setResult("Result = " + JSON.stringify(result));
-            //     console.log('Error: ' + err);
-            // })
-            console.log("newData" + newData + " ethAddress " + ethAddress);
-            setRst('...')
+    async function sellOneMax() {
+      console.log("Selling " + newData + " OneMax from " + ethAddress);
+      // contract.methods.swapOneMaxToOne(newData)
+      try {
+        let error = "";
+        // contract.methods.swapOneMaxToOne(newData).call((err, result) => {
+        //     error = err ? setResult("Error = " + JSON.stringify(err)) : setResult("Result = " + JSON.stringify(result));
+        //     console.log('Error: ' + err);
+        // })
+        console.log("newData" + newData + " ethAddress " + ethAddress);
+        setRst("...");
 
-            contract.methods.swapOneXToOne(newData).call({ from: ethAddress })
-                .then(function (result) {
-                    setRst(JSON.stringify(result))
-                    console.log(result);
-                });
-        } catch (error) {
-            console.log('Error in Swap OnexToOne ' + error);
-        }
-
-
+        contract.methods
+          .swapOneMaxToOne(newData)
+          .call({ from: ethAddress })
+          .then(function (result) {
+            setRst(JSON.stringify(result));
+            console.log(result);
+          });
+      } catch (error) {
+        console.log("Error in Swap OneMaxToOne " + error);
+      }
     }
 
     const handleChange = (event) => {
@@ -201,8 +201,8 @@ export default function TokenSwap(props) {
     }
     getPair();
 
-    function createData(name, oneX, one) {
-        return { name, oneX, one };
+    function createData(name, OneMax, one) {
+      return { name, OneMax, one };
     }
 
     // const rows = [
@@ -218,93 +218,124 @@ export default function TokenSwap(props) {
     }
 
     return (
-        <Grid container className={classes.root} spacing={2}>
-            <PageHeader title='Swap' subtitle={"Token Swap " + getAddress(ethAddress)} />
-            <form className={classes.root}>
-                <Grid item xs={12}>
-                    <Grid container justifyContent="center" spacing={2}>
-                        <Grid item xs={6} >
-                            <Paper className={`${classes.paper}`} elevation={3} >
-                                <div><MetamaskConnect onConnect={dataReceived} /></div>
+      <Grid container className={classes.root} spacing={2}>
+        <PageHeader
+          title='Swap'
+          subtitle={"Token Swap " + getAddress(ethAddress)}
+        />
+        <form className={classes.root}>
+          <Grid item xs={12}>
+            <Grid container justifyContent='center' spacing={2}>
+              <Grid item xs={6}>
+                <Paper className={`${classes.paper}`} elevation={3}>
+                  <div>
+                    <MetamaskConnect onConnect={dataReceived} />
+                  </div>
 
-                                <div className={classes.margin}>
-                                    <Grid container spacing={1} alignItems="flex-end">
-                                        {/* <Grid item>
+                  <div className={classes.margin}>
+                    <Grid container spacing={1} alignItems='flex-end'>
+                      {/* <Grid item>
                                             <AccountCircle onClick={getPair()} />
                                         </Grid> */}
-                                        <Grid item>
-                                            Pair Address (on Viperswap): {getAddress(pair)}
-                                        </Grid>
-                                    </Grid>
-                                </div>
+                      <Grid item>
+                        Pair Address (on Viperswap): {getAddress(pair)}
+                      </Grid>
+                    </Grid>
+                  </div>
 
-                                <div className={classes.margin}>
-                                    <Grid container spacing={1} alignItems="flex-end">
-                                        <Grid item>
-                                            <AccountCircle />
-                                        </Grid>
-                                        <Grid item>
-                                            <div>
-                                                <TextField name="tokenBalance" label="OneX" variant="outlined" value={newData} onChange={handleChange} /> Max: {newData}</div>
-
-                                        </Grid>
-                                        <Grid item>
-                                            <Button className={classes.button} id='oneTokens' variant="contained" color="primary" onClick={sellOneX}>Sell OneX</Button>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid container spacing={1} alignItems="flex-end">
-                                        <Grid item>
-                                            Result = {rst}
-                                        </Grid>
-                                    </Grid>
-                                </div>
-                                <div className={classes.margin}>
-                                    <Grid container spacing={1} alignItems="flex-end">
-                                        <Grid item>
-                                            {/* <AccountCircle /> */}
-                                        </Grid>
-                                        {/* <Grid item>
+                  <div className={classes.margin}>
+                    <Grid container spacing={1} alignItems='flex-end'>
+                      <Grid item>
+                        <AccountCircle />
+                      </Grid>
+                      <Grid item>
+                        <div>
+                          <TextField
+                            name='tokenBalance'
+                            label='OneMax'
+                            variant='outlined'
+                            value={newData}
+                            onChange={handleChange}
+                          />{" "}
+                          Max: {newData}
+                        </div>
+                      </Grid>
+                      <Grid item>
+                        <Button
+                          className={classes.button}
+                          id='oneTokens'
+                          variant='contained'
+                          color='primary'
+                          onClick={sellOneMax}
+                        >
+                          Sell OneMax
+                        </Button>
+                      </Grid>
+                    </Grid>
+                    <Grid container spacing={1} alignItems='flex-end'>
+                      <Grid item>Result = {rst}</Grid>
+                    </Grid>
+                  </div>
+                  <div className={classes.margin}>
+                    <Grid container spacing={1} alignItems='flex-end'>
+                      <Grid item>{/* <AccountCircle /> */}</Grid>
+                      {/* <Grid item>
                                             <div>
                                                 <TextField name="ethBalance" label="ONE" value={balance} variant="outlined" onChange={handleChangeOne} /> Max: {balance}</div>
                                         </Grid> */}
-                                        <Grid item>
-                                            <Button className={classes.button} variant="contained" color="secondary" onClick={distributeRewards}>Distribute Rewards</Button>
-                                        </Grid>
-                                    </Grid>
-                                </div>
+                      <Grid item>
+                        <Button
+                          className={classes.button}
+                          variant='contained'
+                          color='secondary'
+                          onClick={distributeRewards}
+                        >
+                          Distribute Rewards
+                        </Button>
+                      </Grid>
+                    </Grid>
+                  </div>
 
+                  {/* <Button className={classes.button} variant="contained" color="secondary" onClick={swap}>Swap</Button> */}
+                </Paper>
+              </Grid>
+              <Grid item xs={6}>
+                <Button
+                  className={classes.button}
+                  variant='contained'
+                  color='secondary'
+                  onClick={resetData}
+                >
+                  Clear Logs
+                </Button>
+                <DataTable
+                  timestamp={new Date().toLocaleString("en-US")}
+                  rows={rows}
+                />
 
-                                {/* <Button className={classes.button} variant="contained" color="secondary" onClick={swap}>Swap</Button> */}
-
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Button className={classes.button} variant="contained" color="secondary" onClick={resetData}>Clear Logs</Button>
-                            <DataTable timestamp={new Date().toLocaleString('en-US')} rows={rows} />
-
-                            {/* <Paper className={classes.paper} elevation={3}>Balances<hr />
+                {/* <Paper className={classes.paper} elevation={3}>Balances<hr />
                                 Connected Wallet: {getAddress(address)}<br />
-                                ** OneX in Wallet = {newData}<br />
+                                ** OneMax in Wallet = {newData}<br />
                                 ** ONE in Wallet {JSON.stringify(balance, null, "  ")} < hr />
 
                                 Expense Wallet<br />
                                 ** ONE: {JSON.stringify(expenseBalance, null, "  ")}
                                 <br />
-                                ** OneX: <hr />
+                                ** OneMax: <hr />
                                 Liquidity Wallet<br />
                                 ** ONE: {JSON.stringify(liquidityBalance, null, "  ")}
                                 <br />
-                                ** OneX: <hr />
+                                ** OneMax: <hr />
                                 Staking Wallet<br />ONE: {JSON.stringify(stakingBalance, null, "  ")}<br />
-                                ** OneX:<br />
+                                ** OneMax:<br />
                                 <Button className={classes.button} variant="contained" color="secondary" onClick={getData}>Get Balance</Button>
                                 <br />
                             </Paper> */}
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </form>
-        </Grid >
-        // </div>
-    )
+              </Grid>
+            </Grid>
+          </Grid>
+        </form>
+      </Grid>
+      // </div>
+    );
 }

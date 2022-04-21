@@ -48,33 +48,49 @@ export default function DataTable(props) {
     const rows = props.rows ? props.rows : [];
     let index = 0;
     return (
-        <Paper className={classes.root}>
-            <TableContainer className={classes.container}>
-                <Table stickyHeader aria-label="sticky table" size='small'>
-                    <TableHead>
-                        <StyledTableRow >
-                            <TableCell className={classes.header}>&nbsp;</TableCell>
-                            <TableCell className={classes.header}>Wallet</TableCell>
-                            <TableCell align="right" className={classes.header}>OneX</TableCell>
-                            <TableCell align="right" className={classes.header}>One</TableCell>
-                        </StyledTableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <StyledTableRow key={index++} style={{ backgroundColor: (!row.oneX && !row.one) ? colors.harmonyGradient : 'white' }}>
-                                <TableCell align="right">{row.date}</TableCell>
+      <Paper className={classes.root}>
+        <TableContainer className={classes.container}>
+          <Table stickyHeader aria-label='sticky table' size='small'>
+            <TableHead>
+              <StyledTableRow>
+                <TableCell className={classes.header}>&nbsp;</TableCell>
+                <TableCell className={classes.header}>Wallet</TableCell>
+                <TableCell align='right' className={classes.header}>
+                  OneMax
+                </TableCell>
+                <TableCell align='right' className={classes.header}>
+                  One
+                </TableCell>
+              </StyledTableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <StyledTableRow
+                  key={index++}
+                  style={{
+                    backgroundColor:
+                      !row.OneMax && !row.one
+                        ? colors.harmonyGradient
+                        : "white",
+                  }}
+                >
+                  <TableCell align='right'>{row.date}</TableCell>
 
-                                <TableCell component="th" scope="row" className={`${classes.header} ${classes.upperText}`}>
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.oneX}</TableCell>
-                                <TableCell align="right">{row.one}</TableCell>
-                            </StyledTableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-        </Paper>
-    )
+                  <TableCell
+                    component='th'
+                    scope='row'
+                    className={`${classes.header} ${classes.upperText}`}
+                  >
+                    {row.name}
+                  </TableCell>
+                  <TableCell align='right'>{row.OneMax}</TableCell>
+                  <TableCell align='right'>{row.one}</TableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+    );
 }
 

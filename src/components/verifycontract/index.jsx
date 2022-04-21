@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 import Store from "../../stores";
 
 import { Typography } from "@material-ui/core";
-import abi from "abi/onexv2.json";
+import abi from "abi/OneMaxV2.json";
 import AbiCard from "./abiCard";
 import { rgba } from "polished";
 

@@ -108,13 +108,9 @@ export default function Rewards() {
 
 
     return (
-        <div className={classes.root}>
-            <PageHeader title='OneX Rewards' subtitle='Connect Wallet...' />
-            <Card className={`${classes.card}`} >
-
-                Rewards
-            </Card>
-
-        </div>
-    )
+      <div className={classes.root}>
+        <PageHeader title='OneMax Rewards' subtitle='Connect Wallet...' />
+        <Card className={`${classes.card}`}>Rewards</Card>
+      </div>
+    );
 }

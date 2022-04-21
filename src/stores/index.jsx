@@ -58,8 +58,8 @@ class Store {
       tokens: [
         {
           address: config.addresses.token,
-          name: "OneX",
-          symbol: "ONEXT",
+          name: "OneMax",
+          symbol: "OneMaxT",
           decimals: 18,
           balance: 0,
         },
@@ -249,7 +249,7 @@ class Store {
       throw new WalletConnectionError("No wallet connected");
     }
     let tokenContract = hmy.client.contracts.createContract(
-      require("../abi/onexv2.json"),
+      require("../abi/OneMaxV2.json"),
       config.addresses.token
     );
     // tokenContract = await connector.attachToContract(tokenContract)
@@ -263,8 +263,8 @@ class Store {
       });
   };
 
-  swapOneX_one = async (swapAmount) => {
-    console.log("in Store: swapOneX " + swapAmount);
+  swapOneMax_one = async (swapAmount) => {
+    console.log("in Store: swapOneMax " + swapAmount);
     const hmy = store.getStore("hmy");
     const account = store.getStore("account");
     const context = store.getStore("web3context");
@@ -278,13 +278,13 @@ class Store {
       throw new WalletConnectionError("No wallet connected");
     }
     let tokenContract = hmy.client.contracts.createContract(
-      require("../abi/onexv2.json"),
+      require("../abi/OneMaxV2.json"),
       config.addresses.token
     );
     // tokenContract = await connector.attachToContract(tokenContract)
     console.log("Gas Options: " + JSON.stringify(hmy.gasOptions()));
     return tokenContract.methods
-      .swapOneXToOne(new BN(swapAmount))
+      .swapOneMaxToOne(new BN(swapAmount))
       .send({ gasPrice: 2000000000, gasLimit: 6721900, from: account.address });
   };
 
@@ -304,7 +304,7 @@ class Store {
       throw new WalletConnectionError("No wallet connected");
     }
     let tokenContract = hmy.client.contracts.createContract(
-      require("../abi/onexv2.json"),
+      require("../abi/OneMaxV2.json"),
       config.addresses.token
     );
     tokenContract = await connector.attachToContract(tokenContract);
@@ -319,7 +319,7 @@ class Store {
   setupContract = async () => {
     await signInMetamask();
     web3 = new Web3(window.web3.currentProvider);
-    const contractFile = require("./OneXV2.json");
+    const contractFile = require("./OneMaxV2.json");
     // console.log(contractFile.abi)
     const contractInstance = new web3.eth.Contract(
       contractFile.abi,
@@ -367,10 +367,10 @@ class Store {
     return value;
   };
 
-  swapOneX = async (swapAmount) => {
+  swapOneMax = async (swapAmount) => {
     await this.setupContract();
     const account = store.getStore("account");
-    return contract.methods.swapOneXToOne(new BN(swapAmount)).send({
+    return contract.methods.swapOneMaxToOne(new BN(swapAmount)).send({
       gasPrice: gasOptions.gasPrice,
       gasLimit: gasOptions.gasLimit,
       from: account.address,

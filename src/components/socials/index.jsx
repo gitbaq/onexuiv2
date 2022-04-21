@@ -25,16 +25,16 @@ export default function Socials(props) {
   return (
     <div className={classes.root}>
       Let's start a conversation:&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="https://twitter.com/OneXToken" target="_twitter">
-        <TwitterIcon className="twitterIcon" />
+      <a href='https://twitter.com/OneMaxToken' target='_twitter'>
+        <TwitterIcon className='twitterIcon' />
       </a>
       &nbsp;&nbsp;
-      <a href="https://t.me/OnexMainTG" target="_telegram">
-        <TelegramIcon className="telegramIcon" />
+      <a href='https://t.me/OneMaxMainTG' target='_telegram'>
+        <TelegramIcon className='telegramIcon' />
       </a>
       &nbsp;&nbsp;
-      <a href="https://www.reddit.com/r/OneXTokenHRC/" target="_reddit">
-        <RedditIcon className="redditIcon" />
+      <a href='https://www.reddit.com/r/OneMaxTokenHRC/' target='_reddit'>
+        <RedditIcon className='redditIcon' />
       </a>
     </div>
   );

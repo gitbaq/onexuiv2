@@ -100,7 +100,7 @@ export default function MetamaskConnect(props) {
 
   async function addTokenToMM() {
     const tokenAddress = TOKEN_ADDRESS;
-    const tokenSymbol = "ONEXT";
+    const tokenSymbol = "OneMaxT";
     const tokenDecimals = 18;
     // const tokenImage = 'http://placekitten.com/200/300';
     const provider = await detectEthereumProvider();
@@ -137,12 +137,12 @@ export default function MetamaskConnect(props) {
   }
 
   return (
-    <Paper variant="outlined" elevation={1} className={classes.root}>
+    <Paper variant='outlined' elevation={1} className={classes.root}>
       {isAuthorised && "Connected to:" + getAddress(ethAddress)}
       &nbsp;&nbsp;&nbsp;&nbsp;
       {!isAuthorised && false && (
         <Button
-          variant="contained"
+          variant='contained'
           onClick={signIn}
           startIcon={<MMIcon imgSrc={metamask} />}
         >
@@ -150,11 +150,11 @@ export default function MetamaskConnect(props) {
         </Button>
       )}
       <Button
-        variant="contained"
+        variant='contained'
         onClick={addTokenToMM}
         startIcon={<MMIcon imgSrc={logo} />}
       >
-        Add ONEXT To Metamask
+        Add OneMaxT To Metamask
       </Button>
     </Paper>
   );
