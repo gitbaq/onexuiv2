@@ -8,7 +8,9 @@ import { Divider } from "@material-ui/core";
 
 // import Divider from "@material-ui/core/Divider";
 import { colors } from "../../theme";
-import OneMaxLogo from "../../assets/v3_white_nocircle.svg";
+// import OneMaxLogo from "../../assets/v3_white_nocircle.svg";
+import OneMaxLogo from "../../assets/OneMax.png";
+
 import "./testsetup.css";
 
 const useStyles = makeStyles((theme) => ({
