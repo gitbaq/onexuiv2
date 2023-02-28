@@ -6,9 +6,9 @@ pipeline {
 
   }
   stages {
-    stage('') {
+    stage('error') {
       steps {
-        sh 'npm start'
+        sh 'zsh \'npm start\''
       }
     }
 
