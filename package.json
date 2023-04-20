@@ -3,6 +3,9 @@
   "name": "onemax-ui",
   "version": "0.0.1",
   "private": true,
+  "engines": {
+    "node": "16.9.0"
+  },
   "dependencies": {
     "@ethersproject/providers": "^5.5.0",
     "@harmony-js/core": "^0.1.55",
